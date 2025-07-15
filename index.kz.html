@@ -485,5 +485,24 @@ function closePdfjsModal() {
   document.getElementById('pdfjs-viewer').innerHTML = '';
 }
 </script>
+<!-- Контейнер для PDF.js viewer (будет показан в модалке) -->
+<div id="pdfjs-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:24px;max-width:70vw;max-height:80vh;overflow:auto;position:relative;">
+    <button onclick="closePdfjsModal()" style="position:absolute;top:8px;right:8px;font-size:2rem;background:none;border:none;cursor:pointer;">&times;</button>
+    <h2 style="margin-bottom:16px;display:flex;align-items:center;gap:16px;">
+      ITMLab кейстері
+      <button id="pdfjs-open-newtab" class="cyber-button" style="margin-left:auto;font-size:1rem;padding:4px 12px;">ЖАҢА ТЕРЕЗЕДЕ АШУ</button>
+    </h2>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;justify-content:center;">
+      <button id="pdfjs-prev" class="cyber-button" style="padding:4px 12px;">←</button>
+      <span id="pdfjs-page-info" style="font-size:1.1rem;"></span>
+      <button id="pdfjs-next" class="cyber-button" style="padding:4px 12px;">→</button>
+      <button id="pdfjs-zoom-out" class="cyber-button" style="padding:4px 12px;">–</button>
+      <span id="pdfjs-zoom-info" style="min-width:40px;text-align:center;"></span>
+      <button id="pdfjs-zoom-in" class="cyber-button" style="padding:4px 12px;">+</button>
+    </div>
+    <div id="pdfjs-viewer" style="width:60vw;height:60vh;"></div>
+  </div>
+</div>
 </body>
 </html> 
