@@ -284,6 +284,9 @@
           <button id="pdfjs-prev" class="cyber-button" style="padding:4px 12px;">←</button>
           <span id="pdfjs-page-info" style="font-size:1.1rem;"></span>
           <button id="pdfjs-next" class="cyber-button" style="padding:4px 12px;">→</button>
+          <button id="pdfjs-zoom-out" class="cyber-button" style="padding:4px 12px;">–</button>
+          <span id="pdfjs-zoom-info" style="min-width:40px;text-align:center;"></span>
+          <button id="pdfjs-zoom-in" class="cyber-button" style="padding:4px 12px;">+</button>
         </div>
         <div id="pdfjs-viewer" style="width:60vw;height:60vh;"></div>
       </div>
@@ -425,10 +428,9 @@
     <script src="scripts/splash-typing.js"></script>
     <script src="script.js"></script>
     <script>
-let pdfDoc = null, currentPage = 1, totalPages = 1, pdfUrlGlobal = '';
+let pdfDoc = null, currentPage = 1, totalPages = 1, pdfUrlGlobal = '', scale = 1.0;
 function renderPage(num) {
   pdfDoc.getPage(num).then(function(page) {
-    const scale = 1.0;
     const viewport = page.getViewport({ scale: scale });
     const canvas = document.createElement('canvas');
     const viewer = document.getElementById('pdfjs-viewer');
@@ -442,6 +444,7 @@ function renderPage(num) {
       console.error('PDF.js render error:', error);
     });
     document.getElementById('pdfjs-page-info').textContent = num + ' / ' + totalPages;
+    document.getElementById('pdfjs-zoom-info').textContent = Math.round(scale * 100) + '%';
   }).catch(function(error) {
     document.getElementById('pdfjs-viewer').innerHTML = '<div style="color:#c00;font-size:1.2rem;">Ошибка загрузки страницы PDF: ' + error.message + '</div>';
     console.error('PDF.js page error:', error);
@@ -449,6 +452,7 @@ function renderPage(num) {
 }
 function openPdfjsModal(pdfUrl) {
   pdfUrlGlobal = pdfUrl;
+  scale = 1.0;
   document.getElementById('pdfjs-modal').style.display = 'flex';
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
   pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
@@ -468,6 +472,12 @@ function openPdfjsModal(pdfUrl) {
   };
   document.getElementById('pdfjs-next').onclick = function() {
     if (currentPage < totalPages) { currentPage++; renderPage(currentPage); }
+  };
+  document.getElementById('pdfjs-zoom-in').onclick = function() {
+    if (scale < 2.0) { scale += 0.1; renderPage(currentPage); }
+  };
+  document.getElementById('pdfjs-zoom-out').onclick = function() {
+    if (scale > 0.3) { scale -= 0.1; renderPage(currentPage); }
   };
 }
 function closePdfjsModal() {
