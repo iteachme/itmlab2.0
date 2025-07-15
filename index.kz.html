@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <meta name="renderer" content="webkit">
+    <title>ITM LAB - Онлайн-хакатон</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <style>
+        .social-icon-link {
+            position: relative;
+            overflow: hidden;
+        }
+        .social-icon-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        .social-icon-link:hover::before {
+            left: 100%;
+        }
+        .contact-card .contact-icon {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-card:hover .contact-icon {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .partners-grid .partner-card {
+            box-shadow: none !important;
+        }
+        .partners-grid .partner-card img.partner-logo {
+            filter: none !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+            background: none !important;
+        }
+        .partner-name {
+            margin-top: 1.1rem;
+            font-size: 1.15rem;
+            color: #222;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+    </style>
+    <!-- Critical CSS -->
+    <style>
+        :root {
+            --primary: #ff6b35;
+            --primary-dark: #e55a2b;
+            --secondary: #ffa07a;
+            --accent: #ffdab9;
+            --bg-primary: #ffffff;
+            --bg-secondary: #fff5f0;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --glow: 0 0 20px rgba(255, 107, 53, 0.2);
+            --glow-secondary: 0 0 15px rgba(255, 160, 122, 0.2);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: auto;
+        }
+        
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--bg-primary), var(--bg-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .cyber-loader {
+            width: 80px;
+            height: 80px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--primary);
+            border-right: 2px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: var(--glow);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading.hidden { opacity: 0; pointer-events: none; }
+
+        /* Ensure all interactive elements are clickable */
+        a, button, input, select, textarea, [role="button"], [tabindex="0"],
+        .cyber-button, .video-btn, .card-button {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Background -->
+    <div class="matrix-bg"></div>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="float-element" data-symbol="♿">♿</div>
+        <div class="float-element" data-symbol="💻">💻</div>
+        <div class="float-element" data-symbol="🚀">🚀</div>
+        <div class="float-element" data-symbol="💡">💡</div>
+        <div class="float-element" data-symbol="🤖">🤖</div>
+        <div class="float-element" data-symbol="⌨️">⌨️</div>
+        <div class="float-element" data-symbol="🖥️">🖥️</div>
+        <div class="float-element" data-symbol="👨‍💻">👨‍💻</div>
+        <div class="float-element" data-symbol="🌐">🌐</div>
+        <div class="float-element" data-symbol="🔧">🔧</div>
+        <div class="float-element" data-symbol="{}">{}</div>
+        <div class="float-element" data-symbol="</>">&lt;/&gt;</div>
+        <div class="float-element" data-symbol="01">01</div>
+        <div class="float-element" data-symbol="sudo">sudo</div>
+        <div class="float-element" data-symbol="git">git</div>
+    </div>
+
+    <!-- Particles -->
+    <div id="particles" class="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container glass-nav">
+            <a href="#" class="logo">
+                <div class="logo-box">ITM</div>
+            </a>
+            <div class="nav-actions">
+                <div class="nav-links">
+                    <a href="#steps" class="nav-link">Кезеңдер</a>
+                    <a href="#contact" class="nav-link">Байланыс</a>
+                </div>
+                <a href="index.html" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">RU</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-tag-wrapper">
+                <div class="hero-tag" id="splashTyping" data-text="// Білім берудегі инновациялар">// Білім берудегі инновациялар</div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title glitch" data-text="ITM LAB">ITM LAB</h1>
+                <div class="hero-subtitle">
+                    <div class="subtitle-line">Онлайн-хакатонға қош келдіңіз!</div>
+                </div>
+                <div class="grant-announcement cyber-card">
+                    <div class="grant-text glitch-2" data-text="Грант ұтып алыңыз">Грант ұтып алыңыз</div>
+                    <div class="grant-amount cyber-glow">
+                        <span class="amount-highlight">600 000</span>
+                        <span class="currency">теңге</span>
+                    </div>
+                    <div class="grant-subtext matrix-effect">өз идеяңызды жүзеге асыруға</div>
+                    <div class="cyber-lines"></div>
+                    <div class="cyber-dots"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section id="instructions" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Нұсқаулық">Нұсқаулық</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-dot"></div>
+                    <div class="divider-line"></div>
+                </div>
+                <p class="instructions-description" style="max-width: 700px; margin: 24px auto 0 auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">ITM Lab хакатонына қатысу үшін төмендегі кезеңдерді орындаңыз. Идеяны соңғы тапсыру үшін қысқа бейне-питчинг (2 минутқа дейін) жазып, сілтемені форма арқылы жіберу қажет. <br><br> <b>Бейне-питчинг:</b> идеяңыз, командаңыз және күтілетін нәтиже туралы айтып беріңіз. <a href="https://www.youtube.com/watch?v=3U-rK7A18Hc" target="_blank" style="color:#ff6b35;text-decoration:underline;">Бейне мысалы</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section id="steps" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Қатысу кезеңдері">Қатысу кезеңдері</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-dot"></div>
+                    <div class="divider-line"></div>
+                </div>
+                <p class="steps-description" style="max-width: 500px; margin: 20px auto 32px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
+                    Хакатонға қатысу үшін төмендегі қадамдарды орындаңыз — әр кезең маңызды!
+                </p>
+            </div>
+            <div class="steps-vertical" style="display: flex; flex-direction: column; gap: 32px; align-items: center;">
+                <!-- Шаг 1 -->
+                <div class="step-card glass-effect" data-step="1" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
+                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">1</div>
+                    <div style="font-size: 2.1rem; margin-bottom: 10px;">🎬</div>
+                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Бейне-сабақ</div>
+                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Мүгедектікке қазіргі заманғы көзқарастар</div>
+                    <button class="video-btn" style="width: 100%; margin-bottom: 12px;" onclick="openModal({type: 'youtube', src: 'https://www.youtube.com/embed/3U-rK7A18Hc', title: 'Мүгедектерге қазіргі көзқарастар'})">Қарау</button>
+                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Үдерісте</div>
+                </div>
+
+                <!-- Шаг 2 -->
+                <div class="step-card glass-effect" data-step="2" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
+                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">2</div>
+                    <div style="font-size: 2.1rem; margin-bottom: 10px;">📋</div>
+                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Кейстер</div>
+                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Мысалдар мен тапсырмалармен танысыңыз</div>
+                    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+                        <button class="cases-btn cyber-button" style="width: 100%;" onclick="openModal({type: 'iframe', src: '/assets/pdf/Кейсы ITMLab.pdf', title: 'ITMLab кейстері'})">КЕЙСТЕР</button>
+                        <button class="research-btn cyber-button" style="width: 100%;" onclick="openModal({type: 'iframe', src: '/assets/pdf/Исследование ITMLab (презентация).pdf', title: 'ITMLab зерттеуі'})">ЗЕРТТЕУ</button>
+                    </div>
+                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Үдерісте</div>
+                </div> 
+
+                <!-- Шаг 3 -->
+                <div class="step-card glass-effect" data-step="3" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
+                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">3</div>
+                    <div style="font-size: 2.1rem; margin-bottom: 10px;">📝</div>
+                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Нұсқаулықтар</div>
+                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Орындау нұсқаулықтарын оқыңыз</div>
+                    <button class="instructions-btn cyber-button" style="width: 100%;" onclick="openModal({type: 'iframe', src: '/assets/pdf/Инструкция по сдаче проектов.pdf', title: 'Жобаларды тапсыру нұсқаулығы'})">НҰСҚАУЛЫҚ (PDF)</button>
+                    <a href="/assets/pdf/Инструкция по сдаче проектов.pdf" download class="cyber-button" style="width: 100%;margin-top:8px;">Нұсқаулықты жүктеу (PDF)</a>
+                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Қолжетімді</div>
+                </div>
+
+                <!-- Шаг 4 -->
+                <div class="step-card glass-effect" data-step="4" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
+                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">4</div>
+                    <div style="font-size: 2.1rem; margin-bottom: 10px;">📮</div>
+                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Форма</div>
+                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Қатысушы формасын толтырыңыз</div>
+                    <button class="form-btn cyber-button" style="width: 100%;" onclick="openModal({type: 'iframe', src: 'https://forms.gle/SSaSsLFFKh6ViT6F6', title: 'Жобаны жіберіңіз'})">ЖІБЕРУ</button>
+                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Қолжетімді</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Overlay -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-content">
+            <!-- Контент будет добавляться динамически -->
+        </div>
+    </div>
+
+    <!-- Partners Section -->
+    <section id="partners" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Біздің серіктестер">Біздің серіктестер</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-dot"></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-card glass-effect">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <img src="assets/img/gerb.png" alt="ҚР Білім министрлігі" class="partner-logo">
+                        <div class="partner-name">ҚР Білім министрлігі</div>
+                    </div>
+                </div>
+                <div class="partner-card glass-effect">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <img src="assets/icons/chevron.svg" alt="Chevron" class="partner-logo">
+                        <div class="partner-name">Chevron</div>
+                    </div>
+                </div>
+                <div class="partner-card glass-effect">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <img src="assets/img/iteachme.png" alt="ITeachMe" class="partner-logo">
+                        <div class="partner-name">ITeachMe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Байланыс">Байланыс</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-dot"></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card glass-effect">
+                    <div class="contact-icon-wrapper">
+                        <div class="contact-icon" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="48" height="48" style="display: block; margin: 0 auto; background: none; border-radius: 50%;" />
+                        </div>
+                    </div>
+                    <h3 style="color: #000000; font-weight: 700; margin-bottom: 8px;">WhatsApp</h3>
+                    <div style="color: #666; font-size: 1.1rem; font-weight: 600; margin-bottom: 16px;">+7 707 737 0304</div>
+                    <a href="https://wa.me/77077370304?text=Сәлеметсіз бе! ITM Lab хакатоны туралы толығырақ білгім келеді" class="cyber-button" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 15px rgba(37, 211, 102, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(37, 211, 102, 0.3)'">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20" height="20" style="display: block; background: none; border-radius: 50%; flex-shrink: 0;" />
+                        Хабарлама жазу
+                    </a>
+                    <p style="color: #888; margin-top: 12px; font-size: 0.85rem;">Жылдам байланысу үшін бізге жазыңыз</p>
+                </div>
+                
+                <div class="contact-card glass-effect">
+                    <div class="contact-icon-wrapper">
+                        <div class="contact-icon" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.373 0 0 5.373 0 12C0 18.627 5.373 24 12 24C18.627 24 24 18.627 24 12C24 5.373 18.627 0 12 0ZM12 22C6.486 22 2 17.514 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12C22 17.514 17.514 22 12 22Z"/>
+                                <path d="M12 6C8.686 6 6 8.686 6 12C6 15.314 8.686 18 12 18C15.314 18 18 15.314 18 12C18 8.686 15.314 6 12 6ZM12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 style="color: #000000; font-weight: 700; margin-bottom: 20px;">Әлеуметтік желілер</h3>
+                    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/iteachme.kz/" target="_blank" class="social-icon-link" style="display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #E4405F 0%, #C13584 50%, #833AB4 100%); text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(228, 64, 95, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/Iteachme.kz/?locale=ru_RU" target="_blank" class="social-icon-link" style="display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #1877F2 0%, #4267B2 100%); text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(24, 119, 242, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@iteachme.kz" target="_blank" class="social-icon-link" style="display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #000000 0%, #333333 100%); text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+                            <img src="assets/img/tiktok.png" alt="TikTok" style="width: 32px; height: 32px; display: block;" />
+                        </a>
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/company/89291528/admin/dashboard/" target="_blank" class="social-icon-link" style="display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #0077B5 0%, #005983 100%); text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(0, 119, 181, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style="display: block;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.844-1.563 3.042 0 3.604 2.003 3.604 4.605v5.591z"/></svg>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@iteachme9815" target="_blank" class="social-icon-link" style="display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #FF0000 0%, #C4302B 100%); text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(255, 0, 0, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style="display: block;"><path d="M23.498 6.186a2.994 2.994 0 0 0-2.107-2.117c-1.863-.504-9.391-.504-9.391-.504s-7.527 0-9.391.504a2.994 2.994 0 0 0-2.107 2.117c-.504 1.863-.504 5.754-.504 5.754s0 3.891.504 5.754a2.994 2.994 0 0 0 2.107 2.117c1.863.504 9.391.504 9.391.504s7.527 0 9.391-.504a2.994 2.994 0 0 0 2.107-2.117c.504-1.863.504-5.754.504-5.754s0-3.891-.504-5.754zm-13.498 9.814v-8l8 4-8 4z"/></svg>
+                        </a>
+                    </div>
+                    <p style="color: #888; margin-top: 20px; font-size: 0.9rem; text-align: center;">Әлеуметтік желілерде бізді қадағалаңыз</p>
+                </div>
+                <div class="contact-card glass-effect" style="align-items:center;">
+                    <div class="contact-icon-wrapper" style="display:flex;justify-content:center;">
+                        <div class="contact-icon" style="background: linear-gradient(135deg, #229ED9 0%, #0088cc 100%); color: white;display:flex;align-items:center;justify-content:center;">
+                            <img src="assets/icons/telegram.png" alt="Telegram" width="48" height="48" style="display: block; margin: 0 auto; background: none; border-radius: 50%;" />
+                        </div>
+                    </div>
+                    <h3 style="color: #222; font-weight: 700; margin: 18px 0 12px 0; font-size:1.25rem; text-align:center;">Telegram</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; margin-bottom: 12px; width:100%;">
+                        <a href="https://web.telegram.org/a/#-1002794259532" target="_blank" class="cyber-button" style="background: linear-gradient(135deg, #229ED9 0%, #0088cc 100%); color: white; border: none; padding: 12px 32px; border-radius: 8px; font-weight: 600; font-size: 1rem; text-decoration: none; display: flex; align-items: center; gap: 8px; width:100%; justify-content:center;">
+                            <img src="assets/icons/telegram.png" alt="Telegram Info" width="20" height="20" style="display: block; background: none; border-radius: 50%; flex-shrink: 0;" />
+                            Ақпараттық арна
+                        </a>
+                        <a href="https://web.telegram.org/a/#-1002860873715" target="_blank" class="cyber-button" style="background: linear-gradient(135deg, #229ED9 0%, #0088cc 100%); color: white; border: none; padding: 12px 32px; border-radius: 8px; font-weight: 600; font-size: 1rem; text-decoration: none; display: flex; align-items: center; gap: 8px; width:100%; justify-content:center;">
+                            <img src="assets/icons/telegram.png" alt="Telegram Chat" width="20" height="20" style="display: block; background: none; border-radius: 50%; flex-shrink: 0;" />
+                            Қатысушылар чаты
+                        </a>
+                    </div>
+                    <p style="color: #888; margin-top: 12px; font-size: 0.95rem; text-align:center;">Чатқа қосылыңыз және жаңалықтарды қадағалаңыз!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-quote-text" id="footerQuote"></div>
+        <div class="footer-bottom">
+            <span>© 2025 ITM Lab. Барлық құқықтар қорғалған.</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/modal-flow.js"></script>
+    <script src="scripts/splash-typing.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html> 
