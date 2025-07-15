@@ -280,6 +280,11 @@
           Кейсы ITMLab
           <button id="pdfjs-open-newtab" class="cyber-button" style="margin-left:auto;font-size:1rem;padding:4px 12px;">Открыть в новой вкладке</button>
         </h2>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;justify-content:center;">
+          <button id="pdfjs-prev" class="cyber-button" style="padding:4px 12px;">←</button>
+          <span id="pdfjs-page-info" style="font-size:1.1rem;"></span>
+          <button id="pdfjs-next" class="cyber-button" style="padding:4px 12px;">→</button>
+        </div>
         <div id="pdfjs-viewer" style="width:60vw;height:60vh;"></div>
       </div>
     </div>
@@ -420,40 +425,50 @@
     <script src="scripts/splash-typing.js"></script>
     <script src="script.js"></script>
     <script>
+let pdfDoc = null, currentPage = 1, totalPages = 1, pdfUrlGlobal = '';
+function renderPage(num) {
+  pdfDoc.getPage(num).then(function(page) {
+    const scale = 1.0;
+    const viewport = page.getViewport({ scale: scale });
+    const canvas = document.createElement('canvas');
+    const viewer = document.getElementById('pdfjs-viewer');
+    viewer.innerHTML = '';
+    viewer.appendChild(canvas);
+    const context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    page.render({canvasContext: context, viewport: viewport}).promise.catch(function(error) {
+      viewer.innerHTML = '<div style="color:#c00;font-size:1.2rem;">Ошибка рендеринга PDF: ' + error.message + '</div>';
+      console.error('PDF.js render error:', error);
+    });
+    document.getElementById('pdfjs-page-info').textContent = num + ' / ' + totalPages;
+  }).catch(function(error) {
+    document.getElementById('pdfjs-viewer').innerHTML = '<div style="color:#c00;font-size:1.2rem;">Ошибка загрузки страницы PDF: ' + error.message + '</div>';
+    console.error('PDF.js page error:', error);
+  });
+}
 function openPdfjsModal(pdfUrl) {
+  pdfUrlGlobal = pdfUrl;
   document.getElementById('pdfjs-modal').style.display = 'flex';
-  const viewer = document.getElementById('pdfjs-viewer');
-  viewer.innerHTML = '';
-  // Кнопка "Открыть в новой вкладке"
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+  pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+    pdfDoc = pdf;
+    totalPages = pdf.numPages;
+    currentPage = 1;
+    renderPage(currentPage);
+  }).catch(function(error) {
+    document.getElementById('pdfjs-viewer').innerHTML = '<div style="color:#c00;font-size:1.2rem;">Ошибка загрузки PDF: ' + error.message + '</div>';
+    console.error('PDF.js error:', error);
+  });
   document.getElementById('pdfjs-open-newtab').onclick = function() {
     window.open(pdfUrl, '_blank');
   };
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
-  pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
-    pdf.getPage(1).then(function(page) {
-      const scale = 1.0;
-      const viewport = page.getViewport({ scale: scale });
-      const canvas = document.createElement('canvas');
-      viewer.appendChild(canvas);
-      const context = canvas.getContext('2d');
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-      const renderContext = {
-        canvasContext: context,
-        viewport: viewport
-      };
-      page.render(renderContext).promise.catch(function(error) {
-        viewer.innerHTML = '<div style="color:#c00;font-size:1.2rem;">Ошибка рендеринга PDF: ' + error.message + '</div>';
-        console.error('PDF.js render error:', error);
-      });
-    }).catch(function(error) {
-      viewer.innerHTML = '<div style="color:#c00;font-size:1.2rem;">Ошибка загрузки страницы PDF: ' + error.message + '</div>';
-      console.error('PDF.js page error:', error);
-    });
-  }).catch(function(error) {
-    viewer.innerHTML = '<div style="color:#c00;font-size:1.2rem;">Ошибка загрузки PDF: ' + error.message + '</div>';
-    console.error('PDF.js error:', error);
-  });
+  document.getElementById('pdfjs-prev').onclick = function() {
+    if (currentPage > 1) { currentPage--; renderPage(currentPage); }
+  };
+  document.getElementById('pdfjs-next').onclick = function() {
+    if (currentPage < totalPages) { currentPage++; renderPage(currentPage); }
+  };
 }
 function closePdfjsModal() {
   document.getElementById('pdfjs-modal').style.display = 'none';
