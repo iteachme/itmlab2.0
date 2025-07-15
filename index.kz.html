@@ -417,5 +417,73 @@
     <script src="scripts/splash-typing.js"></script>
     <script src="script.js"></script>
     
+    <!-- PDF.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
+    <script>
+let pdfDoc = null, currentPage = 1, totalPages = 1, pdfUrlGlobal = '', scale = 1.0;
+function renderPage(num) {
+  pdfDoc.getPage(num).then(function(page) {
+    const viewport = page.getViewport({ scale: scale });
+    const canvas = document.createElement('canvas');
+    const viewer = document.getElementById('pdfjs-viewer');
+    viewer.innerHTML = '';
+    viewer.appendChild(canvas);
+    const context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    page.render({canvasContext: context, viewport: viewport}).promise.catch(function(error) {
+      viewer.innerHTML = '<div style="color:#c00;font-size:1.2rem;">PDF көрсету қатесі: ' + error.message + '</div>';
+      console.error('PDF.js render error:', error);
+    });
+    if (document.getElementById('pdfjs-page-info'))
+      document.getElementById('pdfjs-page-info').textContent = num + ' / ' + totalPages;
+    if (document.getElementById('pdfjs-zoom-info'))
+      document.getElementById('pdfjs-zoom-info').textContent = Math.round(scale * 100) + '%';
+  }).catch(function(error) {
+    document.getElementById('pdfjs-viewer').innerHTML = '<div style="color:#c00;font-size:1.2rem;">PDF бетін жүктеу қатесі: ' + error.message + '</div>';
+    console.error('PDF.js page error:', error);
+  });
+}
+function openPdfjsModal(pdfUrl) {
+  pdfUrlGlobal = pdfUrl;
+  scale = 1.0;
+  document.getElementById('pdfjs-modal').style.display = 'flex';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+  pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+    pdfDoc = pdf;
+    totalPages = pdf.numPages;
+    currentPage = 1;
+    renderPage(currentPage);
+  }).catch(function(error) {
+    document.getElementById('pdfjs-viewer').innerHTML = '<div style="color:#c00;font-size:1.2rem;">PDF жүктеу қатесі: ' + error.message + '</div>';
+    console.error('PDF.js error:', error);
+  });
+  if (document.getElementById('pdfjs-open-newtab'))
+    document.getElementById('pdfjs-open-newtab').onclick = function() {
+      window.open(pdfUrl, '_blank');
+    };
+  if (document.getElementById('pdfjs-prev'))
+    document.getElementById('pdfjs-prev').onclick = function() {
+      if (currentPage > 1) { currentPage--; renderPage(currentPage); }
+    };
+  if (document.getElementById('pdfjs-next'))
+    document.getElementById('pdfjs-next').onclick = function() {
+      if (currentPage < totalPages) { currentPage++; renderPage(currentPage); }
+    };
+  if (document.getElementById('pdfjs-zoom-in'))
+    document.getElementById('pdfjs-zoom-in').onclick = function() {
+      if (scale < 2.0) { scale += 0.1; renderPage(currentPage); }
+    };
+  if (document.getElementById('pdfjs-zoom-out'))
+    document.getElementById('pdfjs-zoom-out').onclick = function() {
+      if (scale > 0.3) { scale -= 0.1; renderPage(currentPage); }
+    };
+}
+function closePdfjsModal() {
+  document.getElementById('pdfjs-modal').style.display = 'none';
+  document.getElementById('pdfjs-viewer').innerHTML = '';
+}
+</script>
 </body>
 </html> 
