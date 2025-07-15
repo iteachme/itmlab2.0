@@ -274,10 +274,13 @@
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
     <!-- Контейнер для PDF.js viewer (будет показан в модалке) -->
     <div id="pdfjs-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;">
-      <div style="background:#fff;padding:24px;max-width:90vw;max-height:90vh;overflow:auto;position:relative;">
+      <div style="background:#fff;padding:24px;max-width:70vw;max-height:80vh;overflow:auto;position:relative;">
         <button onclick="closePdfjsModal()" style="position:absolute;top:8px;right:8px;font-size:2rem;background:none;border:none;cursor:pointer;">&times;</button>
-        <h2 style="margin-bottom:16px;">Кейсы ITMLab</h2>
-        <div id="pdfjs-viewer" style="width:80vw;height:70vh;"></div>
+        <h2 style="margin-bottom:16px;display:flex;align-items:center;gap:16px;">
+          Кейсы ITMLab
+          <button id="pdfjs-open-newtab" class="cyber-button" style="margin-left:auto;font-size:1rem;padding:4px 12px;">Открыть в новой вкладке</button>
+        </h2>
+        <div id="pdfjs-viewer" style="width:60vw;height:60vh;"></div>
       </div>
     </div>
     <!-- Partners Section -->
@@ -421,10 +424,14 @@ function openPdfjsModal(pdfUrl) {
   document.getElementById('pdfjs-modal').style.display = 'flex';
   const viewer = document.getElementById('pdfjs-viewer');
   viewer.innerHTML = '';
+  // Кнопка "Открыть в новой вкладке"
+  document.getElementById('pdfjs-open-newtab').onclick = function() {
+    window.open(pdfUrl, '_blank');
+  };
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
   pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
     pdf.getPage(1).then(function(page) {
-      const scale = 1.2;
+      const scale = 1.0;
       const viewport = page.getViewport({ scale: scale });
       const canvas = document.createElement('canvas');
       viewer.appendChild(canvas);
