@@ -1077,7 +1077,7 @@ function showPrivacyConsentModal() {
           </div>
           
           <div class="privacy-consent-links">
-            <a href="${isKZ ? 'assets/pdf/Политика каз.pdf' : 'assets/pdf/Политика конфиденциальности участников хакатона ITMLab.pdf'}" target="_blank" class="privacy-link">
+            <a href="#" onclick="openPrivacyPolicy('${isKZ ? 'kz' : 'ru'}'); return false;" class="privacy-link">
               ${isKZ ? 'Деректерді өңдеу саясатын көру' : 'Политика конфиденциальности'}
             </a>
           </div>
@@ -1143,5 +1143,104 @@ function switchLanguage(language) {
   } else if (language === 'ru' && window.location.pathname.includes('index.kz.html')) {
     window.location.href = 'index.html';
   }
+}
+
+// Функция для умного открытия политики конфиденциальности
+function openPrivacyPolicy(language) {
+  const isKZ = language === 'kz';
+  const pdfPath = isKZ ? 'assets/pdf/Политика каз.pdf' : 'assets/pdf/Политика конфиденциальности участников хакатона ITMLab.pdf';
+  
+  // Пробуем открыть в новой вкладке
+  const newWindow = window.open(pdfPath, '_blank');
+  
+  // Проверяем, открылось ли окно (блокировщики могут заблокировать)
+  if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+    // Если не открылось, показываем альтернативные варианты
+    showPrivacyPolicyAlternatives(language, pdfPath);
+  }
+}
+
+function showPrivacyPolicyAlternatives(language, pdfPath) {
+  const isKZ = language === 'kz';
+  
+  const alternativesHTML = `
+    <div id="privacyAlternativesModal" class="privacy-alternatives-modal">
+      <div class="privacy-alternatives-content">
+        <div class="privacy-alternatives-header">
+          <h3>${isKZ ? 'PDF файлын ашу мәселесі' : 'Проблема с открытием PDF файла'}</h3>
+          <button onclick="closePrivacyAlternativesModal()">&times;</button>
+        </div>
+        
+        <div class="privacy-alternatives-body">
+          <p>${isKZ ? 
+            'PDF файлын ашу мәселесі болды. Төмендегі нұсқаларды қолданып көріңіз:' :
+            'Возникла проблема с открытием PDF файла. Попробуйте следующие варианты:'
+          }</p>
+          
+          <div class="privacy-alternatives-options">
+            <button onclick="downloadPrivacyPolicy('${pdfPath}')" class="alternative-btn">
+              📥 ${isKZ ? 'PDF файлын жүктеу' : 'Скачать PDF файл'}
+            </button>
+            
+            <button onclick="openPrivacyPolicyInNewTab('${pdfPath}')" class="alternative-btn">
+              🔗 ${isKZ ? 'Жаңа табта ашу' : 'Открыть в новой вкладке'}
+            </button>
+            
+            <button onclick="copyPrivacyPolicyLink('${pdfPath}')" class="alternative-btn">
+              📋 ${isKZ ? 'Сілтемені көшіру' : 'Скопировать ссылку'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('beforeend', alternativesHTML);
+  
+  setTimeout(() => {
+    document.getElementById('privacyAlternativesModal').classList.add('show');
+  }, 100);
+}
+
+function closePrivacyAlternativesModal() {
+  const modal = document.getElementById('privacyAlternativesModal');
+  if (modal) {
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.remove();
+    }, 300);
+  }
+}
+
+function downloadPrivacyPolicy(pdfPath) {
+  const link = document.createElement('a');
+  link.href = pdfPath;
+  link.download = pdfPath.split('/').pop();
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  closePrivacyAlternativesModal();
+}
+
+function openPrivacyPolicyInNewTab(pdfPath) {
+  window.open(pdfPath, '_blank', 'noopener,noreferrer');
+  closePrivacyAlternativesModal();
+}
+
+function copyPrivacyPolicyLink(pdfPath) {
+  const fullUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/') + pdfPath;
+  navigator.clipboard.writeText(fullUrl).then(() => {
+    alert('Ссылка скопирована в буфер обмена!');
+  }).catch(() => {
+    // Fallback для старых браузеров
+    const textArea = document.createElement('textarea');
+    textArea.value = fullUrl;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    alert('Ссылка скопирована в буфер обмена!');
+  });
+  closePrivacyAlternativesModal();
 }
 
