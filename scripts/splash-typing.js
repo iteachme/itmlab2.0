@@ -57,12 +57,16 @@ function initSplashTyping() {
             currentChar++;
         }
         
-        splashElement.textContent = phrase.substring(0, currentChar);
+        const newText = phrase.substring(0, currentChar);
+        splashElement.textContent = newText;
         splashElement.dataset.text = phrase;
+        
+        console.log('Typing:', newText, '| currentChar:', currentChar, '| isDeleting:', isDeleting);
         
         let typeSpeed = isDeleting ? 50 : 100;
         
         if (!isDeleting && currentChar === phrase.length) {
+            console.log('Phrase completed, starting deletion');
             isDeleting = true;
             isPaused = true;
             setTimeout(() => {
@@ -71,6 +75,7 @@ function initSplashTyping() {
             }, 2000);
             return;
         } else if (isDeleting && currentChar === 0) {
+            console.log('Deletion completed, moving to next phrase');
             isDeleting = false;
             currentPhrase = (currentPhrase + 1) % SPLASHES.length;
         }
@@ -84,8 +89,13 @@ function initSplashTyping() {
     splashElement.textContent = SPLASHES[0];
     splashElement.dataset.text = SPLASHES[0];
     
+    console.log('Starting typing animation with phrase:', SPLASHES[0]);
+    
     // Start the typing animation after a delay
-    setTimeout(type, 2000);
+    setTimeout(() => {
+        console.log('Starting type() function');
+        type();
+    }, 2000);
 }
 
 // Auto-initialize when DOM is ready

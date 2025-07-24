@@ -897,8 +897,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--secondary);
     font-size: 1rem;
     margin-bottom: var(--space-sm);
-    opacity: 0;
-    animation: fade-in-up 1s ease var(--timing-normal) forwards;
+    opacity: 1; /* Изменено с 0 на 1 */
     border: none; /* Убираем любые границы */
 }
 
