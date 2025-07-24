@@ -1014,7 +1014,7 @@ function showPrivacyConsentModal() {
           </div>
           
           <div class="privacy-consent-links">
-            <a href="#" onclick="openPrivacyDocument('${isKZ ? 'assets/pdf/Политика каз.pdf' : 'assets/pdf/Политика конфиденциальности участников хакатона ITMLab.pdf'}')" class="privacy-link">
+            <a href="#" onclick="openPrivacyDocument('${isKZ ? 'https://cdn.jsdelivr.net/gh/Allexndr/itmlab-lending/assets/pdf/Политика каз.pdf' : 'https://cdn.jsdelivr.net/gh/Allexndr/itmlab-lending/assets/pdf/Политика конфиденциальности участников хакатона ITMLab.pdf'}')" class="privacy-link">
               ${isKZ ? 'Деректерді өңдеу саясатын көру' : 'Политика конфиденциальности'}
             </a>
           </div>
