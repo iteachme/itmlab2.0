@@ -466,20 +466,11 @@ class CyberHackathon {
     }
 
     initSplashTyping() {
-        // Проверяем, загружен ли уже splash-typing.js
-        if (typeof window.initSplashTyping === 'function' && window.initSplashTyping !== this.initSplashTyping) {
+        // Проверяем, загружена ли функция из внешнего скрипта
+        if (typeof window.initSplashTyping === 'function') {
             window.initSplashTyping();
-        } else {
-            console.log('Splash typing function not found, loading from external script...');
-            // Если функция не найдена, ждем загрузки скрипта
-            setTimeout(() => {
-                if (typeof window.initSplashTyping === 'function' && window.initSplashTyping !== this.initSplashTyping) {
-                    window.initSplashTyping();
-                } else {
-                    console.warn('initSplashTyping function still not available');
-                }
-            }, 500);
         }
+        // Если функция не найдена, она будет вызвана автоматически при загрузке splash-typing.js
     }
 
     // ============================================ //

@@ -30,7 +30,7 @@ const SPLASHES_KZ = [
 ];
 
 // Initialize typing animation
-document.addEventListener('DOMContentLoaded', function() {
+function initSplashTyping() {
     const splashElement = document.getElementById('splashTyping');
     if (!splashElement) return;
 
@@ -81,4 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Start the typing animation after a delay
     setTimeout(type, 2000);
+}
+
+// Auto-initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    initSplashTyping();
 });
+
+// Export function globally
+window.initSplashTyping = initSplashTyping;
