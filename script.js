@@ -1,18 +1,4 @@
-// Direct Language Switch Implementation
-const switchLanguage = () => {
-    const currentUrl = window.location.href;
-    if (currentUrl.includes('index.kz.html')) {
-        window.location.href = 'index.html';
-    } else {
-        window.location.href = 'index.kz.html';
-    }
-};
-
-// Add click handler as soon as possible
-const langBtn = document.getElementById('langSwitchBtn');
-if (langBtn) {
-    langBtn.onclick = switchLanguage;
-}
+// Direct Language Switch Implementation - REMOVED (replaced with new function below)
 
 // ============================================ //
 //              CYBER HACKATHON JS              //
@@ -956,8 +942,6 @@ const footerQuotesKZ = [
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM Content Loaded');
-  
   // Автоматическое перенаправление на правильную версию сайта
   autoRedirectToCorrectLanguage();
   
@@ -974,17 +958,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Проверяем согласие на обработку данных
   checkPrivacyConsent();
   
-  // Добавляем кнопку для сброса согласия (временно для тестирования)
-  const resetButton = document.createElement('button');
-  resetButton.textContent = 'Reset Privacy Consent';
-  resetButton.style.cssText = 'position: fixed; top: 50px; right: 10px; z-index: 10000; background: blue; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;';
-  resetButton.onclick = () => {
-    localStorage.removeItem('privacyConsent');
-    localStorage.removeItem('userLanguage');
-    console.log('Privacy consent reset');
-    location.reload();
-  };
-  document.body.appendChild(resetButton);
+
 });
 
 function autoRedirectToCorrectLanguage() {
@@ -1050,21 +1024,16 @@ function detectLocationLanguage() {
 // ===== PRIVACY CONSENT MODAL =====
 function checkPrivacyConsent() {
   const hasConsented = localStorage.getItem('privacyConsent');
-  console.log('Privacy consent check:', { hasConsented });
   
   if (!hasConsented) {
-    console.log('Showing privacy consent modal in 2 seconds...');
     setTimeout(() => {
       showPrivacyConsentModal();
     }, 2000); // Показываем через 2 секунды после загрузки
-  } else {
-    console.log('Privacy consent already given');
   }
 }
 
 function showPrivacyConsentModal() {
   const isKZ = detectUserLanguage();
-  console.log('Showing privacy modal, language detected:', isKZ ? 'KZ' : 'RU');
   
   const modalHTML = `
     <div id="privacyConsentModal" class="privacy-consent-modal">
@@ -1132,21 +1101,10 @@ function showPrivacyConsentModal() {
     const modal = document.getElementById('privacyConsentModal');
     if (modal) {
       modal.classList.add('show');
-      console.log('Privacy modal shown successfully');
-    } else {
-      console.error('Privacy modal element not found!');
     }
   }, 100);
   
-  // Добавляем кнопку для тестирования (временно)
-  const testButton = document.createElement('button');
-  testButton.textContent = 'Test Privacy Modal';
-  testButton.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 10000; background: red; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;';
-  testButton.onclick = () => {
-    localStorage.removeItem('privacyConsent');
-    showPrivacyConsentModal();
-  };
-  document.body.appendChild(testButton);
+
 }
 
 function closePrivacyConsentModal() {
