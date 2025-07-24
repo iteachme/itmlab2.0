@@ -468,14 +468,74 @@ class CyberHackathon {
     initSplashTyping() {
         console.log('script.js: initSplashTyping called');
         console.log('window.initSplashTyping type:', typeof window.initSplashTyping);
+        
         // Проверяем, загружена ли функция из внешнего скрипта
         if (typeof window.initSplashTyping === 'function') {
             console.log('script.js: calling window.initSplashTyping');
             window.initSplashTyping();
         } else {
-            console.log('script.js: window.initSplashTyping not found, will be called by splash-typing.js');
+            console.log('script.js: window.initSplashTyping not found, using fallback');
+            this.initSplashTypingFallback();
         }
-        // Если функция не найдена, она будет вызвана автоматически при загрузке splash-typing.js
+    }
+    
+    initSplashTypingFallback() {
+        console.log('script.js: using fallback splash typing');
+        const splashElement = document.getElementById('splashTyping');
+        if (!splashElement) {
+            console.error('splashTyping element not found in fallback');
+            return;
+        }
+        
+        const isKazakh = window.location.pathname.includes('index.kz.html');
+        const phrases = isKazakh ? [
+            '// Білім берудегі инновациялар',
+            '// Сәлем, әлем!',
+            '// AI менің көмекшім',
+            '// Код жаз — баг жазба'
+        ] : [
+            '// Инновации в образовании',
+            '// Hello, world!',
+            '// AI is my copilot',
+            '// Пиши код — не баги'
+        ];
+        
+        let currentPhrase = 0;
+        let currentChar = 0;
+        let isDeleting = false;
+        
+        function type() {
+            const phrase = phrases[currentPhrase];
+            
+            if (isDeleting) {
+                currentChar--;
+            } else {
+                currentChar++;
+            }
+            
+            splashElement.textContent = phrase.substring(0, currentChar);
+            splashElement.dataset.text = phrase;
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && currentChar === phrase.length) {
+                isDeleting = true;
+                setTimeout(type, 2000);
+                return;
+            } else if (isDeleting && currentChar === 0) {
+                isDeleting = false;
+                currentPhrase = (currentPhrase + 1) % phrases.length;
+            }
+            
+            setTimeout(type, typeSpeed);
+        }
+        
+        // Start with the first phrase immediately
+        splashElement.textContent = phrases[0];
+        splashElement.dataset.text = phrases[0];
+        
+        // Start the typing animation after a delay
+        setTimeout(type, 2000);
     }
 
     // ============================================ //
