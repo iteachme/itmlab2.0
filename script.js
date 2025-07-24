@@ -1,4 +1,18 @@
-// Direct Language Switch Implementation - REMOVED (replaced with new function below)
+// Direct Language Switch Implementation
+const switchLanguage = () => {
+    const currentUrl = window.location.href;
+    if (currentUrl.includes('index.kz.html')) {
+        window.location.href = 'index.html';
+    } else {
+        window.location.href = 'index.kz.html';
+    }
+};
+
+// Add click handler as soon as possible
+const langBtn = document.getElementById('langSwitchBtn');
+if (langBtn) {
+    langBtn.onclick = switchLanguage;
+}
 
 // ============================================ //
 //              CYBER HACKATHON JS              //
@@ -466,76 +480,20 @@ class CyberHackathon {
     }
 
     initSplashTyping() {
-        console.log('script.js: initSplashTyping called');
-        console.log('window.initSplashTyping type:', typeof window.initSplashTyping);
-        
-        // Проверяем, загружена ли функция из внешнего скрипта
-        if (typeof window.initSplashTyping === 'function') {
-            console.log('script.js: calling window.initSplashTyping');
+        // Проверяем, загружен ли уже splash-typing.js
+        if (typeof window.initSplashTyping === 'function' && window.initSplashTyping !== this.initSplashTyping) {
             window.initSplashTyping();
         } else {
-            console.log('script.js: window.initSplashTyping not found, using fallback');
-            this.initSplashTypingFallback();
+            console.log('Splash typing function not found, loading from external script...');
+            // Если функция не найдена, ждем загрузки скрипта
+            setTimeout(() => {
+                if (typeof window.initSplashTyping === 'function' && window.initSplashTyping !== this.initSplashTyping) {
+                    window.initSplashTyping();
+                } else {
+                    console.warn('initSplashTyping function still not available');
+                }
+            }, 500);
         }
-    }
-    
-    initSplashTypingFallback() {
-        console.log('script.js: using fallback splash typing');
-        const splashElement = document.getElementById('splashTyping');
-        if (!splashElement) {
-            console.error('splashTyping element not found in fallback');
-            return;
-        }
-        
-        const isKazakh = window.location.pathname.includes('index.kz.html');
-        const phrases = isKazakh ? [
-            '// Білім берудегі инновациялар',
-            '// Сәлем, әлем!',
-            '// AI менің көмекшім',
-            '// Код жаз — баг жазба'
-        ] : [
-            '// Инновации в образовании',
-            '// Hello, world!',
-            '// AI is my copilot',
-            '// Пиши код — не баги'
-        ];
-        
-        let currentPhrase = 0;
-        let currentChar = 0;
-        let isDeleting = false;
-        
-        function type() {
-            const phrase = phrases[currentPhrase];
-            
-            if (isDeleting) {
-                currentChar--;
-            } else {
-                currentChar++;
-            }
-            
-            splashElement.textContent = phrase.substring(0, currentChar);
-            splashElement.dataset.text = phrase;
-            
-            let typeSpeed = isDeleting ? 50 : 100;
-            
-            if (!isDeleting && currentChar === phrase.length) {
-                isDeleting = true;
-                setTimeout(type, 2000);
-                return;
-            } else if (isDeleting && currentChar === 0) {
-                isDeleting = false;
-                currentPhrase = (currentPhrase + 1) % phrases.length;
-            }
-            
-            setTimeout(type, typeSpeed);
-        }
-        
-        // Start with the first phrase immediately
-        splashElement.textContent = phrases[0];
-        splashElement.dataset.text = phrases[0];
-        
-        // Start the typing animation after a delay
-        setTimeout(type, 2000);
     }
 
     // ============================================ //
@@ -998,9 +956,6 @@ const footerQuotesKZ = [
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Автоматическое перенаправление на правильную версию сайта
-  autoRedirectToCorrectLanguage();
-  
   var quoteEl = document.getElementById('footerQuote');
   if (quoteEl) {
     var isKZ = window.location.pathname.includes('index.kz.html');
@@ -1013,74 +968,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Проверяем согласие на обработку данных
   checkPrivacyConsent();
-  
-
 });
-
-function autoRedirectToCorrectLanguage() {
-  // Проверяем, было ли уже перенаправление в этой сессии
-  if (sessionStorage.getItem('languageRedirected')) {
-    return;
-  }
-  
-  const isKZ = detectUserLanguage();
-  const currentIsKZ = window.location.pathname.includes('index.kz.html');
-  
-  // Если язык не соответствует, перенаправляем
-  if (isKZ !== currentIsKZ) {
-    sessionStorage.setItem('languageRedirected', 'true');
-    
-    if (isKZ && !currentIsKZ) {
-      window.location.href = 'index.kz.html';
-    } else if (!isKZ && currentIsKZ) {
-      window.location.href = 'index.html';
-    }
-  }
-}
-
-// ===== LANGUAGE DETECTION =====
-function detectUserLanguage() {
-  // Проверяем сохраненный выбор пользователя
-  const savedLanguage = localStorage.getItem('userLanguage');
-  if (savedLanguage) {
-    return savedLanguage === 'kz';
-  }
-  
-  // Определяем язык по URL
-  const isKZByURL = window.location.pathname.includes('index.kz.html');
-  
-  // Определяем язык по настройкам браузера
-  const browserLanguage = navigator.language || navigator.userLanguage || '';
-  const isKZByBrowser = browserLanguage.toLowerCase().startsWith('kk') || 
-                        browserLanguage.toLowerCase().startsWith('kz');
-  
-  // Определяем язык по геолокации (если доступно)
-  const isKZByLocation = detectLocationLanguage();
-  
-  // Приоритет: URL > Браузер > Геолокация
-  if (isKZByURL) return true;
-  if (isKZByBrowser) return true;
-  if (isKZByLocation) return true;
-  
-  // По умолчанию для Казахстана - казахский
-  return false;
-}
-
-function detectLocationLanguage() {
-  // Простая проверка по часовому поясу (Казахстан: UTC+5, UTC+6)
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const kazakhTimezones = [
-    'Asia/Almaty', 'Asia/Aqtau', 'Asia/Aqtobe', 'Asia/Atyrau',
-    'Asia/Oral', 'Asia/Qostanay', 'Asia/Qyzylorda', 'Asia/Vostok'
-  ];
-  
-  return kazakhTimezones.includes(timezone);
-}
 
 // ===== PRIVACY CONSENT MODAL =====
 function checkPrivacyConsent() {
   const hasConsented = localStorage.getItem('privacyConsent');
-  
   if (!hasConsented) {
     setTimeout(() => {
       showPrivacyConsentModal();
@@ -1089,78 +981,28 @@ function checkPrivacyConsent() {
 }
 
 function showPrivacyConsentModal() {
-  const isKZ = detectUserLanguage();
-  
-  const modalHTML = `
-    <div id="privacyConsentModal" class="privacy-consent-modal">
-      <div class="privacy-consent-content">
-        <div class="privacy-consent-header">
-          <h2>${isKZ ? 'Деректерді өңдеуге келісім' : 'Согласие на обработку данных'}</h2>
-          <button class="privacy-consent-close" onclick="closePrivacyConsentModal()">&times;</button>
-        </div>
-        
-        <div class="privacy-consent-body">
-          <div class="privacy-consent-icon">🔒</div>
-          <p class="privacy-consent-text">
-            ${isKZ ? 
-              'Біз сіздің жеке деректеріңізді қорғауға келісеміз. Сайтты пайдалану арқылы сіз деректерді өңдеу саясатына келісесіз.' :
-              'Мы заботимся о защите ваших персональных данных. Используя сайт, вы соглашаетесь с политикой обработки данных.'
-            }
-          </p>
-          
-          <div class="privacy-consent-checkbox">
-            <label class="checkbox-container">
-              <input type="checkbox" id="privacyCheckbox">
-              <span class="checkmark"></span>
-              <span class="checkbox-text">
-                ${isKZ ? 
-                  'Мен деректерді өңдеу саясатына келісемін' :
-                  'Я согласен с политикой обработки данных'
-                }
-              </span>
-            </label>
-          </div>
-          
-          <div class="privacy-consent-links">
-            <a href="#" onclick="openPrivacyPolicy('${isKZ ? 'kz' : 'ru'}'); return false;" class="privacy-link">
-              ${isKZ ? 'Деректерді өңдеу саясатын көру' : 'Политика конфиденциальности'}
-            </a>
-          </div>
-        </div>
-        
-        <div class="privacy-consent-footer">
-          <button id="privacyAcceptBtn" class="privacy-accept-btn" disabled onclick="acceptPrivacyConsent()">
-            ${isKZ ? 'Келісу және жалғастыру' : 'Принять и продолжить'}
-          </button>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  document.body.insertAdjacentHTML('beforeend', modalHTML);
+  const modal = document.getElementById('privacyConsentModal');
+  if (!modal) return;
   
   // Обработчик для чекбокса
   const checkbox = document.getElementById('privacyCheckbox');
   const acceptBtn = document.getElementById('privacyAcceptBtn');
   
-  checkbox.addEventListener('change', function() {
-    acceptBtn.disabled = !this.checked;
-    if (this.checked) {
-      acceptBtn.classList.add('active');
-    } else {
-      acceptBtn.classList.remove('active');
-    }
-  });
+  if (checkbox && acceptBtn) {
+    checkbox.addEventListener('change', function() {
+      acceptBtn.disabled = !this.checked;
+      if (this.checked) {
+        acceptBtn.classList.add('active');
+      } else {
+        acceptBtn.classList.remove('active');
+      }
+    });
+  }
   
   // Показываем модальное окно
   setTimeout(() => {
-    const modal = document.getElementById('privacyConsentModal');
-    if (modal) {
-      modal.classList.add('show');
-    }
+    modal.classList.add('show');
   }, 100);
-  
-
 }
 
 function closePrivacyConsentModal() {
@@ -1175,122 +1017,6 @@ function closePrivacyConsentModal() {
 
 function acceptPrivacyConsent() {
   localStorage.setItem('privacyConsent', 'true');
-  
-  // Сохраняем выбранный язык
-  const isKZ = detectUserLanguage();
-  localStorage.setItem('userLanguage', isKZ ? 'kz' : 'ru');
-  
   closePrivacyConsentModal();
-}
-
-// Функция для переключения языка
-function switchLanguage(language) {
-  localStorage.setItem('userLanguage', language);
-  
-  // Перезагружаем страницу с правильным языком
-  if (language === 'kz' && !window.location.pathname.includes('index.kz.html')) {
-    window.location.href = 'index.kz.html';
-  } else if (language === 'ru' && window.location.pathname.includes('index.kz.html')) {
-    window.location.href = 'index.html';
-  }
-}
-
-// Функция для умного открытия политики конфиденциальности
-function openPrivacyPolicy(language) {
-  const isKZ = language === 'kz';
-  const pdfPath = isKZ ? 'assets/pdf/Политика каз.pdf' : 'assets/pdf/Политика конфиденциальности участников хакатона ITMLab.pdf';
-  
-  // Пробуем открыть в новой вкладке
-  const newWindow = window.open(pdfPath, '_blank');
-  
-  // Проверяем, открылось ли окно (блокировщики могут заблокировать)
-  if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-    // Если не открылось, показываем альтернативные варианты
-    showPrivacyPolicyAlternatives(language, pdfPath);
-  }
-}
-
-function showPrivacyPolicyAlternatives(language, pdfPath) {
-  const isKZ = language === 'kz';
-  
-  const alternativesHTML = `
-    <div id="privacyAlternativesModal" class="privacy-alternatives-modal">
-      <div class="privacy-alternatives-content">
-        <div class="privacy-alternatives-header">
-          <h3>${isKZ ? 'PDF файлын ашу мәселесі' : 'Проблема с открытием PDF файла'}</h3>
-          <button onclick="closePrivacyAlternativesModal()">&times;</button>
-        </div>
-        
-        <div class="privacy-alternatives-body">
-          <p>${isKZ ? 
-            'PDF файлын ашу мәселесі болды. Төмендегі нұсқаларды қолданып көріңіз:' :
-            'Возникла проблема с открытием PDF файла. Попробуйте следующие варианты:'
-          }</p>
-          
-          <div class="privacy-alternatives-options">
-            <button onclick="downloadPrivacyPolicy('${pdfPath}')" class="alternative-btn">
-              📥 ${isKZ ? 'PDF файлын жүктеу' : 'Скачать PDF файл'}
-            </button>
-            
-            <button onclick="openPrivacyPolicyInNewTab('${pdfPath}')" class="alternative-btn">
-              🔗 ${isKZ ? 'Жаңа табта ашу' : 'Открыть в новой вкладке'}
-            </button>
-            
-            <button onclick="copyPrivacyPolicyLink('${pdfPath}')" class="alternative-btn">
-              📋 ${isKZ ? 'Сілтемені көшіру' : 'Скопировать ссылку'}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  document.body.insertAdjacentHTML('beforeend', alternativesHTML);
-  
-  setTimeout(() => {
-    document.getElementById('privacyAlternativesModal').classList.add('show');
-  }, 100);
-}
-
-function closePrivacyAlternativesModal() {
-  const modal = document.getElementById('privacyAlternativesModal');
-  if (modal) {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.remove();
-    }, 300);
-  }
-}
-
-function downloadPrivacyPolicy(pdfPath) {
-  const link = document.createElement('a');
-  link.href = pdfPath;
-  link.download = pdfPath.split('/').pop();
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  closePrivacyAlternativesModal();
-}
-
-function openPrivacyPolicyInNewTab(pdfPath) {
-  window.open(pdfPath, '_blank', 'noopener,noreferrer');
-  closePrivacyAlternativesModal();
-}
-
-function copyPrivacyPolicyLink(pdfPath) {
-  const fullUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/') + pdfPath;
-  navigator.clipboard.writeText(fullUrl).then(() => {
-    alert('Ссылка скопирована в буфер обмена!');
-  }).catch(() => {
-    // Fallback для старых браузеров
-    const textArea = document.createElement('textarea');
-    textArea.value = fullUrl;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-    alert('Ссылка скопирована в буфер обмена!');
-  });
-  closePrivacyAlternativesModal();
 }
 

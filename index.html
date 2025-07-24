@@ -162,7 +162,7 @@
                     <a href="#steps" class="nav-link">Этапы</a>
                     <a href="#contact" class="nav-link">Контакты</a>
                 </div>
-                <a href="#" onclick="switchLanguage('kz'); return false;" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">KZ</a>
+                <a href="index.kz.html" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">KZ</a>
             </div>
             <button class="mobile-menu-btn">
                 <span></span>
@@ -425,6 +425,45 @@
             </div>
         </div>
     </footer>
+
+    <!-- Privacy Consent Modal -->
+    <div id="privacyConsentModal" class="privacy-consent-modal">
+        <div class="privacy-consent-content">
+            <div class="privacy-consent-header">
+                <h2>Согласие на обработку данных</h2>
+                <button class="privacy-consent-close" onclick="closePrivacyConsentModal()">&times;</button>
+            </div>
+            
+            <div class="privacy-consent-body">
+                <div class="privacy-consent-icon">🔒</div>
+                <p class="privacy-consent-text">
+                    Мы заботимся о защите ваших персональных данных. Используя сайт, вы соглашаетесь с политикой обработки данных.
+                </p>
+                
+                <div class="privacy-consent-checkbox">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="privacyCheckbox">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">
+                            Я согласен с политикой обработки данных
+                        </span>
+                    </label>
+                </div>
+                
+                <div class="privacy-consent-links">
+                    <a href="assets/pdf/Политика конфиденциальности участников хакатона ITMLab.pdf" target="_blank" class="privacy-link">
+                        Политика конфиденциальности
+                    </a>
+                </div>
+            </div>
+            
+            <div class="privacy-consent-footer">
+                <button id="privacyAcceptBtn" class="privacy-accept-btn" disabled onclick="acceptPrivacyConsent()">
+                    Принять и продолжить
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="scripts/modal-flow.js"></script>

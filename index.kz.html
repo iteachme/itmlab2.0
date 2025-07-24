@@ -161,7 +161,7 @@
                     <a href="#steps" class="nav-link">Кезеңдер</a>
                     <a href="#contact" class="nav-link">Байланыс</a>
                 </div>
-                <a href="#" onclick="switchLanguage('ru'); return false;" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">RU</a>
+                <a href="index.html" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">RU</a>
             </div>
             <button class="mobile-menu-btn">
                 <span></span>
@@ -414,6 +414,45 @@
             </div>
         </div>
     </footer>
+
+    <!-- Privacy Consent Modal -->
+    <div id="privacyConsentModal" class="privacy-consent-modal">
+        <div class="privacy-consent-content">
+            <div class="privacy-consent-header">
+                <h2>Деректерді өңдеуге келісім</h2>
+                <button class="privacy-consent-close" onclick="closePrivacyConsentModal()">&times;</button>
+            </div>
+            
+            <div class="privacy-consent-body">
+                <div class="privacy-consent-icon">🔒</div>
+                <p class="privacy-consent-text">
+                    Біз сіздің жеке деректеріңізді қорғауға келісеміз. Сайтты пайдалану арқылы сіз деректерді өңдеу саясатына келісесіз.
+                </p>
+                
+                <div class="privacy-consent-checkbox">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="privacyCheckbox">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">
+                            Мен деректерді өңдеу саясатына келісемін
+                        </span>
+                    </label>
+                </div>
+                
+                <div class="privacy-consent-links">
+                    <a href="assets/pdf/Политика каз.pdf" target="_blank" class="privacy-link">
+                        Деректерді өңдеу саясатын көру
+                    </a>
+                </div>
+            </div>
+            
+            <div class="privacy-consent-footer">
+                <button id="privacyAcceptBtn" class="privacy-accept-btn" disabled onclick="acceptPrivacyConsent()">
+                    Келісу және жалғастыру
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="scripts/modal-flow.js"></script>

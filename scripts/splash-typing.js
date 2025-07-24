@@ -30,14 +30,9 @@ const SPLASHES_KZ = [
 ];
 
 // Initialize typing animation
-function initSplashTyping() {
-    console.log('initSplashTyping called');
+document.addEventListener('DOMContentLoaded', function() {
     const splashElement = document.getElementById('splashTyping');
-    console.log('splashElement found:', !!splashElement);
-    if (!splashElement) {
-        console.error('splashTyping element not found!');
-        return;
-    }
+    if (!splashElement) return;
 
     // Determine language based on current page
     const isKazakh = window.location.pathname.includes('index.kz.html');
@@ -57,16 +52,12 @@ function initSplashTyping() {
             currentChar++;
         }
         
-        const newText = phrase.substring(0, currentChar);
-        splashElement.textContent = newText;
+        splashElement.textContent = phrase.substring(0, currentChar);
         splashElement.dataset.text = phrase;
-        
-        console.log('Typing:', newText, '| currentChar:', currentChar, '| isDeleting:', isDeleting);
         
         let typeSpeed = isDeleting ? 50 : 100;
         
         if (!isDeleting && currentChar === phrase.length) {
-            console.log('Phrase completed, starting deletion');
             isDeleting = true;
             isPaused = true;
             setTimeout(() => {
@@ -75,7 +66,6 @@ function initSplashTyping() {
             }, 2000);
             return;
         } else if (isDeleting && currentChar === 0) {
-            console.log('Deletion completed, moving to next phrase');
             isDeleting = false;
             currentPhrase = (currentPhrase + 1) % SPLASHES.length;
         }
@@ -89,21 +79,6 @@ function initSplashTyping() {
     splashElement.textContent = SPLASHES[0];
     splashElement.dataset.text = SPLASHES[0];
     
-    console.log('Starting typing animation with phrase:', SPLASHES[0]);
-    
     // Start the typing animation after a delay
-    setTimeout(() => {
-        console.log('Starting type() function');
-        type();
-    }, 2000);
-}
-
-// Auto-initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('splash-typing.js: DOMContentLoaded event fired');
-    initSplashTyping();
+    setTimeout(type, 2000);
 });
-
-// Export function globally
-window.initSplashTyping = initSplashTyping;
-console.log('splash-typing.js: initSplashTyping exported to window');
