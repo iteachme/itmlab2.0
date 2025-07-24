@@ -31,8 +31,13 @@ const SPLASHES_KZ = [
 
 // Initialize typing animation
 function initSplashTyping() {
+    console.log('initSplashTyping called');
     const splashElement = document.getElementById('splashTyping');
-    if (!splashElement) return;
+    console.log('splashElement found:', !!splashElement);
+    if (!splashElement) {
+        console.error('splashTyping element not found!');
+        return;
+    }
 
     // Determine language based on current page
     const isKazakh = window.location.pathname.includes('index.kz.html');
@@ -85,8 +90,10 @@ function initSplashTyping() {
 
 // Auto-initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('splash-typing.js: DOMContentLoaded event fired');
     initSplashTyping();
 });
 
 // Export function globally
 window.initSplashTyping = initSplashTyping;
+console.log('splash-typing.js: initSplashTyping exported to window');

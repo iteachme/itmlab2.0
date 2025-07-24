@@ -466,9 +466,14 @@ class CyberHackathon {
     }
 
     initSplashTyping() {
+        console.log('script.js: initSplashTyping called');
+        console.log('window.initSplashTyping type:', typeof window.initSplashTyping);
         // Проверяем, загружена ли функция из внешнего скрипта
         if (typeof window.initSplashTyping === 'function') {
+            console.log('script.js: calling window.initSplashTyping');
             window.initSplashTyping();
+        } else {
+            console.log('script.js: window.initSplashTyping not found, will be called by splash-typing.js');
         }
         // Если функция не найдена, она будет вызвана автоматически при загрузке splash-typing.js
     }
