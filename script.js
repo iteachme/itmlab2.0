@@ -965,4 +965,106 @@ document.addEventListener('DOMContentLoaded', function() {
       quoteEl.innerHTML = quotes[idx];
     }
   }
+  
+  // Проверяем согласие на обработку данных
+  checkPrivacyConsent();
 });
+
+// ===== PRIVACY CONSENT MODAL =====
+function checkPrivacyConsent() {
+  const hasConsented = localStorage.getItem('privacyConsent');
+  if (!hasConsented) {
+    setTimeout(() => {
+      showPrivacyConsentModal();
+    }, 2000); // Показываем через 2 секунды после загрузки
+  }
+}
+
+function showPrivacyConsentModal() {
+  const isKZ = window.location.pathname.includes('index.kz.html');
+  
+  const modalHTML = `
+    <div id="privacyConsentModal" class="privacy-consent-modal">
+      <div class="privacy-consent-content">
+        <div class="privacy-consent-header">
+          <h2>${isKZ ? 'Деректерді өңдеуге келісім' : 'Согласие на обработку данных'}</h2>
+          <button class="privacy-consent-close" onclick="closePrivacyConsentModal()">&times;</button>
+        </div>
+        
+        <div class="privacy-consent-body">
+          <div class="privacy-consent-icon">🔒</div>
+          <p class="privacy-consent-text">
+            ${isKZ ? 
+              'Біз сіздің жеке деректеріңізді қорғауға келісеміз. Сайтты пайдалану арқылы сіз деректерді өңдеу саясатына келісесіз.' :
+              'Мы заботимся о защите ваших персональных данных. Используя сайт, вы соглашаетесь с политикой обработки данных.'
+            }
+          </p>
+          
+          <div class="privacy-consent-checkbox">
+            <label class="checkbox-container">
+              <input type="checkbox" id="privacyCheckbox">
+              <span class="checkmark"></span>
+              <span class="checkbox-text">
+                ${isKZ ? 
+                  'Мен деректерді өңдеу саясатына келісемін' :
+                  'Я согласен с политикой обработки данных'
+                }
+              </span>
+            </label>
+          </div>
+          
+          <div class="privacy-consent-links">
+            <a href="#" onclick="openPrivacyDocument('${isKZ ? 'assets/pdf/Политика каз.pdf' : 'assets/pdf/Политика конфиденциальности участников хакатона ITMLab.pdf'}')" class="privacy-link">
+              ${isKZ ? 'Деректерді өңдеу саясатын көру' : 'Политика конфиденциальности'}
+            </a>
+          </div>
+        </div>
+        
+        <div class="privacy-consent-footer">
+          <button id="privacyAcceptBtn" class="privacy-accept-btn" disabled onclick="acceptPrivacyConsent()">
+            ${isKZ ? 'Келісу және жалғастыру' : 'Принять и продолжить'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+  
+  // Обработчик для чекбокса
+  const checkbox = document.getElementById('privacyCheckbox');
+  const acceptBtn = document.getElementById('privacyAcceptBtn');
+  
+  checkbox.addEventListener('change', function() {
+    acceptBtn.disabled = !this.checked;
+    if (this.checked) {
+      acceptBtn.classList.add('active');
+    } else {
+      acceptBtn.classList.remove('active');
+    }
+  });
+  
+  // Показываем модальное окно
+  setTimeout(() => {
+    document.getElementById('privacyConsentModal').classList.add('show');
+  }, 100);
+}
+
+function closePrivacyConsentModal() {
+  const modal = document.getElementById('privacyConsentModal');
+  if (modal) {
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.remove();
+    }, 300);
+  }
+}
+
+function acceptPrivacyConsent() {
+  localStorage.setItem('privacyConsent', 'true');
+  closePrivacyConsentModal();
+}
+
+function openPrivacyDocument(pdfUrl) {
+  openPdfjsModal(pdfUrl);
+}
