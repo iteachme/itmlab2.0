@@ -956,6 +956,9 @@ const footerQuotesKZ = [
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
+  // Автоматическое перенаправление на правильную версию сайта
+  autoRedirectToCorrectLanguage();
+  
   var quoteEl = document.getElementById('footerQuote');
   if (quoteEl) {
     var isKZ = window.location.pathname.includes('index.kz.html');
@@ -970,6 +973,66 @@ document.addEventListener('DOMContentLoaded', function() {
   checkPrivacyConsent();
 });
 
+function autoRedirectToCorrectLanguage() {
+  // Проверяем, было ли уже перенаправление в этой сессии
+  if (sessionStorage.getItem('languageRedirected')) {
+    return;
+  }
+  
+  const isKZ = detectUserLanguage();
+  const currentIsKZ = window.location.pathname.includes('index.kz.html');
+  
+  // Если язык не соответствует, перенаправляем
+  if (isKZ !== currentIsKZ) {
+    sessionStorage.setItem('languageRedirected', 'true');
+    
+    if (isKZ && !currentIsKZ) {
+      window.location.href = 'index.kz.html';
+    } else if (!isKZ && currentIsKZ) {
+      window.location.href = 'index.html';
+    }
+  }
+}
+
+// ===== LANGUAGE DETECTION =====
+function detectUserLanguage() {
+  // Проверяем сохраненный выбор пользователя
+  const savedLanguage = localStorage.getItem('userLanguage');
+  if (savedLanguage) {
+    return savedLanguage === 'kz';
+  }
+  
+  // Определяем язык по URL
+  const isKZByURL = window.location.pathname.includes('index.kz.html');
+  
+  // Определяем язык по настройкам браузера
+  const browserLanguage = navigator.language || navigator.userLanguage || '';
+  const isKZByBrowser = browserLanguage.toLowerCase().startsWith('kk') || 
+                        browserLanguage.toLowerCase().startsWith('kz');
+  
+  // Определяем язык по геолокации (если доступно)
+  const isKZByLocation = detectLocationLanguage();
+  
+  // Приоритет: URL > Браузер > Геолокация
+  if (isKZByURL) return true;
+  if (isKZByBrowser) return true;
+  if (isKZByLocation) return true;
+  
+  // По умолчанию для Казахстана - казахский
+  return false;
+}
+
+function detectLocationLanguage() {
+  // Простая проверка по часовому поясу (Казахстан: UTC+5, UTC+6)
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const kazakhTimezones = [
+    'Asia/Almaty', 'Asia/Aqtau', 'Asia/Aqtobe', 'Asia/Atyrau',
+    'Asia/Oral', 'Asia/Qostanay', 'Asia/Qyzylorda', 'Asia/Vostok'
+  ];
+  
+  return kazakhTimezones.includes(timezone);
+}
+
 // ===== PRIVACY CONSENT MODAL =====
 function checkPrivacyConsent() {
   const hasConsented = localStorage.getItem('privacyConsent');
@@ -981,7 +1044,7 @@ function checkPrivacyConsent() {
 }
 
 function showPrivacyConsentModal() {
-  const isKZ = window.location.pathname.includes('index.kz.html');
+  const isKZ = detectUserLanguage();
   
   const modalHTML = `
     <div id="privacyConsentModal" class="privacy-consent-modal">
@@ -1062,6 +1125,23 @@ function closePrivacyConsentModal() {
 
 function acceptPrivacyConsent() {
   localStorage.setItem('privacyConsent', 'true');
+  
+  // Сохраняем выбранный язык
+  const isKZ = detectUserLanguage();
+  localStorage.setItem('userLanguage', isKZ ? 'kz' : 'ru');
+  
   closePrivacyConsentModal();
+}
+
+// Функция для переключения языка
+function switchLanguage(language) {
+  localStorage.setItem('userLanguage', language);
+  
+  // Перезагружаем страницу с правильным языком
+  if (language === 'kz' && !window.location.pathname.includes('index.kz.html')) {
+    window.location.href = 'index.kz.html';
+  } else if (language === 'ru' && window.location.pathname.includes('index.kz.html')) {
+    window.location.href = 'index.html';
+  }
 }
 
