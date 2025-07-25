@@ -972,9 +972,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== PRIVACY CONSENT MODAL =====
 function checkPrivacyConsent() {
-  setTimeout(() => {
-    showPrivacyConsentModal();
-  }, 2000); // Показываем через 2 секунды после загрузки
+  const hasConsented = localStorage.getItem('privacyConsent');
+  if (!hasConsented) {
+    setTimeout(() => {
+      showPrivacyConsentModal();
+    }, 2000); // Показываем через 2 секунды после загрузки
+  }
 }
 
 function showPrivacyConsentModal() {
@@ -1013,6 +1016,7 @@ function closePrivacyConsentModal() {
 }
 
 function acceptPrivacyConsent() {
+  localStorage.setItem('privacyConsent', 'true');
   closePrivacyConsentModal();
 }
 
