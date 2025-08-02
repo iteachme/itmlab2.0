@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <meta name="renderer" content="webkit">
+    <title>ITM Lab 2.0 Жеңімпаздары - Онлайн-хакатон</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <style>
+        :root {
+            --primary: #ff6b35;
+            --primary-dark: #e55a2b;
+            --secondary: #ffa07a;
+            --accent: #ffdab9;
+            --bg-primary: #ffffff;
+            --bg-secondary: #fff5f0;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --glow: 0 0 20px rgba(255, 107, 53, 0.2);
+            --glow-secondary: 0 0 15px rgba(255, 160, 122, 0.2);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 120px 0 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .divider-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .divider-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: var(--glow);
+        }
+        
+        .search-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 20px;
+            border: 2px solid rgba(255, 107, 53, 0.2);
+            border-radius: 25px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.2);
+        }
+        
+        /* Header and Navigation Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background: transparent;
+            box-shadow: none;
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: auto;
+            order: 2;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin-right: 10px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .logo-box {
+            padding: 8px 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, #ff8b5f 100%);
+            border-radius: 8px;
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .logo:hover .logo-box {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(255, 107, 53, 0.1);
+        }
+        
+        .nav-link:hover::before {
+            width: 80%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+        }
+        
+        .winners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .winner-card {
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .winner-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15);
+            border-color: var(--primary);
+        }
+        
+        .winner-card h3 {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: #333;
+        }
+        
+        .winner-card p {
+            color: #666;
+            font-size: 0.8rem;
+        }
+        
+        .winner-card .emoji {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .winner-card .view-details {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--primary);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .winner-card:hover .view-details {
+            opacity: 1;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .pagination button {
+            padding: 8px 16px;
+            border: 1px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination button:hover,
+        .pagination button.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: var(--primary);
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 107, 53, 0.1);
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .modal-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        .modal-body {
+            line-height: 1.6;
+        }
+        
+        .project-description {
+            background: rgba(255, 107, 53, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .future-stages {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 160, 122, 0.05) 100%);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 107, 53, 0.1);
+        }
+        
+        .stages-pagination {
+            margin-bottom: 40px;
+        }
+        
+        .stages-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .stage-nav-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .stage-nav-btn:hover,
+        .stage-nav-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .stages-container {
+            position: relative;
+        }
+        
+        .stage-block {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 107, 53, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .stage-block.active {
+            display: block;
+        }
+        
+        .stage-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 107, 53, 0.1);
+        }
+        
+        .stage-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stage-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+            flex-grow: 1;
+        }
+        
+        .stage-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .stage-status.locked {
+            background: #ff4757;
+            color: white;
+        }
+        
+        .stage-status.unlocked {
+            background: #2ed573;
+            color: white;
+        }
+        
+        .stage-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .stage-description {
+            background: rgba(255, 107, 53, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .stage-description p {
+            margin: 0 0 15px 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+        
+        .stage-description p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .participants-section {
+            background: rgba(0, 0, 0, 0.02);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px dashed rgba(255, 107, 53, 0.3);
+        }
+        
+        .participants-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .participants-placeholder {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        .participants-placeholder p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .placeholder-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .placeholder-stats span {
+            background: rgba(255, 107, 53, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        
+        .grant-info,
+        .investment-info {
+            background: rgba(46, 213, 115, 0.1) !important;
+            color: #2ed573 !important;
+        }
+        
+        @media (max-width: 768px) {
+            .stage-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .stage-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .stage-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .stages-nav {
+                gap: 8px;
+            }
+            
+            .stage-nav-btn {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+        }
+        
+
+        
+        .stats {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .winners-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            
+            .winner-card {
+                padding: 12px;
+            }
+            
+            .winner-card h3 {
+                font-size: 0.9rem;
+            }
+            
+            .winner-card p {
+                font-size: 0.7rem;
+            }
+            
+            .winner-card .emoji {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container glass-nav">
+            <a href="index.kz.html" class="logo">
+                <div class="logo-box">ITM</div>
+            </a>
+            <div class="nav-actions">
+                <div class="nav-links">
+                    <a href="index.kz.html#steps" class="nav-link">Кезеңдер</a>
+                    <a href="winners.kz.html" class="nav-link">Жеңімпаздар</a>
+                    <a href="index.kz.html#contact" class="nav-link">Байланыс</a>
+                </div>
+                <a href="winners.html" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">RU</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+    
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">ITM Lab 2.0 Жеңімпаздары</h1>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-dot"></div>
+                    <div class="divider-line"></div>
+                </div>
+                <p style="max-width: 700px; margin: 24px auto 0 auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
+                    ITM Lab 2.0 офлайн хакатонына өткен командаларды құттықтаймыз! Бұл 32 команда онлайн кезеңде керемет нәтижелер көрсетті және енді келесі шабуылға дайын.
+                </p>
+            </div>
+            
+            <div class="search-section">
+                <input type="text" class="search-input" placeholder="🔍 Команда іздеу..." id="searchInput">
+            </div>
+            
+            <div class="stats" id="stats">
+                Көрсетілген: <span id="shownCount">12</span> / <span id="totalCount">32</span> команда
+            </div>
+            
+            <div class="winners-grid" id="winnersGrid">
+                <!-- Карточки будут добавлены через JavaScript -->
+            </div>
+            
+            <div class="pagination" id="pagination">
+                <!-- Пагинация будет добавлена через JavaScript -->
+            </div>
+            
+            <div class="future-stages">
+                <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;">ITM Lab 2.0 келесі кезеңдері</h3>
+                
+                <div class="stages-pagination">
+                    <div class="stages-nav">
+                        <button class="stage-nav-btn active" onclick="showStage(1)">Офлайн хакатон</button>
+                        <button class="stage-nav-btn" onclick="showStage(2)">Трекинг</button>
+                        <button class="stage-nav-btn" onclick="showStage(3)">Грант үшін питч</button>
+                        <button class="stage-nav-btn" onclick="showStage(4)">Финалды питч</button>
+                    </div>
+                </div>
+                
+                <div class="stages-container">
+                    <!-- Этап 1: Офлайн хакатон -->
+                    <div class="stage-block active" id="stage1">
+                        <div class="stage-header">
+                            <div class="stage-icon">🏢</div>
+                            <h2>Алматыдағы офлайн хакатон</h2>
+                            <div class="stage-status locked">БЛОКИРОВАН</div>
+                        </div>
+                        <div class="stage-content">
+                            <div class="stage-description">
+                                <p><strong>Кезең сипаттамасы:</strong></p>
+                                <p>Командалар саны шектеусіз. Қатысушылар көп болған сайын жақсы! Алматыда бірнеше күн бойы жобалар бойынша қарқынды жұмыс.</p>
+                            </div>
+                            <div class="participants-section">
+                                <h3>Қатысушылар онлайн кезең аяқталғаннан кейін жарияланады</h3>
+                                <div class="participants-placeholder">
+                                    <div class="placeholder-icon">🔒</div>
+                                    <p>Офлайн хакатон қатысушыларының тізімі ағымдағы кезең аяқталғаннан кейін жарияланады</p>
+                                    <div class="placeholder-stats">
+                                        <span>Күтіледі: <strong>Шектеусіз саны</strong> команда</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Этап 2: Трекинг -->
+                    <div class="stage-block" id="stage2">
+                        <div class="stage-header">
+                            <div class="stage-icon">📊</div>
+                            <h2>Трекинг</h2>
+                            <div class="stage-status locked">БЛОКИРОВАН</div>
+                        </div>
+                        <div class="stage-content">
+                            <div class="stage-description">
+                                <p><strong>Кезең сипаттамасы:</strong></p>
+                                <p>Офлайн хакатоннан кейін жобаларды әрі қарай дамыту үшін 20 үздік команданы таңдаймыз. Бірнеше ай бойы менторлардың жетекшілігімен жұмыс.</p>
+                            </div>
+                            <div class="participants-section">
+                                <h3>Қатысушылар офлайн хакатоннан кейін жарияланады</h3>
+                                <div class="participants-placeholder">
+                                    <div class="placeholder-icon">🔒</div>
+                                    <p>Трекингке өткен 20 команданың тізімі офлайн хакатон аяқталғаннан кейін жарияланады</p>
+                                    <div class="placeholder-stats">
+                                        <span>Күтіледі: <strong>20</strong> команда</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Этап 3: Питч за грант -->
+                    <div class="stage-block" id="stage3">
+                        <div class="stage-header">
+                            <div class="stage-icon">🎯</div>
+                            <h2>Грант үшін питч</h2>
+                            <div class="stage-status locked">БЛОКИРОВАН</div>
+                        </div>
+                        <div class="stage-content">
+                            <div class="stage-description">
+                                <p><strong>Кезең сипаттамасы:</strong></p>
+                                <p>Финалды питчингке тек 10 команданы таңдаймыз. Жеңімпаздар жобаны дамыту үшін 600 000 теңге грант алады.</p>
+                            </div>
+                            <div class="participants-section">
+                                <h3>Қатысушылар трекингтен кейін жарияланады</h3>
+                                <div class="participants-placeholder">
+                                    <div class="placeholder-icon">🔒</div>
+                                    <p>Грант үшін финалды питчке өткен 10 команданың тізімі трекинг аяқталғаннан кейін жарияланады</p>
+                                    <div class="placeholder-stats">
+                                        <span>Күтіледі: <strong>10</strong> команда</span>
+                                        <span class="grant-info">Грант: <strong>600 000 теңге</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Этап 4: Финальный питч -->
+                    <div class="stage-block" id="stage4">
+                        <div class="stage-header">
+                            <div class="stage-icon">🏆</div>
+                            <h2>Инвесторлар алдындағы финалды питч</h2>
+                            <div class="stage-status locked">БЛОКИРОВАН</div>
+                        </div>
+                        <div class="stage-content">
+                            <div class="stage-description">
+                                <p><strong>Кезең сипаттамасы:</strong></p>
+                                <p>Инвесторлар мен сарапшылар алдында жобаларды финалды таныстыру. Жобаны масштабтау үшін қосымша инвестиция және қолдау алу мүмкіндігі.</p>
+                            </div>
+                            <div class="participants-section">
+                                <h3>Қатысушылар грант питчінен кейін жарияланады</h3>
+                                <div class="participants-placeholder">
+                                    <div class="placeholder-icon">🔒</div>
+                                    <p>Инвесторлар алдындағы финалды питчке өткен командалардың тізімі грант үшін питч кезеңі аяқталғаннан кейін жарияланады</p>
+                                    <div class="placeholder-stats">
+                                        <span>Күтіледі: <strong>Грант питчінен үздік</strong> командалар</span>
+                                        <span class="investment-info">Мүмкіндік: <strong>Қосымша инвестиция</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Модальное окно -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Команда атауы</h2>
+                <p class="modal-subtitle" id="modalSubtitle">Жоба сипаттамасы</p>
+            </div>
+            <div class="modal-body">
+                <div class="project-description" id="modalDescription">
+                    <p><strong>Жоба сипаттамасы:</strong></p>
+                    <p>Жоба туралы толық ақпарат өтініштер PDF файлынан жүктеледі...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Данные команд (в реальном проекте будут загружены из PDF)
+        const teams = [
+            { name: "EZSpeech", emoji: "🥇", description: "Қазақ тілін қолдайтын сөйлеу тану және синтез AI-платформасы. Сөйлеу және есту кемшілігі бар адамдар үшін инновациялық шешім." },
+            { name: "Работяги", emoji: "🥈", description: "Қызмет саласындағы білікті мамандарды іздеу және таңдау платформасы. Рейтингтер мен пікірлердің ақылды жүйесі." },
+            { name: "AstroOrder", emoji: "🥉", description: "Ресторандар мен кафелер үшін тапсырыстарды автоматтандыру жүйесі, асхана жабдықтарымен интеграция және сату талдауы." },
+            { name: "MadZhan", emoji: "🏆", description: "Денсаулық пен фитнесті қадағалауға арналған мобильді қосымша, жеке ұсыныстармен және ойындастырумен." },
+            { name: "Human", emoji: "🏆", description: "Алдын ала диагностика үшін AI қолданатын психологиялық қолдау және кеңес платформасы." },
+            { name: "Soile AI", emoji: "🏆", description: "IoT және машиналық оқыту қолданатын топырақты қадағалау және ауыл шаруашылығы процестерін оңтайландыру жүйесі." },
+            { name: "DK Tech", emoji: "🏆", description: "Интерактивті тапсырмалармен және менторлық жүйемен бағдарламалауды оқытуға арналған білім беру платформасы." },
+            { name: "Future-IT", emoji: "🏆", description: "IT-саласындағы трендтерді болжау платформасы, дағдылар мен мансапты дамыту бойынша ұсыныстармен." },
+            { name: "Команда РЕД", emoji: "🏆", description: "Қайта пайдаланылатын энергия көздерімен интеграцияланған ақылды үйлер үшін энергия тұтынуды басқару жүйесі." },
+            { name: "PRIZMA", emoji: "🏆", description: "Киім және аксессуарларды виртуалды сынауға арналған AR-қосымша, стиль бойынша ұсыныстармен." },
+            { name: "Korem team", emoji: "🏆", description: "Адаптивті курстармен және қызметкерлердің прогрессін талдаумен корпоративті оқыту платформасы." },
+            { name: "4Suyen", emoji: "🏆", description: "Компьютерлік көру және IoT-сенсорларды қолданатын ақылды қалалар үшін қауіпсіздік жүйесі." },
+            { name: "Involve", emoji: "🏆", description: "Қатысушылардың үлесін қадағалау жүйесімен еріктілік және қайырымдылыққа арналған әлеуметтік платформа." },
+            { name: "Visual Mind", emoji: "🏆", description: "Суреттер мен бейнелерді автоматты түрде жасаумен көрнекі контент жасауға арналған AI-құрал." },
+            { name: "Juno", emoji: "🏆", description: "AI-талдаумен және инвестиция бойынша ұсыныстармен жеке қаржыларды басқару платформасы." },
+            { name: "Ainala AI", emoji: "🏆", description: "Терең оқыту қолданатын медициналық суреттер бойынша ауруларды диагностикалау жүйесі." },
+            { name: "CALVADOS (Кальвадос)", emoji: "🏆", description: "Жеткізушілермен интеграция және сату талдауымен ресторан бизнесін басқару платформасы." },
+            { name: "2731", emoji: "🏆", description: "Қалалардың ауа сапасын және экологиялық жағдайын қадағалау жүйесі, тұрғындарға ұсыныстармен." },
+            { name: "NEUHARMONY", emoji: "🏆", description: "Музыканттардың ынтымақтастығы мүмкіндігімен музыка және дыбыс әсерлерін жасауға арналған AI-платформа." },
+            { name: "Sana", emoji: "🏆", description: "Циклдерді қадағалаумен және мамандардың кеңестерімен әйелдер денсаулығына арналған мобильді қосымша." },
+            { name: "SAMGA", emoji: "🏆", description: "Роботтарды қолданатын және AI-оңтайландырумен қойма процестерін басқару платформасы." },
+            { name: "Qolda", emoji: "🏆", description: "Денсаулықты қадағалаумен және туыстармен төтенше байланыспен кәрі адамдарға көмек жүйесі." },
+            { name: "ASAR", emoji: "🏆", description: "Құтқару қызметтерімен интеграция және ескерту жүйелерімен төтенше жауап беру платформасы." },
+            { name: "MEZU", emoji: "🏆", description: "IoT және блокчейн қолданатын қалдықтарды сұрыптау және қайта өңдеумен қалдықтарды басқару жүйесі." },
+            { name: "QAMQOR", emoji: "🏆", description: "GPS-қадағалаумен және төтенше хабарландырулармен балалар қауіпсіздігін қадағалау платформасы." },
+            { name: "ЯРядом", emoji: "🏆", description: "Өзара көмек жүйесімен және жергілікті хабарландырулармен көршілерге арналған әлеуметтік желі." },
+            { name: "CaseX", emoji: "🏆", description: "Құжаттарды AI-талдаумен және ұсыныстармен заңгерлік кеңес платформасы." },
+            { name: "Popeyes", emoji: "🏆", description: "Көз жаттығуларымен және профилактика бойынша ұсыныстармен көруді қадағалау жүйесі." },
+            { name: "Online Travel Access Group", emoji: "🏆", description: "Мүмкіндігі шектеулі адамдарға бейімделумен қолжетімді туризм платформасы." },
+            { name: "JanaSolve", emoji: "🏆", description: "Қадамдық түсіндірулермен және интерактивті сабақтармен математикалық есептерді шешу жүйесі." },
+            { name: "Birge", emoji: "🏆", description: "Шығындарды бөлу жүйесімен бірлескен сатып алу және топтық тапсырыстар платформасы." },
+            { name: "Online Travel Access", emoji: "🏆", description: "Жеке ұсыныстармен және әлеуметтік функциялармен саяхаттарды брондау жүйесі." }
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 12;
+        let filteredTeams = [...teams];
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTeams();
+            renderPagination();
+            setupSearch();
+            setupModal();
+        });
+
+        // Рендер команд
+        function renderTeams() {
+            const grid = document.getElementById('winnersGrid');
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const teamsToShow = filteredTeams.slice(startIndex, endIndex);
+
+            grid.innerHTML = teamsToShow.map(team => `
+                <div class="winner-card" onclick="openModal('${team.name}', '${team.description}')">
+                    <div class="view-details">i</div>
+                    <div class="emoji">${team.emoji}</div>
+                    <h3>${team.name}</h3>
+                    <p>Офлайн хакатонға өтті</p>
+                </div>
+            `).join('');
+
+            updateStats();
+        }
+
+        // Пагинация
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredTeams.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            
+            let paginationHTML = '';
+            
+            // Кнопка "Предыдущая"
+            paginationHTML += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>←</button>`;
+            
+            // Номера страниц
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    paginationHTML += `<button onclick="changePage(${i})" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    paginationHTML += `<span>...</span>`;
+                }
+            }
+            
+            // Кнопка "Следующая"
+            paginationHTML += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>→</button>`;
+            
+            pagination.innerHTML = paginationHTML;
+        }
+
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredTeams.length / itemsPerPage);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                renderTeams();
+                renderPagination();
+            }
+        }
+
+        // Поиск
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                filteredTeams = teams.filter(team => 
+                    team.name.toLowerCase().includes(searchTerm) ||
+                    team.description.toLowerCase().includes(searchTerm)
+                );
+                currentPage = 1;
+                renderTeams();
+                renderPagination();
+            });
+        }
+
+        // Модальное окно
+        function setupModal() {
+            const modal = document.getElementById('projectModal');
+            const closeBtn = document.querySelector('.close');
+            
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+            
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+
+        function openModal(teamName, description) {
+            document.getElementById('modalTitle').textContent = teamName;
+            document.getElementById('modalSubtitle').textContent = 'Жоба сипаттамасы';
+            document.getElementById('modalDescription').innerHTML = `
+                <p><strong>Жоба сипаттамасы:</strong></p>
+                <p>${description}</p>
+            `;
+            document.getElementById('projectModal').style.display = "block";
+        }
+
+        function updateStats() {
+            document.getElementById('shownCount').textContent = Math.min(itemsPerPage, filteredTeams.length - (currentPage - 1) * itemsPerPage);
+            document.getElementById('totalCount').textContent = filteredTeams.length;
+        }
+
+        // Функция для переключения между этапами
+        function showStage(stageNumber) {
+            // Скрываем все этапы
+            const stages = document.querySelectorAll('.stage-block');
+            stages.forEach(stage => stage.classList.remove('active'));
+            
+            // Убираем активный класс со всех кнопок
+            const buttons = document.querySelectorAll('.stage-nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Показываем выбранный этап
+            document.getElementById(`stage${stageNumber}`).classList.add('active');
+            
+            // Делаем активной соответствующую кнопку
+            buttons[stageNumber - 1].classList.add('active');
+        }
+    </script>
+</body>
+</html> 
