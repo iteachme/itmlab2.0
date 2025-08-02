@@ -1,0 +1,52 @@
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Environment variables and secrets
+.env
+.env.local
+.env.production
+.env.development
+*.env
+
+# Configuration files with sensitive data
+config.json
+secrets.json
+credentials.json
+*.key
+*.pem
+*.p12
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Node modules (if using npm)
+node_modules/
+
+# Build directories
+dist/
+build/
+
+# Personal data files
+*заявки*
+*ответы*
+*form*
+*responses*
+*.csv
+*.xlsx
+*.xls
+
+# Backup files
+*.bak
+*.backup
+*~ 
