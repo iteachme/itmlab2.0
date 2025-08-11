@@ -601,16 +601,65 @@
                 
                 <div class="stages-pagination">
                     <div class="stages-nav">
-                        <button class="stage-nav-btn active" onclick="showStage(1)">Офлайн хакатон</button>
-                        <button class="stage-nav-btn" onclick="showStage(2)">Трекинг</button>
-                        <button class="stage-nav-btn" onclick="showStage(3)">Питч за грант</button>
-                        <button class="stage-nav-btn" onclick="showStage(4)">Финальный питч</button>
+                        <button class="stage-nav-btn active" onclick="showStage(1)">Онлайн хакатон</button>
+                        <button class="stage-nav-btn" onclick="showStage(2)">Офлайн хакатон</button>
+                        <button class="stage-nav-btn" onclick="showStage(3)">Трекинг</button>
+                        <button class="stage-nav-btn" onclick="showStage(4)">Питч за грант</button>
+                        <button class="stage-nav-btn" onclick="showStage(5)">Финальный питч</button>
                     </div>
                 </div>
                 
                 <div class="stages-container">
-                    <!-- Этап 1: Офлайн хакатон -->
+                    <!-- Этап 1: Онлайн хакатон (перенесены инструкции с главной) -->
                     <div class="stage-block active" id="stage1">
+                        <div class="stage-header">
+                            <div class="stage-icon">💻</div>
+                            <h2>Онлайн хакатон</h2>
+                            <div class="stage-status">АКТИВНО</div>
+                        </div>
+                        <div class="stage-content">
+                            <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;">
+                                <!-- Видео-урок -->
+                                <div class="step-card glass-effect" style="width: 100%; max-width: 420px; padding: 24px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
+                                    <div style="font-size: 2rem; margin-bottom: 8px;">🎬</div>
+                                    <div class="step-title" style="font-weight: 700; font-size: 1.05rem; margin-bottom: 6px;">Видео-урок</div>
+                                    <div style="color: #666; font-size: 0.95rem; margin-bottom: 14px; text-align: center;">Посмотрите видео о хакатоне ITM Lab</div>
+                                    <button class="cyber-button" style="width: 100%;" onclick="openModal({type: 'youtube', src: 'https://www.youtube.com/embed/dZO75Bcx10A', title: 'ITM Lab Хакатон'})">Смотреть</button>
+                                </div>
+
+                                <!-- Материалы -->
+                                <div class="step-card glass-effect" style="width: 100%; max-width: 420px; padding: 24px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
+                                    <div style="font-size: 2rem; margin-bottom: 8px;">📋</div>
+                                    <div class="step-title" style="font-weight: 700; font-size: 1.05rem; margin-bottom: 6px;">Материалы</div>
+                                    <div style="color: #666; font-size: 0.95rem; margin-bottom: 14px; text-align: center;">Документы для лучшего понимания технологий для лиц с инвалидностью</div>
+                                    <div style="display:flex;flex-direction:column;gap:10px;width:100%;">
+                                        <button class="cyber-button" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/cases-itmlab_compressed.pdf')">КЕЙСЫ</button>
+                                        <button class="cyber-button" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/research-itmlab.pdf')">ИССЛЕДОВАНИЕ</button>
+                                    </div>
+                                </div>
+
+                                <!-- Инструкции -->
+                                <div class="step-card glass-effect" style="width: 100%; max-width: 420px; padding: 24px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
+                                    <div style="font-size: 2rem; margin-bottom: 8px;">📝</div>
+                                    <div class="step-title" style="font-weight: 700; font-size: 1.05rem; margin-bottom: 6px;">Инструкции</div>
+                                    <div style="color: #666; font-size: 0.95rem; margin-bottom: 14px; text-align: center;">Изучите инструкцию по сдаче проектов</div>
+                                    <button class="cyber-button" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/instruction.pdf')">ИНСТРУКЦИЯ (PDF)</button>
+                                    <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/instruction.pdf" download class="cyber-button" style="width:100%;margin-top:8px; text-align:center;">Скачать инструкцию (PDF)</a>
+                                </div>
+
+                                <!-- Форма -->
+                                <div class="step-card glass-effect" style="width: 100%; max-width: 420px; padding: 24px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
+                                    <div style="font-size: 2rem; margin-bottom: 8px;">📮</div>
+                                    <div class="step-title" style="font-weight: 700; font-size: 1.05rem; margin-bottom: 6px;">Форма</div>
+                                    <div style="color: #666; font-size: 0.95rem; margin-bottom: 14px; text-align: center;">Заполните форму для отправки идей</div>
+                                    <button class="cyber-button" onclick="window.open('https://docs.google.com/forms/d/1UPd0tZ2pgFPcdyETqynqD1OvxYJPB9SF4ovzn4VDdxI/edit', '_blank')">ФОРМА ДЛЯ ИДЕЙ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Этап 2: Офлайн хакатон -->
+                    <div class="stage-block" id="stage2">
                         <div class="stage-header">
                             <div class="stage-icon">🏢</div>
                             <h2>Офлайн хакатон в Алматы</h2>
@@ -634,8 +683,8 @@
                         </div>
                     </div>
                     
-                    <!-- Этап 2: Трекинг -->
-                    <div class="stage-block" id="stage2">
+                    <!-- Этап 3: Трекинг -->
+                    <div class="stage-block" id="stage3">
                         <div class="stage-header">
                             <div class="stage-icon">📊</div>
                             <h2>Трекинг</h2>
@@ -659,8 +708,8 @@
                         </div>
                     </div>
                     
-                    <!-- Этап 3: Питч за грант -->
-                    <div class="stage-block" id="stage3">
+                    <!-- Этап 4: Питч за грант -->
+                    <div class="stage-block" id="stage4">
                         <div class="stage-header">
                             <div class="stage-icon">🎯</div>
                             <h2>Питч за грант</h2>
@@ -685,8 +734,8 @@
                         </div>
                     </div>
                     
-                    <!-- Этап 4: Финальный питч -->
-                    <div class="stage-block" id="stage4">
+                    <!-- Этап 5: Финальный питч -->
+                    <div class="stage-block" id="stage5">
                         <div class="stage-header">
                             <div class="stage-icon">🏆</div>
                             <h2>Финальный питч перед инвесторами</h2>
