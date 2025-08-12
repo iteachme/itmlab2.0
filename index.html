@@ -123,6 +123,102 @@
             position: relative;
             z-index: 1;
         }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .grant-announcement {
+                padding: 20px;
+            }
+            
+            .grant-amount {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .about-project-card {
+                padding: 20px;
+            }
+            
+            .next-stages-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .stage-card {
+                padding: 20px;
+            }
+            
+            .cases-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .case-card {
+                padding: 15px;
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .grant-amount {
+                font-size: 1.5rem;
+            }
+            
+            .next-stages-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .cases-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .partners-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .stage-card {
+                padding: 15px;
+            }
+            
+            .case-card {
+                padding: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -159,8 +255,8 @@
             </a>
             <div class="nav-actions">
                 <div class="nav-links">
-                    <a href="#steps" class="nav-link">Этапы</a>
-                    <a href="winners.html" class="nav-link">Победители</a>
+                    <a href="#hero" class="nav-link">Главная</a>
+                    <a href="winners.html" class="nav-link">Этапы</a>
                     <a href="#contact" class="nav-link">Контакты</a>
                 </div>
                 <a href="index.kz.html" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">KZ</a>
@@ -171,6 +267,16 @@
                 <span></span>
             </button>
         </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="#hero" class="mobile-nav-link">Главная</a>
+                <a href="winners.html" class="mobile-nav-link">Этапы</a>
+                <a href="#contact" class="mobile-nav-link">Контакты</a>
+                <a href="index.kz.html" class="mobile-nav-link">KZ</a>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -198,77 +304,192 @@
         </div>
     </section>
 
-    <!-- Удалён блок инструкции -->
 
-    <section id="steps" class="section">
+
+    <section id="about" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title glitch" data-text="Этапы участия">Этапы участия</h2>
+                <h2 class="section-title glitch" data-text="О проекте ITMLab">О проекте ITMLab</h2>
                 <div class="section-divider">
                     <div class="divider-line"></div>
                     <div class="divider-dot"></div>
                     <div class="divider-line"></div>
                 </div>
-                <p class="steps-description" style="max-width: 500px; margin: 20px auto 32px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
-                    Для участия в хакатоне пройдите все шаги ниже — каждый этап важен!
-                </p>
             </div>
-            <div class="stages-chips" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 0 16px 0;">
-                <span style="padding:8px 14px;border:1.5px solid var(--primary);border-radius:999px;color:var(--primary);font-weight:700;background:#fff;">DemoDay</span>
-                <span style="padding:8px 14px;border:1.5px solid var(--primary);border-radius:999px;color:var(--primary);font-weight:700;background:#fff;">Трекинг</span>
-                <span style="padding:8px 14px;border:1.5px solid var(--primary);border-radius:999px;color:var(--primary);font-weight:700;background:#fff;">IntroDay</span>
-                <span style="padding:8px 14px;border:1.5px solid var(--primary);border-radius:999px;color:var(--primary);font-weight:700;background:#fff;">PitchDay</span>
-            </div>
-            <h3 style="text-align:center;margin:4px 0 10px 0;font-size:1.4rem;color:#222;font-weight:800;">Онлайн‑хакатон</h3>
-            <div class="steps-vertical" style="display: flex; flex-direction: column; gap: 32px; align-items: center;">
-                <!-- Шаг 1 -->
-                <div class="step-card glass-effect" data-step="1" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
-                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">1</div>
-                    <div style="font-size: 2.1rem; margin-bottom: 10px;">🎬</div>
-                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Видео-урок</div>
-                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Посмотрите видео о хакатоне ITM Lab</div>
-                    <button class="video-btn" style="width: 100%; margin-bottom: 12px;" onclick="openModal({type: 'youtube', src: 'https://www.youtube.com/embed/dZO75Bcx10A', title: 'ITM Lab Хакатон'})">Смотреть</button>
-                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Доступно</div>
-                </div>
-
-                <!-- Шаг 2 -->
-                <div class="step-card glass-effect" data-step="2" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
-                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">2</div>
-                    <div style="font-size: 2.1rem; margin-bottom: 10px;">📋</div>
-                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Материалы</div>
-                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Ознакомьтесь с этими документами для лучшего понимания технологий для лиц с инвалидностью
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
-                        <!-- Кнопка КЕЙСЫ теперь открывает PDF.js viewer с CDN -->
-                        <button class="cases-btn cyber-button" style="width: 100%;" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/cases-itmlab_compressed.pdf')">КЕЙСЫ</button>
-                        <button class="research-btn cyber-button" style="width: 100%;" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/research-itmlab.pdf')">ИССЛЕДОВАНИЕ</button>
-                    </div>
-                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Доступно</div>
-                </div>
-
-                <!-- Шаг 3 -->
-                <div class="step-card glass-effect" data-step="3" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
-                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">3</div>
-                    <div style="font-size: 2.1rem; margin-bottom: 10px;">📝</div>
-                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Инструкции</div>
-                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Изучите инструкцию по сдаче проектов</div>
-                    <button class="instructions-btn cyber-button" style="width: 100%;" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/instruction.pdf')">ИНСТРУКЦИЯ (PDF)</button>
-                    <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/instruction.pdf" download class="cyber-button" style="width: 100%;margin-top:8px;">Скачать инструкцию (PDF)</a>
-                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Доступно</div>
-                </div>
-
-                <!-- Шаг 4 -->
-                <div class="step-card glass-effect" data-step="4" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
-                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">4</div>
-                    <div style="font-size: 2.1rem; margin-bottom: 10px;">📮</div>
-                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Форма</div>
-                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Заполните форму для заполнения идей</div>
-                    <button class="form-btn cyber-button" style="width: 100%;" onclick="window.open('https://docs.google.com/forms/d/1UPd0tZ2pgFPcdyETqynqD1OvxYJPB9SF4ovzn4VDdxI/edit', '_blank')">ФОРМА ДЛЯ ИДЕЙ</button>
-                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Доступно</div>
+            <div class="about-project-card">
+                <div class="about-content">
+                    <p class="about-text">
+                        Проект ITMlab реализует фонд ITeachMe в партнерстве с компанией Шеврон и при поддержке Министерство труда и социальной защиты населения РК.
+                    </p>
+                    <p class="about-text">
+                        Цель проекта - создать инновационные решения, IT‑решения или средства реабилитации, которые помогут улучшить качество жизни лиц с инвалидностью.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Instructions Section -->
+    <section id="instructions" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Инструкции">Инструкции</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-dot"></div>
+                    <div class="divider-line"></div>
+                </div>
+                <p class="instructions-description" style="max-width: 700px; margin: 24px auto 0 auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">Для участия в хакатоне ITM Lab выполните следующие этапы. Идею необходимо записать в виде короткого видео-питчинга (до 2 минут) и отправить ссылку через форму. <br><br> <b>Видео-питчинг:</b> расскажите о вашей идее, команде и ожидаемом результате. <a href="https://www.youtube.com/watch?v=3U-rK7A18Hc" target="_blank" style="color:#ff6b35;text-decoration:underline;">Пример видео</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Кейсы прошлого года -->
+    <section id="previous-cases" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Кейсы прошлого года">Кейсы прошлого года</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-dot"></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card" data-case-id="1">
+                    <div class="case-content">
+                        <h3 class="case-title">ОО «ЖАН»</h3>
+                        <p class="case-description">Производство доступных вращающихся наконечников для тростей с использованием 3D-печати</p>
+                        <div class="case-tags">
+                            <span class="case-tag">3D-печать</span>
+                            <span class="case-tag">Мобильность</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card" data-case-id="2">
+                    <div class="case-content">
+                        <h3 class="case-title">BULAN</h3>
+                        <p class="case-description">Электроприставка для инвалидных колясок, обеспечивающая дополнительную мобильность</p>
+                        <div class="case-tags">
+                            <span class="case-tag">Электроника</span>
+                            <span class="case-tag">Мобильность</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card" data-case-id="3">
+                    <div class="case-content">
+                        <h3 class="case-title">PROCRASTINATORS</h3>
+                        <p class="case-description">Приложение для перевода языка жестов в текст/аудио и обратно</p>
+                        <div class="case-tags">
+                            <span class="case-tag">AI</span>
+                            <span class="case-tag">Жестовый язык</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card" data-case-id="4">
+                    <div class="case-content">
+                        <h3 class="case-title">РИМЫ</h3>
+                        <p class="case-description">Электронная книга с адаптивным дисплеем на основе технологии Брайля</p>
+                        <div class="case-tags">
+                            <span class="case-tag">Брайль</span>
+                            <span class="case-tag">Образование</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card" data-case-id="5">
+                    <div class="case-content">
+                        <h3 class="case-title">SHAKA</h3>
+                        <p class="case-description">Кулон и браслет с вибромотором для лиц с нарушением зрения, передающий информацию через тактильные сигналы</p>
+                        <div class="case-tags">
+                            <span class="case-tag">Тактильные сигналы</span>
+                            <span class="case-tag">Носимые устройства</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card" data-case-id="6">
+                    <div class="case-content">
+                        <h3 class="case-title">FENIX RECOVERY</h3>
+                        <p class="case-description">Локомоторизованный тренажер для реабилитации как в медицинских учреждениях, так и дома</p>
+                        <div class="case-tags">
+                            <span class="case-tag">Реабилитация</span>
+                            <span class="case-tag">Медицина</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно для кейсов -->
+    <div id="caseModal" class="case-modal">
+        <div class="case-modal-content">
+            <button class="case-modal-close" onclick="closeCaseModal()">&times;</button>
+            <div class="case-modal-body">
+                <div class="case-modal-header">
+                    <h2 id="caseModalTitle">Название проекта</h2>
+                    <div class="case-modal-tags" id="caseModalTags">
+                        <!-- Теги будут добавлены динамически -->
+                    </div>
+                </div>
+                <div class="case-modal-content-wrapper">
+                    <div class="case-modal-media">
+                        <img id="caseModalImage" src="" alt="">
+                        <div class="case-modal-video" id="caseModalVideo" style="display: none;">
+                            <!-- Видео будет добавлено динамически -->
+                        </div>
+                    </div>
+                    <div class="case-modal-info">
+                        <div class="case-modal-description">
+                            <h3>Описание проекта</h3>
+                            <p id="caseModalDescription">Подробное описание проекта...</p>
+                        </div>
+                        <div class="case-modal-team">
+                            <h3>Команда</h3>
+                            <p id="caseModalTeam">Информация о команде...</p>
+                        </div>
+                        <div class="case-modal-tech">
+                            <h3>Технологии</h3>
+                            <p id="caseModalTech">Используемые технологии...</p>
+                        </div>
+                        <div class="case-modal-impact">
+                            <h3>Влияние</h3>
+                            <p id="caseModalImpact">Как проект помогает людям с инвалидностью...</p>
+                        </div>
+                        <div class="case-modal-links">
+                            <h3>Ссылки</h3>
+                            <div class="case-modal-buttons">
+                                <a id="caseModalInstagram" href="javascript:void(0)" target="_blank" class="case-modal-btn instagram-btn" style="display: none;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2C14.717 2 15.056 2.01 16.122 2.06C17.187 2.11 17.912 2.277 18.55 2.525C19.21 2.779 19.766 3.123 20.322 3.678C20.8305 4.1779 21.224 4.78259 21.475 5.45C21.722 6.087 21.89 6.813 21.94 7.878C21.987 8.944 22 9.283 22 12C22 14.717 21.99 15.056 21.94 16.122C21.89 17.187 21.722 17.912 21.475 18.55C21.2247 19.2178 20.8311 19.8226 20.322 20.322C19.822 20.8303 19.2173 21.2238 18.55 21.475C17.913 21.722 17.187 21.89 16.122 21.94C15.056 21.987 14.717 22 12 22C9.283 22 8.944 21.99 7.878 21.94C6.813 21.89 6.088 21.722 5.45 21.475C4.78233 21.2245 4.17753 20.8309 3.678 20.322C3.16941 19.8222 2.77593 19.2175 2.525 18.55C2.277 17.913 2.11 17.187 2.06 16.122C2.013 15.056 2 14.717 2 12C2 9.283 2.01 8.944 2.06 7.878C2.11 6.812 2.277 6.088 2.525 5.45C2.77524 4.78218 3.1688 4.17732 3.678 3.678C4.17767 3.16923 4.78243 2.77573 5.45 2.525C6.088 2.277 6.812 2.11 7.878 2.06C8.944 2.013 9.283 2 12 2ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7ZM18.5 6.75C18.5 6.41848 18.3683 6.10054 18.1339 5.86612C17.8995 5.6317 17.5815 5.5 17.25 5.5C16.9185 5.5 16.6005 5.6317 16.3661 5.86612C16.1317 6.10054 16 6.41848 16 6.75C16 7.08152 16.1317 7.39946 16.3661 7.63388C16.6005 7.8683 16.9185 8 17.25 8C17.5815 8 17.8995 7.8683 18.1339 7.63388C18.3683 7.39946 18.5 7.08152 18.5 6.75ZM12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9Z"/>
+                                    </svg>
+                                    Instagram
+                                </a>
+                                <a id="caseModalDocument" href="javascript:void(0)" target="_blank" class="case-modal-btn document-btn" style="display: none;">
+                                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 1 1 9.5 3zm0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/>
+                                        <rect x="6" y="8" width="7" height="3" rx="1"/>
+                                    </svg>
+                                    Презентация
+                                </a>
+                                <a id="caseModalYoutube" href="javascript:void(0)" target="_blank" class="case-modal-btn youtube-btn" style="display: none;">
+                                    <svg width="20" height="14" viewBox="0 0 28.57 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"/>
+                                        <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"/>
+                                    </svg>
+                                    YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Overlay -->
     <div id="modalOverlay" class="modal-overlay">
@@ -477,6 +698,169 @@
     <script src="scripts/modal-flow.js"></script>
     <script src="scripts/splash-typing.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Cases Modal Script -->
+    <script>
+    // Данные кейсов прошлого года ITMLab
+    const casesData = {
+        1: {
+            title: "ОО «ЖАН»",
+            description: "Производство доступных вращающихся наконечников для тростей с использованием 3D-печати. Проект направлен на улучшение мобильности людей с нарушениями зрения путем создания недорогих и эффективных решений для повседневного использования.",
+            team: "Общественное объединение «ЖАН» - команда активистов и инженеров, работающих над решениями для людей с инвалидностью.",
+            tech: "3D-печать, CAD-моделирование, полимерные материалы, инженерный дизайн",
+            impact: "Создание доступных технических средств реабилитации для людей с нарушениями зрения, снижение стоимости вспомогательных устройств.",
+            tags: ["3D-печать", "Мобильность"],
+            image: null,
+            instagram: "https://www.instagram.com/oo.zhan/?igsh=MWo1NXJyZTJiMzFvdw%3D%3D",
+            document: "https://drive.google.com/file/d/1DaCcdp9QeUOijLuEsIHdIGospqz0NmiC/view?usp=sharing",
+            youtube: "https://www.youtube.com/watch?v=fjynPk18-sQ"
+        },
+        2: {
+            title: "BULAN",
+            description: "Электроприставка для инвалидных колясок, обеспечивающая дополнительную мобильность. Устройство разработано для повышения независимости людей с ограниченной подвижностью и расширения их возможностей передвижения.",
+            team: "Команда BULAN Motors - инженеры и дизайнеры, специализирующиеся на создании мобильных решений для людей с инвалидностью.",
+            tech: "Электродвигатели, системы управления, аккумуляторные технологии, механическое проектирование",
+            impact: "Обеспечение большей мобильности и независимости для пользователей инвалидных колясок, улучшение качества жизни.",
+            tags: ["Электроника", "Мобильность"],
+            image: null,
+            instagram: "https://www.instagram.com/bulanmotors/?igsh=MWRxMmFlNWNma3IzYw%3D%3D",
+            document: "https://drive.google.com/file/d/112I3thj3eY85e8fREhNUFOtua6O8C9bv/view?usp=drive_link",
+            youtube: null
+        },
+        3: {
+            title: "PROCRASTINATORS",
+            description: "Приложение для перевода языка жестов в текст/аудио и обратно. Инновационное решение использует компьютерное зрение и машинное обучение для распознавания жестового языка и его преобразования в текст или речь, а также для обратного перевода.",
+            team: "Команда PROCRASTINATORS - разработчики и специалисты по машинному обучению, работающие с экспертами по жестовому языку.",
+            tech: "Computer Vision, Machine Learning, AI, мобильная разработка, обработка естественного языка",
+            impact: "Улучшение коммуникации между людьми с нарушениями слуха и слышащими людьми, повышение доступности информации.",
+            tags: ["AI", "Жестовый язык"],
+            image: null,
+            instagram: "https://www.instagram.com/_ymflow_official_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D",
+            document: "https://drive.google.com/file/d/14NlgwU3ZT-PkteVT33YepyhMMsnPtXfr/view?usp=sharing",
+            youtube: null
+        },
+        4: {
+            title: "РИМЫ",
+            description: "Электронная книга с адаптивным дисплеем на основе технологии Брайля. Инновационное устройство позволяет людям с нарушениями зрения читать цифровые тексты через тактильный интерфейс, обеспечивая доступ к образованию и информации.",
+            team: "Команда РИМЫ - инженеры и разработчики, специализирующиеся на создании ассистивных технологий для людей с нарушениями зрения.",
+            tech: "Технология Брайля, тактильные дисплеи, электроника, программное обеспечение для чтения",
+            impact: "Обеспечение доступа к цифровой литературе и образовательным материалам для людей с нарушениями зрения.",
+            tags: ["Брайль", "Образование"],
+            image: null,
+            instagram: "https://www.instagram.com/_rob.mech_/?igsh=MTVza3FlZmhxbTRiZQ%3D%3D",
+            document: "https://drive.google.com/file/d/1p2Wnw_G-2i6MFCREczT2y8mm-ooE-ctY/view?usp=drive_link",
+            youtube: null
+        },
+        5: {
+            title: "SHAKA",
+            description: "Кулон и браслет с вибромотором для лиц с нарушением зрения, передающий информацию через тактильные сигналы. Устройство помогает пользователям ориентироваться в пространстве и получать важную информацию через вибрационные паттерны.",
+            team: "Команда SHAKA International - разработчики носимых устройств и специалисты по ассистивным технологиям.",
+            tech: "Микроэлектроника, вибромоторы, беспроводная связь, носимые технологии",
+            impact: "Повышение мобильности и безопасности людей с нарушениями зрения в городской среде.",
+            tags: ["Тактильные сигналы", "Носимые устройства"],
+            image: null,
+            instagram: "https://www.instagram.com/shaka_international/",
+            document: "https://drive.google.com/file/d/1ihCvt8TF76qY2t5Ell439yk3K8bRzUu9/view?usp=drive_link",
+            youtube: null
+        },
+        6: {
+            title: "FENIX RECOVERY",
+            description: "Локомоторизованный тренажер для реабилитации как в медицинских учреждениях, так и дома. Устройство предназначено для восстановления двигательных функций и может использоваться как профессиональными медиками, так и пациентами самостоятельно.",
+            team: "Команда FENIX RECOVERY - медицинские инженеры и специалисты по реабилитации.",
+            tech: "Биомеханика, сенсоры движения, программное обеспечение для реабилитации, медицинское оборудование",
+            impact: "Ускорение процесса реабилитации пациентов с нарушениями опорно-двигательного аппарата.",
+            tags: ["Реабилитация", "Медицина"],
+            image: null,
+            instagram: "https://www.instagram.com/fenix.recovery/",
+            document: "https://drive.google.com/file/d/1J4YqNZeidpLlZLYsTH5_w9jjj5MlRVh5/view?usp=drive_link",
+            youtube: "https://www.youtube.com/watch?v=DGQOT06IoHo"
+        }
+    };
+
+    // Функция открытия модального окна
+    function openCaseModal(caseId) {
+        const caseData = casesData[caseId];
+        if (!caseData) return;
+
+        document.getElementById('caseModalTitle').textContent = caseData.title;
+        document.getElementById('caseModalDescription').textContent = caseData.description;
+        document.getElementById('caseModalTeam').textContent = caseData.team;
+        document.getElementById('caseModalTech').textContent = caseData.tech;
+        document.getElementById('caseModalImpact').textContent = caseData.impact;
+        document.getElementById('caseModalImage').src = caseData.image;
+
+        // Обновляем теги
+        const tagsContainer = document.getElementById('caseModalTags');
+        tagsContainer.innerHTML = '';
+        caseData.tags.forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.className = 'case-tag';
+            tagElement.textContent = tag;
+            tagsContainer.appendChild(tagElement);
+        });
+
+        // Обновляем ссылки на Instagram, документы и YouTube
+        const instagramBtn = document.getElementById('caseModalInstagram');
+        const documentBtn = document.getElementById('caseModalDocument');
+        const youtubeBtn = document.getElementById('caseModalYoutube');
+        
+        if (caseData.instagram) {
+            instagramBtn.onclick = () => window.open(caseData.instagram, '_blank');
+            instagramBtn.style.display = 'inline-flex';
+        } else {
+            instagramBtn.style.display = 'none';
+        }
+        
+        if (caseData.document) {
+            documentBtn.onclick = () => window.open(caseData.document, '_blank');
+            documentBtn.style.display = 'inline-flex';
+        } else {
+            documentBtn.style.display = 'none';
+        }
+        
+        if (caseData.youtube) {
+            youtubeBtn.onclick = () => window.open(caseData.youtube, '_blank');
+            youtubeBtn.style.display = 'inline-flex';
+        } else {
+            youtubeBtn.style.display = 'none';
+        }
+
+        // Показываем модальное окно
+        document.getElementById('caseModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Функция закрытия модального окна
+    function closeCaseModal() {
+        document.getElementById('caseModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Инициализация обработчиков событий
+    document.addEventListener('DOMContentLoaded', function() {
+        // Добавляем обработчики клика на карточки кейсов
+        document.querySelectorAll('.case-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const caseId = this.getAttribute('data-case-id');
+                openCaseModal(caseId);
+            });
+        });
+
+        // Закрытие модального окна при клике на фон
+        document.getElementById('caseModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCaseModal();
+            }
+        });
+
+        // Закрытие модального окна по ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('caseModal').classList.contains('active')) {
+                closeCaseModal();
+            }
+        });
+    });
+    </script>
     <script>
 let pdfDoc = null, currentPage = 1, totalPages = 1, pdfUrlGlobal = '', scale = 1.0;
 function renderPage(num) {

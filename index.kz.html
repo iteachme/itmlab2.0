@@ -122,6 +122,61 @@
             position: relative;
             z-index: 1;
         }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .grant-announcement {
+                padding: 20px;
+            }
+            
+            .grant-amount {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .instructions-description {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .grant-amount {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .instructions-description {
+                font-size: 0.9rem;
+                padding: 0 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -158,8 +213,8 @@
             </a>
             <div class="nav-actions">
                 <div class="nav-links">
-                    <a href="#steps" class="nav-link">Кезеңдер</a>
-                    <a href="winners.kz.html" class="nav-link">Жеңімпаздар</a>
+                    <a href="#hero" class="nav-link">Басты</a>
+                    <a href="winners.kz.html" class="nav-link">Кезеңдер</a>
                     <a href="#contact" class="nav-link">Байланыс</a>
                 </div>
                 <a href="index.html" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">RU</a>
@@ -170,6 +225,16 @@
                 <span></span>
             </button>
         </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="#hero" class="mobile-nav-link">Басты</a>
+                <a href="winners.kz.html" class="mobile-nav-link">Кезеңдер</a>
+                <a href="#contact" class="mobile-nav-link">Байланыс</a>
+                <a href="index.html" class="mobile-nav-link">RU</a>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -208,74 +273,6 @@
                     <div class="divider-line"></div>
                 </div>
                 <p class="instructions-description" style="max-width: 700px; margin: 24px auto 0 auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">ITM Lab хакатонына қатысу үшін төмендегі кезеңдерді орындаңыз. Идеяны соңғы тапсыру үшін қысқа бейне-питчинг (2 минутқа дейін) жазып, сілтемені форма арқылы жіберу қажет. <br><br> <b>Бейне-питчинг:</b> идеяңыз, командаңыз және күтілетін нәтиже туралы айтып беріңіз. <a href="https://www.youtube.com/watch?v=3U-rK7A18Hc" target="_blank" style="color:#ff6b35;text-decoration:underline;">Бейне мысалы</a></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Steps Section -->
-    <section id="steps" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title glitch" data-text="Қатысу кезеңдері">Қатысу кезеңдері</h2>
-                <div class="section-divider">
-                    <div class="divider-line"></div>
-                    <div class="divider-dot"></div>
-                    <div class="divider-line"></div>
-                </div>
-                <p class="steps-description" style="max-width: 500px; margin: 20px auto 32px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
-                    Хакатонға қатысу үшін төмендегі қадамдарды орындаңыз — әр кезең маңызды!
-                </p>
-            </div>
-            <div class="steps-vertical" style="display: flex; flex-direction: column; gap: 32px; align-items: center;">
-                <!-- Шаг 1 -->
-                <div class="step-card glass-effect" data-step="1" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
-                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">1</div>
-                    <div style="font-size: 2.1rem; margin-bottom: 10px;">🎬</div>
-                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Бейне-сабақ</div>
-                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">ITM Lab хакатоны туралы бейнені қараңыз</div>
-                    <button class="video-btn" style="width: 100%; margin-bottom: 12px;" onclick="openModal({type: 'youtube', src: 'https://www.youtube.com/embed/dZO75Bcx10A', title: 'ITM Lab Хакатон'})">Қарау</button>
-                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Үдерісте</div>
-                </div>
-
-                <!-- Шаг 2 -->
-                <div class="step-card glass-effect" data-step="2" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
-                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">2</div>
-                    <div style="font-size: 2.1rem; margin-bottom: 10px;">📋</div>
-                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Кейстер</div>
-                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Мысалдар мен тапсырмалармен танысыңыз</div>
-                    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
-                        <button class="cases-btn cyber-button" style="width: 100%;" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/cases-itmlab_compressed.pdf')">КЕЙСТЕР</button>
-                        <button class="research-btn cyber-button" style="width: 100%;" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/research-itmlab.pdf')">ЗЕРТТЕУ</button>
-                    </div>
-                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Үдерісте</div>
-                </div> 
-
-                <!-- Шаг 3 -->
-                <div class="step-card glass-effect" data-step="3" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
-                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">3</div>
-                    <div style="font-size: 2.1rem; margin-bottom: 10px;">📝</div>
-                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Нұсқаулықтар</div>
-                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Орындау нұсқаулықтарын оқыңыз</div>
-                    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
-                        <button class="instructions-btn cyber-button" style="width: 100%;" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/Жобаларды тапсыру бойынша нұсқаулық.docx.pdf')">НҰСҚАУЛЫҚ (PDF)</button>
-                        <button class="submission-btn cyber-button" style="width: 100%;" onclick="openPdfjsModal('https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/Жобаларды тапсыру бойынша нұсқаулық.docx.pdf')">ЖОБАЛАРДЫ ТАПСЫРУ</button>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 8px;">
-                        <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/Жобаларды тапсыру бойынша нұсқаулық.docx.pdf" download class="cyber-button" style="width: 100%;">Нұсқаулықты жүктеу (PDF)</a>
-                        <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/Жобаларды тапсыру бойынша нұсқаулық.docx.pdf" download class="cyber-button" style="width: 100%;">Жобаларды тапсыру нұсқаулығын жүктеу</a>
-                    </div>
-                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Қолжетімді</div>
-                </div>
-
-                <!-- Шаг 4 -->
-                <div class="step-card glass-effect" data-step="4" style="width: 100%; max-width: 420px; padding: 32px 28px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; position: relative;">
-                    <div style="position: absolute; left: 18px; top: 18px; font-size: 1.2rem; color: #ff6b35; font-weight: 700;">4</div>
-                    <div style="font-size: 2.1rem; margin-bottom: 10px;">📮</div>
-                    <div class="step-title" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 8px;">Форма</div>
-                    <div style="color: #666; font-size: 1rem; margin-bottom: 18px; text-align: center;">Қатысушы формасын толтырыңыз</div>
-                    <button class="form-btn cyber-button" style="width: 100%;" onclick="window.open('https://docs.google.com/forms/d/1UPd0tZ2pgFPcdyETqynqD1OvxYJPB9SF4ovzn4VDdxI/edit', '_blank')">ИДЕЯЛАР ФОРМАСЫ</button>
-                    <div class="step-status" style="font-size: 0.9rem; color: #666;">Қолжетімді</div>
-                </div>
             </div>
         </div>
     </section>

@@ -75,6 +75,584 @@ https://docs.google.com/document/d/1KlwCrYa3IEZqZXPdyJggKvdKei1SKKAe/edit?tab=t.
 }
 
 /* ============================================ */
+/*              ABOUT PROJECT CARD              */
+/* ============================================ */
+
+.about-project-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(255, 255, 255, 0.8) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--timing-normal) var(--easing);
+}
+
+.about-project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 107, 53, 0.1) 50%, 
+        transparent 100%);
+    transition: left 1.5s var(--easing);
+}
+
+.about-project-card:hover::before {
+    left: 100%;
+}
+
+.about-project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 107, 53, 0.2) inset;
+}
+
+.about-content {
+    position: relative;
+    z-index: 2;
+}
+
+.about-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-align: left;
+}
+
+.about-text:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================ */
+/*               STAGES GRID                    */
+/* ============================================ */
+
+.stages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.stage-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(255, 255, 255, 0.7) 100%);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 107, 53, 0.2);
+    border-radius: var(--border-radius-lg);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all var(--timing-normal) var(--easing);
+    position: relative;
+    overflow: hidden;
+    min-height: 120px;
+}
+
+.stage-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 107, 53, 0.1) 0%, 
+        rgba(255, 107, 53, 0.05) 100%);
+    opacity: 0;
+    transition: opacity var(--timing-normal) var(--easing);
+}
+
+.stage-btn:hover::before {
+    opacity: 1;
+}
+
+.stage-btn:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 
+        0 20px 40px rgba(255, 107, 53, 0.2),
+        0 0 0 1px rgba(255, 107, 53, 0.3) inset;
+}
+
+.stage-btn-active {
+    background: linear-gradient(135deg, 
+        var(--primary) 0%, 
+        var(--primary-dark) 100%);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: var(--glow);
+}
+
+.stage-btn-active::before {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        rgba(255, 255, 255, 0.1) 100%);
+    opacity: 1;
+}
+
+.stage-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.stage-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.stage-btn-active .stage-name {
+    font-weight: 700;
+}
+
+/* Особая обработка для 5-го элемента */
+.stages-grid .stage-btn:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .stages-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        max-width: 100% !important;
+        padding: 0 10px !important;
+    }
+    
+    .stages-grid .stage-btn:nth-child(5) {
+        grid-column: 1;
+        max-width: none;
+    }
+    
+    .stage-btn {
+        padding: 1rem 0.8rem;
+        min-height: 80px;
+    }
+    
+    .stage-emoji {
+        font-size: 1.5rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .stage-name {
+        font-size: 0.9rem;
+    }
+    
+    .about-project-card {
+        padding: 1.5rem 1rem;
+        margin: 0 0.8rem;
+    }
+    
+    .about-text {
+        font-size: 1rem;
+    }
+    
+    /* Winners page specific */
+    .future-stages {
+        padding: 15px !important;
+        margin: 15px 10px !important;
+    }
+    
+    .stage-block {
+        padding: 15px !important;
+        margin: 10px 0 !important;
+    }
+    
+    .stage-content {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    
+    .winners-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        max-width: 100% !important;
+        padding: 0 10px !important;
+    }
+    
+    .winner-card {
+        padding: 8px !important;
+    }
+    
+    .stages-nav {
+        gap: 6px !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .stage-nav-btn {
+        padding: 8px 12px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+/* ============================================ */
+/*               CASES SECTION                  */
+/* ============================================ */
+
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.case-card {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(255, 255, 255, 0.85) 100%);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-glass);
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    transition: all var(--timing-normal) var(--easing);
+    cursor: pointer;
+    position: relative;
+}
+
+.case-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+        0 25px 50px rgba(255, 107, 53, 0.2),
+        0 0 0 1px rgba(255, 107, 53, 0.3) inset;
+    border-color: var(--primary);
+}
+
+.case-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.case-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--timing-slow) var(--easing);
+}
+
+.case-card:hover .case-image img {
+    transform: scale(1.05);
+}
+
+.case-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.6) 0%, 
+        rgba(255, 107, 53, 0.4) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--timing-normal) var(--easing);
+}
+
+.case-card:hover .case-overlay {
+    opacity: 1;
+}
+
+.case-play-btn {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.8);
+    transition: all var(--timing-normal) var(--easing);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.case-card:hover .case-play-btn {
+    transform: scale(1);
+    background: white;
+}
+
+.case-play-btn svg {
+    margin-left: 3px;
+}
+
+.case-content {
+    padding: 1.5rem;
+}
+
+.case-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.case-description {
+    color: var(--text-tertiary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.case-tag {
+    background: linear-gradient(135deg, 
+        var(--primary) 0%, 
+        var(--primary-dark) 100%);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* ============================================ */
+/*             CASE MODAL                       */
+/* ============================================ */
+
+.case-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.case-modal.active {
+    display: flex;
+}
+
+.case-modal-content {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.98) 0%, 
+        rgba(255, 255, 255, 0.95) 100%);
+    backdrop-filter: blur(30px);
+    border-radius: var(--border-radius-lg);
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.case-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 107, 53, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all var(--timing-fast) var(--easing);
+    z-index: 10001;
+}
+
+.case-modal-close:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+.case-modal-body {
+    padding: 2rem;
+}
+
+.case-modal-header {
+    margin-bottom: 2rem;
+}
+
+.case-modal-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.case-modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.case-modal-tags .case-tag {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+}
+
+.case-modal-content-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.case-modal-media img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-glass);
+}
+
+.case-modal-info {
+    width: 100%;
+}
+
+.case-modal-info > div {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.case-modal-info h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.case-modal-info p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.case-modal-links {
+    margin-top: 2rem;
+}
+
+.case-modal-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+
+.case-modal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all var(--timing-normal) var(--easing);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.case-modal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.case-modal-btn.document-btn {
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+    box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+}
+
+.case-modal-btn.document-btn:hover {
+    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.4);
+}
+
+.case-modal-btn.instagram-btn {
+    background: linear-gradient(135deg, #E4405F 0%, #C13584 100%);
+    box-shadow: 0 4px 15px rgba(228, 64, 95, 0.3);
+}
+
+.case-modal-btn.instagram-btn:hover {
+    box-shadow: 0 8px 25px rgba(228, 64, 95, 0.4);
+}
+
+.case-modal-btn.youtube-btn {
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.case-modal-btn.youtube-btn:hover {
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .cases-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .case-modal {
+        padding: 1rem;
+    }
+    
+    .case-modal-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .case-modal-body {
+        padding: 1.5rem;
+    }
+    
+    .case-modal-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ============================================ */
 /*                 RESET & BASE                 */
 /* ============================================ */
 
@@ -95,6 +673,30 @@ body {
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Плавные переходы между страницами */
+.page-transition-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.page-transition-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page-transition-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in;
 }
 
 /* Reduced Motion Support */
@@ -772,6 +1374,53 @@ h1, h2, h3, h4, h5, h6 {
     transition: all var(--timing-normal) var(--easing);
 }
 
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu.active {
+    display: flex;
+    opacity: 1;
+}
+
+.mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+}
+
+.mobile-nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: rgba(255, 107, 53, 0.1);
+    border: 2px solid transparent;
+}
+
+.mobile-nav-link:hover {
+    background: rgba(255, 107, 53, 0.2);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
 /* ============================================ */
 /*                   HERO                       */
 /* ============================================ */
@@ -1333,8 +1982,13 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================================ */
 
 .section {
-    padding: var(--space-xl) 0;
+    padding: var(--space-lg) 0;
     position: relative;
+}
+
+/* Уменьшенные отступы для соседних секций */
+.section + .section {
+    padding-top: var(--space-md);
 }
 
 .container {
@@ -3772,5 +4426,513 @@ h1, h2, h3, h4, h5, h6 {
   .footer-links {
     flex-direction: column;
     gap: 10px !important;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 1100px) {
+  .container { padding-left: 18px; padding-right: 18px; }
+}
+@media (max-width: 900px) {
+  .nav .nav-links { gap: 12px; }
+  .hero .grant-announcement { transform: scale(0.95); }
+}
+@media (max-width: 720px) {
+  .hero-title { font-size: 2.2rem !important; }
+  .hero-subtitle .subtitle-line { font-size: 1rem !important; }
+  .partners-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+}
+@media (max-width: 560px) {
+  .glass-nav { padding: 10px 12px !important; }
+  .mobile-menu-btn { display: inline-flex; }
+  .nav .nav-links { display: none; }
+}
+@media (max-width: 480px) {
+  .footer-bottom span { display: block; margin-bottom: 8px; text-align: center; }
+  .contact-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ============================================ */
+/*           MOBILE RESPONSIVENESS              */
+/* ============================================ */
+
+@media (max-width: 768px) {
+  /* Основные контейнеры */
+  .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    max-width: 100% !important;
+  }
+  
+  /* Навигация */
+  .nav {
+    padding: 8px 10px !important;
+  }
+  
+  .logo-box {
+    padding: 4px 8px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* Герой секция */
+  .hero {
+    margin-top: 60px !important;
+    padding: 15px 10px !important;
+    min-height: 70vh !important;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem !important;
+    line-height: 1.1 !important;
+  }
+  
+  .hero-subtitle .subtitle-line {
+    font-size: 0.8rem !important;
+  }
+  
+  .grant-announcement {
+    padding: 10px !important;
+    transform: scale(0.8) !important;
+  }
+  
+  .grant-amount {
+    font-size: 1.4rem !important;
+  }
+  
+  /* Секции */
+  .section {
+    padding: 25px 10px !important;
+  }
+  
+  .section-title {
+    font-size: 1.3rem !important;
+  }
+  
+  /* Карточки */
+  .about-project-card,
+  .stage-card,
+  .case-card {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+  }
+  
+  /* Сетки */
+  .next-stages-grid,
+  .cases-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+  
+  /* Модальные окна */
+  .modal-content {
+    width: 95% !important;
+    padding: 15px !important;
+    margin: 5px !important;
+  }
+  
+  /* IntroDay таймер */
+  .locked-timer {
+    gap: 8px !important;
+    padding: 10px !important;
+  }
+  
+  .locked-timer-unit {
+    padding: 8px 6px !important;
+  }
+  
+  .locked-timer-value {
+    font-size: 0.9rem !important;
+  }
+  
+  .locked-timer-label {
+    font-size: 0.6rem !important;
+  }
+  
+  .locked-message {
+    font-size: 0.7rem !important;
+    padding: 8px !important;
+  }
+  
+  /* Мобильное меню */
+  .mobile-menu {
+    padding: 15px !important;
+  }
+  
+  .mobile-menu-content {
+    gap: 1rem !important;
+  }
+  
+  .mobile-nav-link {
+    font-size: 1.1rem !important;
+    padding: 0.6rem 1rem !important;
+  }
+  
+  /* Winners page specific */
+  .future-stages {
+    padding: 15px !important;
+    margin: 15px 10px !important;
+  }
+  
+  .stage-block {
+    padding: 15px !important;
+    margin: 10px 0 !important;
+  }
+  
+  .stage-content {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  
+  .winners-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    max-width: 100% !important;
+    padding: 0 10px !important;
+  }
+  
+  .winner-card {
+    padding: 8px !important;
+  }
+  
+  .stages-nav {
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+  
+  .stage-nav-btn {
+    padding: 8px 12px !important;
+    font-size: 0.7rem !important;
+  }
+  
+  /* Блоки шагов (step-card) */
+  .step-card {
+    padding: 12px !important;
+    margin: 8px 0 !important;
+  }
+  
+  .step-number {
+    font-size: 1.8rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .step-card h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .step-card p {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .step-buttons {
+    gap: 0.5rem !important;
+  }
+  
+  .step-buttons a,
+  .step-buttons button {
+    font-size: 0.7rem !important;
+    padding: 6px 10px !important;
+  }
+  
+  /* Сетка шагов */
+  .stage-steps-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  
+  /* Иконки в блоках шагов */
+  .step-card img,
+  .step-card .emoji {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Очень маленькие экраны */
+  .container {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  
+  .hero {
+    margin-top: 50px !important;
+    padding: 10px 8px !important;
+    min-height: 60vh !important;
+  }
+  
+  .hero-title {
+    font-size: 1.2rem !important;
+  }
+  
+  .grant-announcement {
+    padding: 8px !important;
+    transform: scale(0.7) !important;
+  }
+  
+  .grant-amount {
+    font-size: 1.1rem !important;
+  }
+  
+  .section {
+    padding: 20px 8px !important;
+  }
+  
+  .section-title {
+    font-size: 1.1rem !important;
+  }
+  
+  /* Одноколоночные сетки */
+  .next-stages-grid,
+  .cases-grid,
+  .partners-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  
+  .about-project-card,
+  .stage-card,
+  .case-card {
+    padding: 8px !important;
+  }
+  
+  /* Навигация этапов */
+  .stages-nav {
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+  
+  .stage-nav-btn {
+    padding: 6px 10px !important;
+    font-size: 0.7rem !important;
+  }
+  
+  /* Таймер */
+  .locked-timer {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+  
+  .locked-timer-unit {
+    padding: 8px 6px !important;
+  }
+  
+  .locked-timer-value {
+    font-size: 0.8rem !important;
+  }
+  
+  .locked-timer-label {
+    font-size: 0.5rem !important;
+  }
+  
+  /* Мобильное меню для маленьких экранов */
+  .mobile-menu {
+    padding: 10px !important;
+  }
+  
+  .mobile-menu-content {
+    gap: 0.8rem !important;
+  }
+  
+  .mobile-nav-link {
+    font-size: 1rem !important;
+    padding: 0.5rem 0.8rem !important;
+  }
+  
+  /* Winners page specific */
+  .future-stages {
+    padding: 10px !important;
+    margin: 10px 8px !important;
+  }
+  
+  .stage-block {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+  }
+  
+  .winners-grid {
+    gap: 8px !important;
+    padding: 0 8px !important;
+  }
+  
+  .winner-card {
+    padding: 6px !important;
+  }
+  
+  /* Блоки шагов для маленьких экранов */
+  .step-card {
+    padding: 8px !important;
+    margin: 6px 0 !important;
+  }
+  
+  .step-number {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+  
+  .step-card h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+  
+  .step-card p {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.6rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  .step-buttons {
+    gap: 0.4rem !important;
+  }
+  
+  .step-buttons a,
+  .step-buttons button {
+    font-size: 0.6rem !important;
+    padding: 5px 8px !important;
+  }
+  
+  /* Сетка шагов для маленьких экранов */
+  .stage-steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  
+  /* Иконки в блоках шагов для маленьких экранов */
+  .step-card img,
+  .step-card .emoji {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Очень старые телефоны */
+  .hero-title {
+    font-size: 1rem !important;
+  }
+  
+  .grant-amount {
+    font-size: 0.9rem !important;
+  }
+  
+  .section-title {
+    font-size: 1rem !important;
+  }
+  
+  .container {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+  
+  /* Мобильное меню для очень маленьких экранов */
+  .mobile-menu {
+    padding: 8px !important;
+  }
+  
+  .mobile-menu-content {
+    gap: 0.6rem !important;
+  }
+  
+  .mobile-nav-link {
+    font-size: 0.9rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+  
+  /* Winners page specific */
+  .future-stages {
+    padding: 8px !important;
+    margin: 8px 5px !important;
+  }
+  
+  .stage-block {
+    padding: 8px !important;
+    margin: 6px 0 !important;
+  }
+  
+  .winners-grid {
+    gap: 6px !important;
+    padding: 0 5px !important;
+  }
+  
+  .winner-card {
+    padding: 5px !important;
+  }
+  
+  /* Таймер */
+  .locked-timer {
+    gap: 5px !important;
+    padding: 6px !important;
+  }
+  
+  .locked-timer-unit {
+    padding: 6px 4px !important;
+  }
+  
+  .locked-timer-value {
+    font-size: 0.7rem !important;
+  }
+  
+  .locked-timer-label {
+    font-size: 0.4rem !important;
+  }
+  
+  /* Блоки шагов для очень маленьких экранов */
+  .step-card {
+    padding: 6px !important;
+    margin: 5px 0 !important;
+  }
+  
+  .step-number {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+  
+  .step-card h3 {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+  
+  .step-card p {
+    font-size: 0.6rem !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .step-buttons {
+    gap: 0.3rem !important;
+  }
+  
+  .step-buttons a,
+  .step-buttons button {
+    font-size: 0.5rem !important;
+    padding: 4px 6px !important;
+  }
+  
+  /* Сетка шагов для очень маленьких экранов */
+  .stage-steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+  
+  /* Иконки в блоках шагов для очень маленьких экранов */
+  .step-card img,
+  .step-card .emoji {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    font-size: 1rem !important;
   }
 }

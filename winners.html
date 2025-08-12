@@ -234,9 +234,10 @@
         
         .winners-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px auto 0 auto;
+            max-width: 900px;
         }
         
         .winner-card {
@@ -313,6 +314,286 @@
             background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 160, 122, 0.05) 100%);
             border-radius: 20px;
             border: 2px solid rgba(255, 107, 53, 0.1);
+        }
+        
+        .stage-steps-grid {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            align-items: stretch;
+            justify-items: stretch;
+            max-width: none;
+        }
+        .stage-steps-grid.single {
+            grid-template-columns: 1fr;
+            max-width: 320px;
+        }
+        @media (max-width: 768px) {
+            .stage-steps-grid { 
+                grid-template-columns: 1fr; 
+                gap: 15px;
+            }
+        }
+                .step-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 180px;
+            flex: 1;
+        }
+
+        /* IntroDay Layout Styles */
+        .intro-day-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 25px;
+            align-items: start;
+        }
+
+        .intro-left {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .instruction-section {
+            margin-top: 20px;
+        }
+
+        .instruction-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 25px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .instruction-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .instruction-icon {
+            font-size: 2.8rem;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .instruction-details h3 {
+            margin: 0 0 10px 0;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .instruction-details p {
+            margin: 0 0 15px 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .intro-right {
+            position: sticky;
+            top: 20px;
+        }
+
+        .countdown-container {
+            text-align: center;
+            padding: 25px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(255, 107, 53, 0.06) 100%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 107, 53, 0.25);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.1);
+        }
+
+        .countdown-container h3 {
+            margin: 0 0 20px 0;
+            color: var(--primary);
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .countdown-timer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Locked timer styles */
+        .locked-timer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .locked-timer-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 12px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            min-height: 80px;
+            position: relative;
+        }
+
+        .locked-timer-icon {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+            opacity: 0.6;
+        }
+
+        .locked-timer-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        
+        .locked-timer-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+
+        .locked-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 16px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .time-unit {
+            text-align: center;
+            padding: 12px 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .time-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .time-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+        }
+
+        .target-date {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .intro-day-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .intro-right {
+                position: static;
+            }
+            
+            .instruction-card {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .countdown-timer {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .time-value {
+                font-size: 1.6rem;
+            }
+        }
+        .step-number {
+            position: absolute;
+            top: 10px;
+            left: 12px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        @media (max-width: 992px) {
+            .future-stages { padding: 28px; }
+        }
+        @media (max-width: 700px) {
+            .stage-steps-grid { gap: 14px; }
+            .step-card { padding: 18px !important; }
+        }
+        @media (max-width: 480px) {
+            .section-title { font-size: 1.6rem; }
+            .stats { font-size: 0.9rem; }
+            .winner-card h3 { font-size: 0.95rem; }
+            
+            .locked-timer {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .locked-timer-unit {
+                padding: 12px 8px;
+            }
+            
+            .locked-timer-value {
+            font-size: 1rem;
+        }
+        
+            .locked-timer-label {
+                font-size: 0.7rem;
+            }
+            
+            .stages-nav {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .stage-nav-btn {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
         }
         
         .stages-pagination {
@@ -412,6 +693,9 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: start;
+        }
+        .stage-steps-grid {
+            grid-column: 1 / -1;
         }
         
         .stage-description {
@@ -521,8 +805,9 @@
         
         @media (max-width: 768px) {
             .winners-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 10px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                max-width: 100%;
             }
             
             .winner-card {
@@ -540,6 +825,27 @@
             .winner-card .emoji {
                 font-size: 1.5rem;
             }
+            
+            .locked-timer {
+                gap: 12px;
+            }
+            
+            .locked-timer-unit {
+                padding: 15px 10px;
+            }
+            
+            .locked-timer-value {
+                font-size: 1.2rem;
+            }
+            
+            .locked-timer-label {
+                font-size: 0.8rem;
+            }
+            
+            .locked-message {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -552,8 +858,8 @@
             </a>
             <div class="nav-actions">
                 <div class="nav-links">
-                    <a href="index.html#steps" class="nav-link">Этапы</a>
-                    <a href="winners.html" class="nav-link">Победители</a>
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="winners.html" class="nav-link">Этапы</a>
                     <a href="index.html#contact" class="nav-link">Контакты</a>
                 </div>
                 <a href="winners.kz.html" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">KZ</a>
@@ -564,78 +870,110 @@
                 <span></span>
             </button>
         </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-nav-link">Главная</a>
+                <a href="winners.html" class="mobile-nav-link">Этапы</a>
+                <a href="index.html#contact" class="mobile-nav-link">Контакты</a>
+                <a href="winners.kz.html" class="mobile-nav-link">KZ</a>
+            </div>
+        </div>
     </header>
     
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-title">Победители ITM Lab 2.0</h1>
+                <h1 class="section-title">Этапы ITM Lab 2.0</h1>
                 <div class="section-divider">
                     <div class="divider-line"></div>
                     <div class="divider-dot"></div>
                     <div class="divider-line"></div>
                 </div>
                 <p style="max-width: 700px; margin: 24px auto 0 auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
-                    Поздравляем команды, прошедшие в офлайн хакатон ITM Lab 2.0! Эти 32 команды показали отличные результаты в онлайн этапе и теперь готовы к следующему вызову.
+                    Изучите подробную информацию о каждом этапе хакатона ITM Lab 2.0
                 </p>
             </div>
             
-            <div class="search-section">
-                <input type="text" class="search-input" placeholder="🔍 Поиск команды..." id="searchInput">
-            </div>
-            
-            <div class="stats" id="stats">
-                Показано: <span id="shownCount">12</span> из <span id="totalCount">32</span> команд
-            </div>
-            
-            <div class="winners-grid" id="winnersGrid">
-                <!-- Карточки будут добавлены через JavaScript -->
-            </div>
-            
-            <div class="pagination" id="pagination">
-                <!-- Пагинация будет добавлена через JavaScript -->
-            </div>
-            
             <div class="future-stages">
-                <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;">Следующие этапы ITM Lab 2.0</h3>
-                
+                <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;">Этапы хакатона</h3>
                 <div class="stages-pagination">
                     <div class="stages-nav">
-                        <button class="stage-nav-btn active" onclick="showStage(1)">Офлайн хакатон</button>
-                        <button class="stage-nav-btn" onclick="showStage(2)">Трекинг</button>
-                        <button class="stage-nav-btn" onclick="showStage(3)">Питч за грант</button>
-                        <button class="stage-nav-btn" onclick="showStage(4)">Финальный питч</button>
+                        <button class="stage-nav-btn active" onclick="showStage(1)">Онлайн‑хакатон</button>
+                        <button class="stage-nav-btn" onclick="showStage(4)">IntroDay</button>
+                        <button class="stage-nav-btn" onclick="showStage(3)">Трекинг</button>
+                        <button class="stage-nav-btn" onclick="showStage(5)">PitchDay</button>
+                        <button class="stage-nav-btn" onclick="showStage(2)">DemoDay</button>
                     </div>
                 </div>
                 
                 <div class="stages-container">
-                    <!-- Этап 1: Офлайн хакатон -->
+                    <!-- Этап 1: Онлайн хакатон (перенесенные шаги) -->
                     <div class="stage-block active" id="stage1">
                         <div class="stage-header">
-                            <div class="stage-icon">🏢</div>
-                            <h2>Офлайн хакатон в Алматы</h2>
-                            <div class="stage-status locked">БЛОКИРОВАНО</div>
+                            <div class="stage-icon">🌐</div>
+                            <h2>Онлайн‑хакатон</h2>
+                            <div class="stage-status completed" style="background: linear-gradient(45deg, #22c55e, #16a34a); color: white;">ЗАВЕРШЕНО</div>
                         </div>
                         <div class="stage-content">
                             <div class="stage-description">
                                 <p><strong>Описание этапа:</strong></p>
-                                <p>Неограниченное количество команд. Чем больше участников, тем лучше! Интенсивная работа над проектами в течение нескольких дней в Алматы.</p>
+                                <p>Онлайн-хакатон — это подготовительный этап ITMLab 2.0, где участники изучают материалы, смотрят обучающие видео, знакомятся с инструкциями и подают заявки с идеями проектов. Этот этап позволяет командам подготовиться к основной программе и сформулировать свои инновационные решения для людей с инвалидностью.</p>
                             </div>
-                            <div class="participants-section">
-                                <h3>Участники будут объявлены после завершения онлайн этапа</h3>
-                                <div class="participants-placeholder">
-                                    <div class="placeholder-icon">🔒</div>
-                                    <p>Список участников офлайн хакатона будет опубликован после завершения текущего этапа</p>
-                                    <div class="placeholder-stats">
-                                        <span>Ожидается: <strong>Неограниченное количество</strong> команд</span>
+            
+                            <div class="completed-status" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; background: rgba(34, 197, 94, 0.1); border-radius: 16px; border: 2px solid #22c55e; backdrop-filter: blur(10px); min-height: 200px; text-align: center;">
+                                <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
+                                <div style="font-size: 2rem; font-weight: bold; color: #22c55e; margin-bottom: 10px;">
+                                    ЭТАП ЗАВЕРШЕН
                                     </div>
+                                <div style="color: #22c55e; font-size: 1.2rem; font-weight: 500;">
+                                    Онлайн-хакатон успешно проведен
+                                </div>
+                            </div>
+            
+                            <div class="stage-steps-grid">
+                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                                    <div class="step-number">1</div>
+                                    <div style="font-size: 2rem;">🎬</div>
+                                    <h3 style="margin:8px 0 6px 0;">Видео‑урок</h3>
+                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">Посмотрите видео о хакатоне ITM Lab</p>
+                                    <a href="https://www.youtube.com/watch?v=dZO75Bcx10A" target="_blank" class="cyber-button" style="padding: 8px 16px; font-size: 0.9rem; text-decoration: none; display: inline-block;">Смотреть</a>
+                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">В процессе</div>
+                                </div>
+                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                                    <div class="step-number">2</div>
+                                    <div style="font-size: 2rem;">📋</div>
+                                    <h3 style="margin:8px 0 6px 0;">Материалы</h3>
+                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">Документы для лучшего понимания технологий для лиц с инвалидностью</p>
+                                    <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
+                                        <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/cases-itmlab_compressed.pdf" target="_blank" class="cyber-button" style="padding: 6px 12px; font-size: 0.8rem; text-decoration: none; display: inline-block;">КЕЙСЫ</a>
+                                        <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/research-itmlab.pdf" target="_blank" class="cyber-button" style="padding: 6px 12px; font-size: 0.8rem; text-decoration: none; display: inline-block;">ИССЛЕДОВАНИЕ</a>
+                                    </div>
+                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">В процессе</div>
+                                </div>
+                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                                    <div class="step-number">3</div>
+                                    <div style="font-size: 2rem;">📝</div>
+                                    <h3 style="margin:8px 0 6px 0;">Инструкции</h3>
+                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">Изучите инструкцию по сдаче проектов</p>
+                                    <a href="Инструкция.pdf" target="_blank" class="cyber-button" style="padding: 6px 12px; font-size: 0.8rem; margin-bottom: 4px; text-decoration: none; display: inline-block;">ИНСТРУКЦИЯ</a>
+                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">В процессе</div>
+                                </div>
+                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                                    <div class="step-number">4</div>
+                                    <div style="font-size: 2rem;">📮</div>
+                                    <h3 style="margin:8px 0 6px 0;">Форма</h3>
+                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">Заполните форму с идеей</p>
+                                    <button class="cyber-button" style="padding: 8px 12px; font-size: 0.85rem;" onclick="window.open('https://docs.google.com/forms/d/1UPd0tZ2pgFPcdyETqynqD1OvxYJPB9SF4ovzn4VDdxI/edit', '_blank')">ФОРМА ДЛЯ ИДЕЙ</button>
+                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">В процессе</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Этап 2: Трекинг -->
-                    <div class="stage-block" id="stage2">
+                    <!-- Этап 3: Трекинг -->
+                    <div class="stage-block" id="stage3">
                         <div class="stage-header">
                             <div class="stage-icon">📊</div>
                             <h2>Трекинг</h2>
@@ -644,73 +982,199 @@
                         <div class="stage-content">
                             <div class="stage-description">
                                 <p><strong>Описание этапа:</strong></p>
-                                <p>После офлайн хакатона отберем 20 лучших команд для дальнейшего развития проектов под руководством менторов в течение нескольких месяцев.</p>
+                                <p>Трекинг — это этап интенсивной доработки проектов в рамках ITMLab 2.0, который проходит в течение 4 недель после IntroDay. На этом этапе 20 отобранных команд работают с персональными трекерами: каждой команде предоставляется 2 трекера — 1 технический трекер для решения технических задач и 1 бизнес-трекер для решения бизнес-задач. Цель этапа — доработать проекты до уровня готовности к внедрению и подготовить команды к финальной презентации.</p>
                             </div>
-                            <div class="participants-section">
-                                <h3>Участники будут объявлены после офлайн хакатона</h3>
-                                <div class="participants-placeholder">
-                                    <div class="placeholder-icon">🔒</div>
-                                    <p>Список 20 команд, прошедших в трекинг, будет опубликован после завершения офлайн хакатона</p>
-                                    <div class="placeholder-stats">
-                                        <span>Ожидается: <strong>20</strong> команд</span>
+                            
+                            <div class="locked-timer">
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">📅</div>
+                                    <div class="locked-timer-value">--</div>
+                                    <div class="locked-timer-label">Дней</div>
                                     </div>
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">⏰</div>
+                                    <div class="locked-timer-value">--</div>
+                                    <div class="locked-timer-label">Часов</div>
+                                </div>
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">⏱️</div>
+                                    <div class="locked-timer-value">--</div>
+                                    <div class="locked-timer-label">Минут</div>
+                            </div>
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">⏳</div>
+                                    <div class="locked-timer-value">--</div>
+                                    <div class="locked-timer-label">Секунд</div>
+                                </div>
+                                <div class="locked-message">
+                                    🔒 Отсчет еще не начался
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Этап 3: Питч за грант -->
-                    <div class="stage-block" id="stage3">
-                        <div class="stage-header">
-                            <div class="stage-icon">🎯</div>
-                            <h2>Питч за грант</h2>
-                            <div class="stage-status locked">БЛОКИРОВАНО</div>
-                        </div>
-                        <div class="stage-content">
-                            <div class="stage-description">
-                                <p><strong>Описание этапа:</strong></p>
-                                <p>Отберем только 10 команд для финального питчинга. Победители получат грант в размере 600 000 тенге на развитие проекта.</p>
-                            </div>
-                            <div class="participants-section">
-                                <h3>Участники будут объявлены после трекинга</h3>
-                                <div class="participants-placeholder">
-                                    <div class="placeholder-icon">🔒</div>
-                                    <p>Список 10 команд, прошедших в финальный питч за грант, будет опубликован после завершения трекинга</p>
-                                    <div class="placeholder-stats">
-                                        <span>Ожидается: <strong>10</strong> команд</span>
-                                        <span class="grant-info">Грант: <strong>600 000 тенге</strong></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Этап 4: Финальный питч -->
+                    <!-- Этап 4: IntroDay -->
                     <div class="stage-block" id="stage4">
                         <div class="stage-header">
+                            <div class="stage-icon">🎯</div>
+                            <h2>IntroDay</h2>
+                            <div class="stage-status" style="background:#22c55e;color:#fff;">ОТКРЫТО</div>
+                        </div>
+                        <div class="stage-content">
+                            <div class="stage-description">
+                                <p><strong>Описание этапа:</strong></p>
+                                <p>IntroDay — это промежуточная очная защита проектов в рамках ITMLab 2.0. На этом этапе команды представляют текущие результаты работы перед жюри, получают экспертную обратную связь и рекомендации по дальнейшей доработке. Цель этапа — оценить прогресс, проверить готовность проекта к следующей стадии и отобрать 20 лучших команд для участия в трекинге.</p>
+                            </div>
+                            
+                            <div class="locked-timer">
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">📅</div>
+                                    <div class="locked-timer-value" id="days">00</div>
+                                    <div class="locked-timer-label">Дни</div>
+                                    </div>
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">⏰</div>
+                                    <div class="locked-timer-value" id="hours">00</div>
+                                    <div class="locked-timer-label">Часы</div>
+                                </div>
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">⏱️</div>
+                                    <div class="locked-timer-value" id="minutes">00</div>
+                                    <div class="locked-timer-label">Минуты</div>
+                            </div>
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">⏳</div>
+                                    <div class="locked-timer-value" id="seconds">00</div>
+                                    <div class="locked-timer-label">Секунды</div>
+                                </div>
+                                <div class="locked-message">
+                                    17 сентября 2025
+                        </div>
+                    </div>
+                 </div>
+                 
+                 <div class="stage-steps-grid single" style="grid-column: 1 / -1; margin-top: 20px;">
+                     <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                         <div class="step-number">1</div>
+                         <div style="font-size: 2rem;">📝</div>
+                         <h3 style="margin:8px 0 6px 0;">Инструкция по подготовке</h3>
+                         <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">Пошаговое руководство для презентации на IntroDay</p>
+                         <a href="Инструкция.pdf" target="_blank" class="cyber-button" style="padding: 8px 16px; font-size: 0.9rem; text-decoration: none; display: inline-block;">ОТКРЫТЬ PDF</a>
+                     </div>
+                 </div>
+         </div>
+                     </div>
+                    
+                    <!-- Этап 5: PitchDay -->
+                    <div class="stage-block" id="stage5">
+                        <div class="stage-header">
                             <div class="stage-icon">🏆</div>
-                            <h2>Финальный питч перед инвесторами</h2>
+                            <h2>PitchDay</h2>
                             <div class="stage-status locked">БЛОКИРОВАНО</div>
                         </div>
                         <div class="stage-content">
                             <div class="stage-description">
                                 <p><strong>Описание этапа:</strong></p>
-                                <p>Финальное представление проектов перед инвесторами и экспертами. Возможность получить дополнительные инвестиции и поддержку для масштабирования проекта.</p>
+                                <p>PitchDay — это отборочный этап после трекинга, на котором команды презентуют доработанные проекты и бизнес-модели. Жюри оценивает готовность решения к внедрению и масштабированию, а также перспективы коммерциализации. По итогам этапа отбирается 10 лучших команд для участия в финальном DemoDay.</p>
                             </div>
-                            <div class="participants-section">
-                                <h3>Участники будут объявлены после питча за грант</h3>
-                                <div class="participants-placeholder">
-                                    <div class="placeholder-icon">🔒</div>
-                                    <p>Список команд, прошедших в финальный питч перед инвесторами, будет опубликован после завершения этапа питча за грант</p>
-                                    <div class="placeholder-stats">
-                                        <span>Ожидается: <strong>Лучшие команды</strong> из питча за грант</span>
-                                        <span class="investment-info">Возможность: <strong>Дополнительные инвестиции</strong></span>
+                            
+                            <div class="locked-timer">
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">📅</div>
+                                    <div class="locked-timer-value">--</div>
+                                    <div class="locked-timer-label">Дней</div>
                                     </div>
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">⏰</div>
+                                    <div class="locked-timer-value">--</div>
+                                    <div class="locked-timer-label">Часов</div>
                                 </div>
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">⏱️</div>
+                                    <div class="locked-timer-value">--</div>
+                                    <div class="locked-timer-label">Минут</div>
+                            </div>
+                                <div class="locked-timer-unit">
+                                    <div class="locked-timer-icon">⏳</div>
+                                    <div class="locked-timer-value">--</div>
+                                    <div class="locked-timer-label">Секунд</div>
+                        </div>
+                                <div class="locked-message">
+                                    🔒 Отсчет еще не начался
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                
+                <!-- Этап 2: DemoDay -->
+                <div class="stage-block" id="stage2">
+                    <div class="stage-header">
+                        <div class="stage-icon">🧪</div>
+                        <h2>DemoDay</h2>
+                        <div class="stage-status locked">БЛОКИРОВАНО</div>
+            </div>
+                    <div class="stage-content">
+                                                    <div class="stage-description">
+                                <p><strong>Описание этапа:</strong></p>
+                                <p>DemoDay — это финальное мероприятие ITMLab 2.0, где 10 лучших команд представляют готовые к внедрению проекты перед инвесторами, представителями бизнеса, государственных структур и партнёрских организаций. Этап направлен на установление деловых контактов, поиск инвестиций и заключение партнёрств для дальнейшего роста и масштабирования проектов.</p>
+                </div>
+                        
+                        <div class="locked-timer">
+                            <div class="locked-timer-unit">
+                                <div class="locked-timer-icon">📅</div>
+                                <div class="locked-timer-value">--</div>
+                                <div class="locked-timer-label">Дней</div>
+            </div>
+                            <div class="locked-timer-unit">
+                                <div class="locked-timer-icon">⏰</div>
+                                <div class="locked-timer-value">--</div>
+                                <div class="locked-timer-label">Часов</div>
+                            </div>
+                            <div class="locked-timer-unit">
+                                <div class="locked-timer-icon">⏱️</div>
+                                <div class="locked-timer-value">--</div>
+                                <div class="locked-timer-label">Минут</div>
+                            </div>
+                            <div class="locked-timer-unit">
+                                <div class="locked-timer-icon">⏳</div>
+                                <div class="locked-timer-value">--</div>
+                                <div class="locked-timer-label">Секунд</div>
+                            </div>
+                            <div class="locked-message">
+                                🔒 Отсчет еще не начался
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+            
+            <!-- Winners Section -->
+            <div class="winners-section" style="margin-top: 30px;">
+                <div class="future-stages" style="margin-top: 0;">
+                    <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;">Победители ITM Lab 2.0</h3>
+                    <p style="max-width: 700px; margin: 0 auto 30px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
+                        Поздравляем команды, прошедшие в офлайн хакатон ITM Lab 2.0! Эти 32 команды показали отличные результаты в онлайн этапе и теперь готовы к следующему вызову.
+                    </p>
+                    
+                    <div class="search-section">
+                        <input type="text" class="search-input" placeholder="🔍 Поиск команды..." id="searchInput">
+            </div>
+                    
+                    <div class="stats" id="stats">
+                        Показано: <span id="shownCount">12</span> из <span id="totalCount">32</span> команд
+                </div>
+                    
+                    <div class="winners-grid" id="winnersGrid">
+                        <!-- Карточки будут добавлены через JavaScript -->
+            </div>
+                    
+                    <div class="pagination" id="pagination">
+                        <!-- Пагинация будет добавлена через JavaScript -->
+        </div>
+    </div>
             </div>
         </div>
     </section>
@@ -718,50 +1182,108 @@
 
 
     <script>
-        // Данные команд (в реальном проекте будут загружены из PDF)
-        const teams = [
-            { name: "EZSpeech", emoji: "🏆" },
-            { name: "Работяги", emoji: "🏆" },
-            { name: "AstroOrder", emoji: "🏆" },
-            { name: "MadZhan", emoji: "🏆" },
-            { name: "Human", emoji: "🏆" },
-            { name: "Soile AI", emoji: "🏆" },
-            { name: "DK Tech", emoji: "🏆" },
-            { name: "Future-IT", emoji: "🏆" },
-            { name: "команда РЕД", emoji: "🏆" },
-            { name: "PRIZMA", emoji: "🏆" },
-            { name: "Korem team", emoji: "🏆" },
-            { name: "4Suyen", emoji: "🏆" },
-            { name: "Involve", emoji: "🏆" },
-            { name: "Visual Mind", emoji: "🏆" },
-            { name: "Juno", emoji: "🏆" },
-            { name: "Ainala AI", emoji: "🏆" },
-            { name: "CALVADOS (Кальвадос)", emoji: "🏆" },
-            { name: "2731", emoji: "🏆" },
-            { name: "NEUHARMONY", emoji: "🏆" },
-            { name: "Sana", emoji: "🏆" },
-            { name: "SAMGA", emoji: "🏆" },
-            { name: "Qolda", emoji: "🏆" },
-            { name: "ASAR", emoji: "🏆" },
-            { name: "MEZU", emoji: "🏆" },
-            { name: "QAMQOR", emoji: "🏆" },
-            { name: "ЯРядом", emoji: "🏆" },
-            { name: "CaseX", emoji: "🏆" },
-            { name: "Popeyes", emoji: "🏆" },
-            { name: "JanaSolve", emoji: "🏆" },
-            { name: "Birge", emoji: "🏆" },
-            { name: "Online Travel Access", emoji: "🏆" }
-        ];
+        // Победители по этапам (демо-данные). При обновлении этапов дополняйте соответствующие массивы
+        const winnersByStage = {
+            online: [
+                { name: "EZSpeech", emoji: "🏆" },
+                { name: "Работяги", emoji: "🏆" },
+                { name: "AstroOrder", emoji: "🏆" },
+                { name: "MadZhan", emoji: "🏆" },
+                { name: "Human", emoji: "🏆" },
+                { name: "Soile AI", emoji: "🏆" },
+                { name: "DK Tech", emoji: "🏆" },
+                { name: "Future-IT", emoji: "🏆" },
+                { name: "команда РЕД", emoji: "🏆" },
+                { name: "PRIZMA", emoji: "🏆" },
+                { name: "Korem team", emoji: "🏆" },
+                { name: "4Suyen", emoji: "🏆" },
+                { name: "Involve", emoji: "🏆" },
+                { name: "Visual Mind", emoji: "🏆" },
+                { name: "Juno", emoji: "🏆" },
+                { name: "Ainala AI", emoji: "🏆" },
+                { name: "CALVADOS (Кальвадос)", emoji: "🏆" },
+                { name: "2731", emoji: "🏆" },
+                { name: "NEUHARMONY", emoji: "🏆" },
+                { name: "Sana", emoji: "🏆" },
+                { name: "SAMGA", emoji: "🏆" },
+                { name: "Qolda", emoji: "🏆" },
+                { name: "ASAR", emoji: "🏆" },
+                { name: "MEZU", emoji: "🏆" },
+                { name: "QAMQOR", emoji: "🏆" },
+                { name: "ЯРядом", emoji: "🏆" },
+                { name: "CaseX", emoji: "🏆" },
+                { name: "Popeyes", emoji: "🏆" },
+                { name: "JanaSolve", emoji: "🏆" },
+                { name: "Birge", emoji: "🏆" },
+                { name: "Online Travel Access", emoji: "🏆" }
+            ],
+            demoday: [],
+            tracking: [],
+            introday: [],
+            pitchday: []
+        };
+
+        const stageLabel = {
+            online: 'Победитель онлайн этапа',
+            demoday: 'Победитель DemoDay',
+            tracking: 'Победитель трекинга',
+            introday: 'Победитель IntroDay',
+            pitchday: 'Победитель PitchDay'
+        };
+
+        const stageKeyByNumber = { 1: 'online', 2: 'demoday', 3: 'tracking', 4: 'introday', 5: 'pitchday' };
+        let currentStage = 'online';
 
         let currentPage = 1;
         const itemsPerPage = 12;
-        let filteredTeams = [...teams];
+        let filteredTeams = [...winnersByStage[currentStage]];
+
+        // Countdown Timer Function
+        function initCountdown() {
+            // Устанавливаем дату на 17 сентября 2025 года (полночь)
+            const targetDate = new Date('2025-09-17T00:00:00').getTime();
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    const timerEl = document.getElementById('countdownTimer');
+                    if (timerEl) {
+                        timerEl.innerHTML = '<div style="color: var(--primary); font-size: 1.2rem;">Событие началось!</div>';
+                    }
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Обновляем таймер только если элементы существуют
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+                
+                if (daysEl && hoursEl && minutesEl && secondsEl) {
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                }
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
 
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
             renderTeams();
             renderPagination();
             setupSearch();
+            initCountdown();
         });
 
         // Рендер команд
@@ -775,7 +1297,7 @@
                 <div class="winner-card">
                     <div class="emoji">${team.emoji}</div>
                     <h3>${team.name}</h3>
-                    <p>Прошла в офлайн хакатон</p>
+                    <p>${stageLabel[currentStage]}</p>
                 </div>
             `).join('');
 
@@ -821,7 +1343,8 @@
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase();
-                filteredTeams = teams.filter(team => 
+                const base = winnersByStage[currentStage];
+                filteredTeams = base.filter(team => 
                     team.name.toLowerCase().includes(searchTerm)
                 );
                 currentPage = 1;
@@ -837,7 +1360,7 @@
 
         // Функция для переключения между этапами
         function showStage(stageNumber) {
-            // Скрываем все этапы
+            // Переключаем контент этапов
             const stages = document.querySelectorAll('.stage-block');
             stages.forEach(stage => stage.classList.remove('active'));
             
@@ -849,8 +1372,43 @@
             document.getElementById(`stage${stageNumber}`).classList.add('active');
             
             // Делаем активной соответствующую кнопку
-            buttons[stageNumber - 1].classList.add('active');
+            const activeButton = document.querySelector(`[onclick="showStage(${stageNumber})"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            // Обновляем победителей под выбранный этап
+            const key = stageKeyByNumber[stageNumber];
+            currentStage = key;
+            const searchTerm = (document.getElementById('searchInput').value || '').toLowerCase();
+            const base = winnersByStage[currentStage];
+            filteredTeams = searchTerm ? base.filter(t => t.name.toLowerCase().includes(searchTerm)) : [...base];
+            currentPage = 1;
+            renderTeams();
+            renderPagination();
+            updateStageCaption(key);
+            
+            // Если переключились на IntroDay, запустим таймер
+            if (stageNumber === 4) {
+                setTimeout(initCountdown, 100);
+            }
         }
+
+        // Обновление заголовка этапа
+        function updateStageCaption(stageKey) {
+            const captionEl = document.querySelector('.winners-title');
+            if (captionEl) {
+                const stageNames = {
+                    'online': 'Онлайн-хакатона',
+                    'demoday': 'DemoDay',
+                    'tracking': 'Трекинга',
+                    'introday': 'IntroDay',
+                    'pitchday': 'PitchDay'
+                };
+                captionEl.textContent = `Победители ${stageNames[stageKey] || stageKey} ITM Lab 2.0`;
+            }
+        }
+        // IntroDay specific CSS moved to <style> block above
     </script>
 </body>
 </html> 

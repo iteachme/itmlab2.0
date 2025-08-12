@@ -97,6 +97,7 @@ class CyberHackathon {
         this.init3DCards();
         this.initSmoothScrolling();
         this.initSplashTyping();
+        this.initMobileMenu();
     }
 
     onWindowLoad() {
@@ -468,12 +469,16 @@ class CyberHackathon {
                 e.preventDefault();
                 const href = anchor.getAttribute('href');
                 if (href === '#') return; // Не скроллить к пустому якорю
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                
+                // Проверяем, что это действительно якорная ссылка, а не внешняя
+                if (href.startsWith('#') && href.length > 1) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
@@ -494,6 +499,10 @@ class CyberHackathon {
                 }
             }, 500);
         }
+    }
+    
+    initMobileMenu() {
+        new MobileMenu();
     }
 
     // ============================================ //
@@ -836,11 +845,36 @@ class MobileMenu {
         if (this.btn) {
             this.btn.addEventListener('click', () => this.toggle());
         }
+        
+        // Закрытие меню при клике на ссылку
+        if (this.menu) {
+            this.menu.addEventListener('click', (e) => {
+                if (e.target.classList.contains('mobile-nav-link')) {
+                    this.close();
+                }
+            });
+        }
+        
+        // Закрытие меню при клике вне его
+        document.addEventListener('click', (e) => {
+            if (!this.btn?.contains(e.target) && !this.menu?.contains(e.target)) {
+                this.close();
+            }
+        });
     }
 
     toggle() {
-        this.menu.classList.toggle('active');
-        this.btn.classList.toggle('active');
+        if (this.menu) {
+            this.menu.classList.toggle('active');
+            this.btn?.classList.toggle('active');
+        }
+    }
+    
+    close() {
+        if (this.menu) {
+            this.menu.classList.remove('active');
+            this.btn?.classList.remove('active');
+        }
     }
 }
 
