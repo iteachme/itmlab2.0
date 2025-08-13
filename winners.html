@@ -1154,8 +1154,8 @@
             <!-- Winners Section -->
             <div class="winners-section" style="margin-top: 30px;">
                 <div class="future-stages" style="margin-top: 0;">
-                    <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;">Победители ITM Lab 2.0</h3>
-                    <p style="max-width: 700px; margin: 0 auto 30px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
+                    <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;" id="winnersTitle">Победители ITM Lab 2.0</h3>
+                    <p style="max-width: 700px; margin: 0 auto 30px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;" id="winnersDescription">
                         Поздравляем команды, прошедшие в офлайн хакатон ITM Lab 2.0! Эти 32 команды показали отличные результаты в онлайн этапе и теперь готовы к следующему вызову.
                     </p>
                     
@@ -1229,6 +1229,22 @@
             tracking: 'Победитель трекинга',
             introday: 'Победитель IntroDay',
             pitchday: 'Победитель PitchDay'
+        };
+
+        const stageDescription = {
+            online: 'Поздравляем команды, прошедшие в офлайн хакатон ITM Lab 2.0! Эти 32 команды показали отличные результаты в онлайн этапе и теперь готовы к следующему вызову.',
+            demoday: 'Поздравляем финалистов ITM Lab 2.0! Эти 10 команд успешно прошли все этапы и готовы представить свои проекты инвесторам и партнерам.',
+            tracking: 'Поздравляем команды, прошедшие трекинг ITM Lab 2.0! Эти 20 команд интенсивно доработали свои проекты и готовы к финальной презентации.',
+            introday: 'Поздравляем команды, прошедшие IntroDay ITM Lab 2.0! Эти 20 команд успешно представили свои проекты и получили рекомендации для дальнейшей доработки.',
+            pitchday: 'Поздравляем команды, прошедшие PitchDay ITM Lab 2.0! Эти 10 команд готовы к финальному DemoDay и поиску инвестиций.'
+        };
+
+        const stageTeamCount = {
+            online: 32,
+            demoday: 10,
+            tracking: 20,
+            introday: 20,
+            pitchday: 10
         };
 
         const stageKeyByNumber = { 1: 'online', 2: 'demoday', 3: 'tracking', 4: 'introday', 5: 'pitchday' };
@@ -1388,6 +1404,9 @@
             renderPagination();
             updateStageCaption(key);
             
+            // Обновляем описание победителей
+            updateWinnersDescription(key);
+            
             // Если переключились на IntroDay, запустим таймер
             if (stageNumber === 4) {
                 setTimeout(initCountdown, 100);
@@ -1406,6 +1425,33 @@
                     'pitchday': 'PitchDay'
                 };
                 captionEl.textContent = `Победители ${stageNames[stageKey] || stageKey} ITM Lab 2.0`;
+            }
+        }
+
+        // Обновление описания победителей
+        function updateWinnersDescription(stageKey) {
+            const descriptionEl = document.getElementById('winnersDescription');
+            if (descriptionEl && stageDescription[stageKey]) {
+                descriptionEl.textContent = stageDescription[stageKey];
+            }
+            
+            // Обновляем заголовок секции победителей
+            const titleEl = document.getElementById('winnersTitle');
+            if (titleEl) {
+                const stageNames = {
+                    'online': 'Победители онлайн-хакатона',
+                    'demoday': 'Победители DemoDay',
+                    'tracking': 'Победители трекинга',
+                    'introday': 'Победители IntroDay',
+                    'pitchday': 'Победители PitchDay'
+                };
+                titleEl.textContent = stageNames[stageKey] || 'Победители ITM Lab 2.0';
+            }
+            
+            // Обновляем статистику команд
+            const totalCountEl = document.getElementById('totalCount');
+            if (totalCountEl && stageTeamCount[stageKey]) {
+                totalCountEl.textContent = stageTeamCount[stageKey];
             }
         }
         // IntroDay specific CSS moved to <style> block above
