@@ -929,18 +929,10 @@
                                 </div>
                                 <div class="step-card glass-effect" style="padding: 24px; border-radius: 16px; display:flex; flex-direction:column; align-items:center;">
                                     <div class="step-number">3</div>
-                                    <div style="font-size: 2rem;">📝</div>
-                                    <h3 style="margin:8px 0 6px 0;">Нұсқаулық</h3>
-                                    <p style="text-align:center;color:#666;margin-bottom:12px;">Жобаларды тапсыру нұсқаулығын оқыңыз</p>
-                                    <a href="Инструкция.pdf" target="_blank" class="cyber-button" style="text-decoration: none; display: inline-block;">НҰСҚАУЛЫҚ (PDF)</a>
-                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">Үдерісте</div>
-                                </div>
-                                <div class="step-card glass-effect" style="padding: 24px; border-radius: 16px; display:flex; flex-direction:column; align-items:center;">
-                                    <div class="step-number">4</div>
                                     <div style="font-size: 2rem;">📮</div>
                                     <h3 style="margin:8px 0 6px 0;">Форма</h3>
                                     <p style="text-align:center;color:#666;margin-bottom:12px;">Идеяны жіберу формасын толтырыңыз</p>
-                                    <button class="cyber-button" onclick="window.open('https://docs.google.com/forms/d/1UPd0tZ2pgFPcdyETqynqD1OvxYJPB9SF4ovzn4VDdxI/edit', '_blank')">ИДЕЯЛАР ФОРМАСЫ</button>
+                                    <a href="https://docs.google.com/forms/d/1UPd0tZ2pgFPcdyETqynqD1OvxYJPB9SF4ovzn4VDdxI/edit" target="_blank" class="cyber-button" style="text-decoration: none; display: inline-block;">ИДЕЯЛАР ФОРМАСЫ</a>
                                     <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">Үдерісте</div>
                                 </div>
                             </div>
@@ -1037,14 +1029,6 @@
                         </div>
                     </div>
                     
-                            <div class="stage-steps-grid single" style="margin-top: 20px;">
-                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center;">
-                                    <div class="step-number">1</div>
-                                    <div style="font-size: 2rem;">📝</div>
-                                    <h3 style="margin:8px 0 6px 0;">Дайындық нұсқаулығы</h3>
-                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">IntroDay-ға презентацияға арналған қадамдық нұсқаулық</p>
-                                    <a href="Инструкция.pdf" target="_blank" class="cyber-button" style="padding: 8px 16px; font-size: 0.9rem; text-decoration: none; display: inline-block;">PDF АШУ</a>
-                                </div>
                             </div>
                  </div>
          </div>
@@ -1140,8 +1124,8 @@
             <div class="winners-section" style="margin-top: 30px;">
                 <div class="future-stages" style="margin-top: 0;">
                     <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;">ITM Lab 2.0 Жеңімпаздары</h3>
-                    <p style="max-width: 700px; margin: 0 auto 30px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
-                        ITM Lab 2.0 офлайн хакатонына өткен командаларды құттықтаймыз! Бұл 32 команда онлайн кезеңде керемет нәтижелер көрсетті және енді келесі шабуылға дайын.
+                    <p id="stageDescription" style="max-width: 700px; margin: 0 auto 30px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
+                        ITM Lab 2.0 офлайн хакатонына өткен командаларды құттықтаймыз! Бұл 32 команда онлайн кезеңде керемет нәтижелер көрсетті және енді келесі шақыруға дайын.
                     </p>
                     
                     <div class="search-section">
@@ -1207,6 +1191,15 @@
             pitchday: []
         };
 
+        // Уникальные описания для каждого этапа на казахском языке
+        const stageDescriptions = {
+            online: "ITM Lab 2.0 офлайн хакатонына өткен командаларды құттықтаймыз! Бұл 32 команда онлайн кезеңде керемет нәтижелер көрсетті және енді келесі шақыруға дайын.",
+            demoday: "ITM Lab 2.0 жобасының қорытынды жеңімпаздары! Барлық кезеңдерді өткен және енгізуге дайын жобаларды ұсынған 10 үздік команда. Бұл командалар одан әрі даму және масштабтау үшін қолдау алады.",
+            tracking: "Трекингті сәтті өткен командалар! Жеке трекерлермен жұмыс істеген және жобаларды енгізуге дайындық деңгейіне дейін жетілдірген 20 команда.",
+            introday: "IntroDay жеңімпаздары! Аралық қорғаныста жобаларды сәтті ұсынған және одан әрі жетілдіруге арналған ұсыныстар алған командалар. Бұл командалар трекингке өтеді.",
+            pitchday: "PitchDay жеңімпаздары! Трекингтен кейінгі іріктеуден өткен және бизнес-модельдермен жетілдірілген жобаларды ұсынған 10 команда. Бұл командалар қорытынды DemoDay-ге дайын."
+        };
+
         const stageLabel = {
             online: 'Онлайн кезеңінің жеңімпазы',
             demoday: 'DemoDay жеңімпазы',
@@ -1263,6 +1256,7 @@
 
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
+            updateStageDescription('online'); // Начинаем с онлайн этапа
             renderTeams();
             renderPagination();
             setupSearch();
@@ -1368,6 +1362,7 @@
             renderTeams();
             renderPagination();
             updateStageCaption(key);
+            updateStageDescription(key);
             
             // Если переключились на IntroDay, запустим таймер
             if (stageNumber === 4) {
@@ -1387,6 +1382,14 @@
                     'pitchday': 'PitchDay'
                 };
                 captionEl.textContent = `${stageNames[stageKey] || stageKey} жеңімпаздары ITM Lab 2.0`;
+            }
+        }
+
+        // Обновление описания этапа
+        function updateStageDescription(stageKey) {
+            const descriptionEl = document.getElementById('stageDescription');
+            if (descriptionEl) {
+                descriptionEl.textContent = stageDescriptions[stageKey];
             }
         }
     </script>
