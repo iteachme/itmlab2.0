@@ -262,7 +262,126 @@
         </div>
     </section>
 
+    <!-- Кейсы прошлого года -->
+    <section id="previous-cases" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Өткен жылдың жеңімпаздары">Өткен жылдың жеңімпаздары</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-dot"></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card" data-case-id="1">
+                    <div class="case-content">
+                        <h3 class="case-title">ОО «ЖАН»</h3>
+                        <p class="case-description">3D-басып шығару арқылы таяқтарға арналған қолжетімді айналмалы ұштықтарды өндіру</p>
+                        <div class="case-tags">
+                            <span class="case-tag">3D-басып шығару</span>
+                            <span class="case-tag">Мобильділік</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="case-card" data-case-id="2">
+                    <div class="case-content">
+                        <h3 class="case-title">BULAN</h3>
+                        <p class="case-description">Мүгедек арбасына қосымша мобильділік қамтамасыз ететін электроприставка</p>
+                        <div class="case-tags">
+                            <span class="case-tag">Электроника</span>
+                            <span class="case-tag">Мобильділік</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card" data-case-id="3">
+                    <div class="case-content">
+                        <h3 class="case-title">PROCRASTINATORS</h3>
+                        <p class="case-description">Ишарат тілін мәтін/аудиоға және керісінше аударатын қосымша</p>
+                        <div class="case-tags">
+                            <span class="case-tag">AI</span>
+                            <span class="case-tag">Ишарат тілі</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card" data-case-id="4">
+                    <div class="case-content">
+                        <h3 class="case-title">РИМЫ</h3>
+                        <p class="case-description">Брайль технологиясына негізделген адаптивті дисплейі бар электронды кітап</p>
+                        <div class="case-tags">
+                            <span class="case-tag">Брайль</span>
+                            <span class="case-tag">Білім беру</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card" data-case-id="5">
+                    <div class="case-content">
+                        <h3 class="case-title">SHAKA</h3>
+                        <p class="case-description">Көру қабілеті бұзылған адамдарға тактильді сигналдар арқылы ақпарат беретін кулон және білезік</p>
+                        <div class="case-tags">
+                            <span class="case-tag">Тактильді сигналдар</span>
+                            <span class="case-tag">Киінетін құрылғылар</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card" data-case-id="6">
+                    <div class="case-content">
+                        <h3 class="case-title">FENIX RECOVERY</h3>
+                        <p class="case-description">Дәрігерлік мекемелерде де, үйде де реабилитация үшін локомоторизованды тренажер</p>
+                        <div class="case-tags">
+                            <span class="case-tag">Реабилитация</span>
+                            <span class="case-tag">Медицина</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно для кейсов -->
+    <div id="caseModal" class="case-modal">
+        <div class="case-modal-content">
+            <button class="case-modal-close" onclick="closeCaseModal()">&times;</button>
+            <div class="case-modal-body">
+                <div class="case-modal-header">
+                    <h2 id="caseModalTitle">Жобаның атауы</h2>
+                    <div class="case-modal-tags" id="caseModalTags">
+                        <!-- Теги будут добавлены динамически -->
+                    </div>
+                </div>
+                <div class="case-modal-content-wrapper">
+                    <div class="case-modal-media">
+                        <img id="caseModalImage" src="" alt="">
+                        <div class="case-modal-video" id="caseModalVideo" style="display: none;">
+                            <video controls>
+                                <source src="" type="video/mp4">
+                                Сіздің браузеріңіз видеоны қолдамайды.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="case-modal-text">
+                        <p id="caseModalDescription">Жобаның сипаттамасы</p>
+                        <div class="case-modal-details">
+                            <div class="case-modal-detail">
+                                <strong>Команда:</strong> <span id="caseModalTeam">Команда атауы</span>
+                            </div>
+                            <div class="case-modal-detail">
+                                <strong>Технологиялар:</strong> <span id="caseModalTechnologies">Технологиялар тізімі</span>
+                            </div>
+                            <div class="case-modal-detail">
+                                <strong>Нәтиже:</strong> <span id="caseModalResult">Жобаның нәтижесі</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Overlay -->
     <div id="modalOverlay" class="modal-overlay">
@@ -449,6 +568,142 @@
     <script src="scripts/modal-flow.js"></script>
     <script src="scripts/splash-typing.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+    // Данные о кейсах прошлого года
+    const casesData = {
+        1: {
+            title: "ОО «ЖАН»",
+            description: "3D-басып шығару арқылы таяқтарға арналған қолжетімді айналмалы ұштықтарды өндіру",
+            team: "ЖАН командасы",
+            tech: "3D-басып шығару, CAD дизайн",
+            impact: "Мобильділікті жақсарту",
+            tags: ["3D-басып шығару", "Мобильділік"],
+            image: null,
+            instagram: null,
+            document: null,
+            youtube: null
+        },
+        2: {
+            title: "BULAN",
+            description: "Мүгедек арбасына қосымша мобильділік қамтамасыз ететін электроприставка",
+            team: "BULAN командасы",
+            tech: "Электроника, механика",
+            impact: "Мобильділікті жақсарту",
+            tags: ["Электроника", "Мобильділік"],
+            image: null,
+            instagram: null,
+            document: null,
+            youtube: null
+        },
+        3: {
+            title: "PROCRASTINATORS",
+            description: "Ишарат тілін мәтін/аудиоға және керісінше аударатын қосымша",
+            team: "PROCRASTINATORS командасы",
+            tech: "AI, компьютерлік көру",
+            impact: "Байланысты жақсарту",
+            tags: ["AI", "Ишарат тілі"],
+            image: null,
+            instagram: null,
+            document: null,
+            youtube: null
+        },
+        4: {
+            title: "РИМЫ",
+            description: "Брайль технологиясына негізделген адаптивті дисплейі бар электронды кітап",
+            team: "РИМЫ командасы",
+            tech: "Брайль технологиясы, электроника",
+            impact: "Білім беруді жақсарту",
+            tags: ["Брайль", "Білім беру"],
+            image: null,
+            instagram: null,
+            document: null,
+            youtube: null
+        },
+        5: {
+            title: "SHAKA",
+            description: "Көру қабілеті бұзылған адамдарға тактильді сигналдар арқылы ақпарат беретін кулон және білезік",
+            team: "SHAKA командасы",
+            tech: "Носимые технологии, тактильные интерфейсы",
+            impact: "Ақпаратқа қол жеткізуді жақсарту",
+            tags: ["Тактильді сигналдар", "Киінетін құрылғылар"],
+            image: null,
+            instagram: null,
+            document: null,
+            youtube: null
+        },
+        6: {
+            title: "FENIX RECOVERY",
+            description: "Дәрігерлік мекемелерде де, үйде де реабилитация үшін локомоторизованды тренажер",
+            team: "FENIX RECOVERY командасы",
+            tech: "Робототехника, медицина",
+            impact: "Реабилитацияны жақсарту",
+            tags: ["Реабилитация", "Медицина"],
+            image: null,
+            instagram: null,
+            document: null,
+            youtube: null
+        }
+    };
+
+    // Функция открытия модального окна
+    function openCaseModal(caseId) {
+        const caseData = casesData[caseId];
+        if (!caseData) return;
+
+        document.getElementById('caseModalTitle').textContent = caseData.title;
+        document.getElementById('caseModalDescription').textContent = caseData.description;
+        document.getElementById('caseModalTeam').textContent = caseData.team;
+        document.getElementById('caseModalTechnologies').textContent = caseData.tech;
+        document.getElementById('caseModalResult').textContent = caseData.impact;
+        document.getElementById('caseModalImage').src = caseData.image;
+
+        // Обновляем теги
+        const tagsContainer = document.getElementById('caseModalTags');
+        tagsContainer.innerHTML = '';
+        caseData.tags.forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.className = 'case-tag';
+            tagElement.textContent = tag;
+            tagsContainer.appendChild(tagElement);
+        });
+
+        // Показываем модальное окно
+        document.getElementById('caseModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Функция закрытия модального окна
+    function closeCaseModal() {
+        document.getElementById('caseModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Инициализация обработчиков событий
+    document.addEventListener('DOMContentLoaded', function() {
+        // Добавляем обработчики клика на карточки кейсов
+        document.querySelectorAll('.case-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const caseId = this.getAttribute('data-case-id');
+                openCaseModal(caseId);
+            });
+        });
+
+        // Закрытие модального окна при клике на фон
+        document.getElementById('caseModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCaseModal();
+            }
+        });
+
+        // Закрытие модального окна по ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('caseModal').classList.contains('active')) {
+                closeCaseModal();
+            }
+        });
+    });
+    </script>
     
     <!-- PDF.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
