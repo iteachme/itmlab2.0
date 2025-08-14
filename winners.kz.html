@@ -643,7 +643,7 @@
         #stage4 .stage-content { grid-template-columns: 2fr 1fr; gap: 30px; }
         #stage4 .stage-description { grid-column: 1; grid-row: 1; }
         #stage4 .locked-timer { grid-column: 2; grid-row: 1; align-self: start; }
-        #stage4 .stage-steps-grid.single { grid-column: 1; grid-row: 2; max-width: none; margin-top: -80px; }
+        #stage4 .stage-steps-grid.single { grid-column: 1; grid-row: 2; max-width: 320px; margin-top: 20px; }
         @media (max-width: 768px) {
             #stage4 .stage-content { grid-row: auto; }
             #stage4 .locked-timer { grid-column: 1; grid-row: auto; }
@@ -907,36 +907,7 @@
                                 <p><strong>Кезең сипаттамасы:</strong></p>
                                 <p>Онлайн-хакатон — ITMLab 2.0 жобасының дайындық кезеңі, мұнда қатысушылар материалдарды зерттейді, оқу бейнелерін көреді, нұсқаулықтармен танысады және жоба идеяларымен өтінімдер береді. Бұл кезең командаларға негізгі бағдарламаға дайындалуға және мүгедектігі бар адамдар үшін инновациялық шешімдерін тұжырымдауға мүмкіндік береді.</p>
                             </div>
-                            <div class="stage-steps-grid">
-                                <div class="step-card glass-effect" style="padding: 24px; border-radius: 16px; display:flex; flex-direction:column; align-items:center;">
-                                    <div class="step-number">1</div>
-                                    <div style="font-size: 2rem;">🎬</div>
-                                    <h3 style="margin:8px 0 6px 0;">Бейне‑сабақ</h3>
-                                    <p style="text-align:center;color:#666;margin-bottom:12px;">ITM Lab хакатоны туралы бейнені қараңыз</p>
-                                    <a href="https://www.youtube.com/watch?v=dZO75Bcx10A" target="_blank" class="cyber-button" style="text-decoration: none; display: inline-block;">Қарау</a>
-                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">Үдерісте</div>
-                                </div>
-                                <div class="step-card glass-effect" style="padding: 24px; border-radius: 16px; display:flex; flex-direction:column; align-items:center;">
-                                    <div class="step-number">2</div>
-                                    <div style="font-size: 2rem;">📋</div>
-                                    <h3 style="margin:8px 0 6px 0;">Материалдар</h3>
-                                    <p style="text-align:center;color:#666;margin-bottom:12px;">Мүмкіндігі шектеулі адамдарға арналған технологияларды жақсы түсіну үшін құжаттар</p>
-                                    <div style="display:flex;flex-direction:column;gap:10px;width:100%;">
-                                        <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/cases-itmlab_compressed.pdf" target="_blank" class="cyber-button" style="text-decoration: none; display: inline-block;">КЕЙСТЕР</a>
-                                        <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/research-itmlab.pdf" target="_blank" class="cyber-button" style="text-decoration: none; display: inline-block;">ЗЕРТТЕУ</a>
-                                    </div>
-                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">Үдерісте</div>
-                                </div>
-                                <div class="step-card glass-effect" style="padding: 24px; border-radius: 16px; display:flex; flex-direction:column; align-items:center;">
-                                    <div class="step-number">3</div>
-                                    <div style="font-size: 2rem;">📮</div>
-                                    <h3 style="margin:8px 0 6px 0;">Форма</h3>
-                                    <p style="text-align:center;color:#666;margin-bottom:12px;">Идеяны жіберу формасын толтырыңыз</p>
-                                    <a href="https://docs.google.com/forms/d/1UPd0tZ2pgFPcdyETqynqD1OvxYJPB9SF4ovzn4VDdxI/edit" target="_blank" class="cyber-button" style="text-decoration: none; display: inline-block;">ИДЕЯЛАР ФОРМАСЫ</a>
-                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">Үдерісте</div>
-                                </div>
-                            </div>
-                    
+            
                             <div class="completed-status" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; background: rgba(34, 197, 94, 0.1); border-radius: 16px; border: 2px solid #22c55e; backdrop-filter: blur(10px); min-height: 200px; text-align: center;">
                                 <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
                                 <div style="font-size: 2rem; font-weight: bold; color: #22c55e; margin-bottom: 10px;">
@@ -944,6 +915,44 @@
                                 </div>
                                 <div style="color: #22c55e; font-size: 1.2rem; font-weight: 500;">
                                     Онлайн-хакатон сәтті өтті
+                                </div>
+                            </div>
+            
+                            <div class="stage-steps-grid" style="grid-column: 1 / -1;">
+                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                                    <div class="step-number">1</div>
+                                    <div style="font-size: 2rem;">🎬</div>
+                                    <h3 style="margin:8px 0 6px 0;">Бейне‑сабақ</h3>
+                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">ITM Lab хакатоны туралы бейнені қараңыз</p>
+                                    <a href="https://www.youtube.com/watch?v=dZO75Bcx10A" target="_blank" class="cyber-button" style="padding: 8px 16px; font-size: 0.9rem; text-decoration: none; display: inline-block;">Қарау</a>
+                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">Үдерісте</div>
+                                </div>
+                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                                    <div class="step-number">2</div>
+                                    <div style="font-size: 2rem;">📋</div>
+                                    <h3 style="margin:8px 0 6px 0;">Материалдар</h3>
+                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">Мүмкіндігі шектеулі адамдарға арналған технологияларды жақсы түсіну үшін құжаттар</p>
+                                    <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
+                                        <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/cases-itmlab_compressed.pdf" target="_blank" class="cyber-button" style="padding: 6px 12px; font-size: 0.8rem; text-decoration: none; display: inline-block;">КЕЙСТЕР</a>
+                                        <a href="https://cdn.jsdelivr.net/gh/iteachme/itmlab2.0/assets/pdf/research-itmlab.pdf" target="_blank" class="cyber-button" style="padding: 6px 12px; font-size: 0.8rem; text-decoration: none; display: inline-block;">ЗЕРТТЕУ</a>
+                                    </div>
+                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">Үдерісте</div>
+                                </div>
+                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                                    <div class="step-number">3</div>
+                                    <div style="font-size: 2rem;">📝</div>
+                                    <h3 style="margin:8px 0 6px 0;">Нұсқаулықтар</h3>
+                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">Жобаларды тапсыру бойынша нұсқаулықты зерттеңіз</p>
+                                    <a href="Жобаларды тапсыру бойынша нұсқаулық.docx.pdf" target="_blank" class="cyber-button" style="padding: 6px 12px; font-size: 0.8rem; margin-bottom: 4px; text-decoration: none; display: inline-block;">НҰСҚАУЛЫҚ</a>
+                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">Үдерісте</div>
+                                </div>
+                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                                    <div class="step-number">4</div>
+                                    <div style="font-size: 2rem;">📮</div>
+                                    <h3 style="margin:8px 0 6px 0;">Форма</h3>
+                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">Идеяны жіберу формасын толтырыңыз</p>
+                                    <a href="https://docs.google.com/forms/d/1UPd0tZ2pgFPcdyETqynqD1OvxYJPB9SF4ovzn4VDdxI/edit" target="_blank" class="cyber-button" style="padding: 8px 12px; font-size: 0.85rem; text-decoration: none; display: inline-block;">ИДЕЯЛАР ФОРМАСЫ</a>
+                                    <div class="step-status" style="font-size: 0.9rem; color: #666; margin-top: 8px;">Үдерісте</div>
                                 </div>
                             </div>
                         </div>
@@ -1029,6 +1038,14 @@
                         </div>
                     </div>
                     
+                            <div class="stage-steps-grid single" style="grid-column: 1; margin-top: 20px;">
+                                <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
+                                    <div class="step-number">1</div>
+                                    <div style="font-size: 2rem;">📝</div>
+                                    <h3 style="margin:8px 0 6px 0;">Дайындық нұсқаулығы</h3>
+                                    <p style="text-align:center;color:#666;margin-bottom:12px;flex-grow:1;">IntroDay-де ұсыну бойынша қадамдық нұсқаулық</p>
+                                    <a href="Жобаларды тапсыру бойынша нұсқаулық.docx.pdf" target="_blank" class="cyber-button" style="padding: 8px 16px; font-size: 0.9rem; text-decoration: none; display: inline-block;">PDF АШУ</a>
+                                </div>
                             </div>
                  </div>
          </div>
@@ -1123,8 +1140,8 @@
             <!-- Winners Section -->
             <div class="winners-section" style="margin-top: 30px;">
                 <div class="future-stages" style="margin-top: 0;">
-                    <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;">ITM Lab 2.0 Жеңімпаздары</h3>
-                    <p id="stageDescription" style="max-width: 700px; margin: 0 auto 30px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
+                    <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;" id="winnersTitle">ITM Lab 2.0 Жеңімпаздары</h3>
+                    <p id="winnersDescription" style="max-width: 700px; margin: 0 auto 30px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;">
                         ITM Lab 2.0 офлайн хакатонына өткен командаларды құттықтаймыз! Бұл 32 команда онлайн кезеңде керемет нәтижелер көрсетті және енді келесі шақыруға дайын.
                     </p>
                     
@@ -1206,6 +1223,22 @@
             tracking: 'Трекинг жеңімпазы',
             introday: 'IntroDay жеңімпазы',
             pitchday: 'PitchDay жеңімпазы'
+        };
+
+        const stageDescription = {
+            online: 'ITM Lab 2.0 офлайн хакатонына өткен командаларды құттықтаймыз! Бұл 32 команда онлайн кезеңде керемет нәтижелер көрсетті және енді келесі шақыруға дайын.',
+            demoday: 'ITM Lab 2.0 финалистерін құттықтаймыз! Бұл 10 команда барлық кезеңдерді сәтті өтті және жобаларын инвесторлар мен серіктестер алдында ұсынуға дайын.',
+            tracking: 'ITM Lab 2.0 трекингінен өткен командаларды құттықтаймыз! Бұл 20 команда жобаларын интенсивті жетілдірді және финалдық ұсынуға дайын.',
+            introday: 'ITM Lab 2.0 IntroDay-ден өткен командаларды құттықтаймыз! Бұл 20 команда жобаларын сәтті ұсынып, одан әрі жетілдіру бойынша ұсыныстар алды.',
+            pitchday: 'ITM Lab 2.0 PitchDay-ден өткен командаларды құттықтаймыз! Бұл 10 команда финалдық DemoDay және инвестиция іздеуге дайын.'
+        };
+
+        const stageTeamCount = {
+            online: 32,
+            demoday: 10,
+            tracking: 20,
+            introday: 20,
+            pitchday: 10
         };
 
         const stageKeyByNumber = { 1: 'online', 2: 'demoday', 3: 'tracking', 4: 'introday', 5: 'pitchday' };
@@ -1364,6 +1397,9 @@
             updateStageCaption(key);
             updateStageDescription(key);
             
+            // Обновляем описание победителей
+            updateWinnersDescription(key);
+            
             // Если переключились на IntroDay, запустим таймер
             if (stageNumber === 4) {
                 setTimeout(initCountdown, 100);
@@ -1372,24 +1408,42 @@
 
         // Обновление заголовка этапа
         function updateStageCaption(stageKey) {
-            const captionEl = document.querySelector('.winners-title');
-            if (captionEl) {
-                const stageNames = {
-                    'online': 'Онлайн-хакатон',
-                    'demoday': 'DemoDay',
-                    'tracking': 'Трекинг',
-                    'introday': 'IntroDay',
-                    'pitchday': 'PitchDay'
-                };
-                captionEl.textContent = `${stageNames[stageKey] || stageKey} жеңімпаздары ITM Lab 2.0`;
-            }
+            // Эта функция больше не нужна, так как заголовок обновляется в updateStageDescription
+            // Оставляем пустой для совместимости
         }
 
         // Обновление описания этапа
         function updateStageDescription(stageKey) {
             const descriptionEl = document.getElementById('stageDescription');
-            if (descriptionEl) {
-                descriptionEl.textContent = stageDescriptions[stageKey];
+            if (descriptionEl && stageDescription[stageKey]) {
+                descriptionEl.textContent = stageDescription[stageKey];
+            }
+        }
+
+        // Обновление описания победителей
+        function updateWinnersDescription(stageKey) {
+            const descriptionEl = document.getElementById('winnersDescription');
+            if (descriptionEl && stageDescription[stageKey]) {
+                descriptionEl.textContent = stageDescription[stageKey];
+            }
+            
+            // Обновляем заголовок секции победителей
+            const titleEl = document.getElementById('winnersTitle');
+            if (titleEl) {
+                const stageNames = {
+                    'online': 'Онлайн-хакатон жеңімпаздары',
+                    'demoday': 'DemoDay жеңімпаздары',
+                    'tracking': 'Трекинг жеңімпаздары',
+                    'introday': 'IntroDay жеңімпаздары',
+                    'pitchday': 'PitchDay жеңімпаздары'
+                };
+                titleEl.textContent = stageNames[stageKey] || 'ITM Lab 2.0 Жеңімпаздары';
+            }
+            
+            // Обновляем статистику команд
+            const totalCountEl = document.getElementById('totalCount');
+            if (totalCountEl && stageTeamCount[stageKey]) {
+                totalCountEl.textContent = stageTeamCount[stageKey];
             }
         }
     </script>
