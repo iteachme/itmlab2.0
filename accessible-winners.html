@@ -63,23 +63,24 @@
 
         .accessibility-controls {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
             margin-bottom: 15px;
         }
 
         .control-btn {
             background: var(--button-bg);
             color: var(--button-text);
-            border: 3px solid var(--border-color);
-            padding: 10px 15px;
-            font-size: 16px;
+            border: 2px solid var(--border-color);
+            padding: 8px 12px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             border-radius: 6px;
             transition: all 0.3s ease;
             white-space: nowrap;
             text-align: center;
+            min-width: 0;
         }
 
         .control-btn:hover,
@@ -442,16 +443,21 @@
             .stage-title { font-size: 36px; }
             .nav-link { font-size: 24px; min-width: auto; }
             .stage-nav-btn { font-size: 20px; min-width: auto; }
-            .accessibility-panel { padding: 12px; margin-bottom: 15px; }
-            .accessibility-controls { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .control-btn { padding: 8px 12px; font-size: 14px; }
+            .accessibility-panel { padding: 10px; margin-bottom: 15px; }
+            .accessibility-controls { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+            .control-btn { padding: 6px 8px; font-size: 12px; }
             .timer-grid { grid-template-columns: 1fr; }
             .pagination { flex-direction: column; align-items: center; }
         }
         
         @media (max-width: 480px) {
+            .accessibility-controls { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+            .control-btn { font-size: 11px; padding: 5px 6px; }
+        }
+        
+        @media (max-width: 360px) {
             .accessibility-controls { grid-template-columns: 1fr; }
-            .control-btn { font-size: 16px; padding: 12px; }
+            .control-btn { font-size: 14px; padding: 8px; }
         }
     </style>
 </head>
