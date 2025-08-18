@@ -862,6 +862,7 @@
                     <a href="winners.html" class="nav-link">Этапы</a>
                     <a href="index.html#contact" class="nav-link">Контакты</a>
                 </div>
+                <a href="accessible-winners.html" class="accessibility-switch-btn" title="Версия для слабовидящих" style="margin-right: 12px; padding: 6px 12px; border-radius: 8px; border: 2px solid #ff6b35; background: transparent; color: #ff6b35; font-weight: 700; font-size: 0.9rem; text-decoration: none; display: inline-block; transition: all 0.3s ease;" onmouseover="this.style.background='#ff6b35'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='#ff6b35';">👁️</a>
                 <a href="winners.kz.html" id="langSwitchBtn" class="lang-switch-btn" style="margin-right: 18px; padding: 6px 18px; border-radius: 8px; border: 2px solid #ff6b35; background: #ff6b35; color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block;">KZ</a>
             </div>
             <button class="mobile-menu-btn">
@@ -877,6 +878,7 @@
                 <a href="index.html" class="mobile-nav-link">Главная</a>
                 <a href="winners.html" class="mobile-nav-link">Этапы</a>
                 <a href="index.html#contact" class="mobile-nav-link">Контакты</a>
+                <a href="accessible-winners.html" class="mobile-nav-link">Версия для слабовидящих</a>
                 <a href="winners.kz.html" class="mobile-nav-link">KZ</a>
             </div>
         </div>
@@ -914,22 +916,12 @@
                         <div class="stage-header">
                             <div class="stage-icon">🌐</div>
                             <h2>Онлайн‑хакатон</h2>
-                            <div class="stage-status completed" style="background: linear-gradient(45deg, #22c55e, #16a34a); color: white;">ЗАВЕРШЕНО</div>
+
                         </div>
                         <div class="stage-content">
                             <div class="stage-description">
                                 <p><strong>Описание этапа:</strong></p>
                                 <p>Онлайн-хакатон — это подготовительный этап ITMLab 2.0, где участники изучают материалы, смотрят обучающие видео, знакомятся с инструкциями и подают заявки с идеями проектов. Этот этап позволяет командам подготовиться к основной программе и сформулировать свои инновационные решения для людей с инвалидностью.</p>
-                            </div>
-            
-                            <div class="completed-status" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; background: rgba(34, 197, 94, 0.1); border-radius: 16px; border: 2px solid #22c55e; backdrop-filter: blur(10px); min-height: 200px; text-align: center;">
-                                <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
-                                <div style="font-size: 2rem; font-weight: bold; color: #22c55e; margin-bottom: 10px;">
-                                    ЭТАП ЗАВЕРШЕН
-                                    </div>
-                                <div style="color: #22c55e; font-size: 1.2rem; font-weight: 500;">
-                                    Онлайн-хакатон успешно проведен
-                                </div>
                             </div>
             
                             <div class="stage-steps-grid">
@@ -1156,7 +1148,7 @@
                 <div class="future-stages" style="margin-top: 0;">
                     <h3 style="text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #333;" id="winnersTitle">Победители ITM Lab 2.0</h3>
                     <p style="max-width: 700px; margin: 0 auto 30px auto; color: #444; font-size: 1.08rem; text-align: center; font-weight: 500;" id="winnersDescription">
-                        Поздравляем команды, прошедшие в офлайн хакатон ITM Lab 2.0! Эти 32 команды показали отличные результаты в онлайн этапе и теперь готовы к следующему вызову.
+                        Поздравляем участников онлайн-хакатона ITM Lab 2.0! Эти 31 команда активно участвуют в текущем этапе и готовятся к следующим вызовам.
                     </p>
                     
                     <div class="search-section">
@@ -1164,7 +1156,7 @@
             </div>
                     
                     <div class="stats" id="stats">
-                        Показано: <span id="shownCount">12</span> из <span id="totalCount">32</span> команд
+                        Показано: <span id="shownCount">12</span> из <span id="totalCount">31</span> команд
                 </div>
                     
                     <div class="winners-grid" id="winnersGrid">
@@ -1232,7 +1224,7 @@
         };
 
         const stageDescription = {
-            online: 'Поздравляем команды, прошедшие в офлайн хакатон ITM Lab 2.0! Эти 32 команды показали отличные результаты в онлайн этапе и теперь готовы к следующему вызову.',
+            online: 'Поздравляем участников онлайн-хакатона ITM Lab 2.0! Эти 31 команда активно участвуют в текущем этапе и готовятся к следующим вызовам.',
             demoday: 'Поздравляем финалистов ITM Lab 2.0! Эти 10 команд успешно прошли все этапы и готовы представить свои проекты инвесторам и партнерам.',
             tracking: 'Поздравляем команды, прошедшие трекинг ITM Lab 2.0! Эти 20 команд интенсивно доработали свои проекты и готовы к финальной презентации.',
             introday: 'Поздравляем команды, прошедшие IntroDay ITM Lab 2.0! Эти 20 команд успешно представили свои проекты и получили рекомендации для дальнейшей доработки.',
@@ -1240,7 +1232,7 @@
         };
 
         const stageTeamCount = {
-            online: 32,
+            online: 31,
             demoday: 10,
             tracking: 20,
             introday: 20,
