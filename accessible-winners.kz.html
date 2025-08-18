@@ -54,33 +54,35 @@
 
         .accessibility-panel {
             background: #333333;
-            border: 3px solid var(--border-color);
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            padding: 6px;
+            margin-bottom: 10px;
+            border-radius: 4px;
             max-width: 100%;
         }
 
         .accessibility-controls {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 8px;
-            margin-bottom: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 3px;
+            margin-bottom: 8px;
         }
 
         .control-btn {
             background: var(--button-bg);
             color: var(--button-text);
-            border: 2px solid var(--border-color);
-            padding: 8px 12px;
-            font-size: 14px;
+            border: 1px solid var(--border-color);
+            padding: 4px 6px;
+            font-size: 10px;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 3px;
             transition: all 0.3s ease;
             white-space: nowrap;
             text-align: center;
             min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .control-btn:hover,
@@ -443,21 +445,21 @@
             .stage-title { font-size: 36px; }
             .nav-link { font-size: 24px; min-width: auto; }
             .stage-nav-btn { font-size: 20px; min-width: auto; }
-            .accessibility-panel { padding: 10px; margin-bottom: 15px; }
-            .accessibility-controls { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-            .control-btn { padding: 6px 8px; font-size: 12px; }
+            .accessibility-panel { padding: 4px; margin-bottom: 8px; }
+            .accessibility-controls { grid-template-columns: repeat(3, 1fr); gap: 2px; }
+            .control-btn { padding: 3px 4px; font-size: 9px; }
             .timer-grid { grid-template-columns: 1fr; }
             .pagination { flex-direction: column; align-items: center; }
         }
         
         @media (max-width: 480px) {
-            .accessibility-controls { grid-template-columns: repeat(2, 1fr); gap: 5px; }
-            .control-btn { font-size: 11px; padding: 5px 6px; }
+            .accessibility-controls { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+            .control-btn { font-size: 8px; padding: 3px 4px; }
         }
         
         @media (max-width: 360px) {
-            .accessibility-controls { grid-template-columns: 1fr; }
-            .control-btn { font-size: 14px; padding: 8px; }
+            .accessibility-controls { grid-template-columns: repeat(2, 1fr); gap: 1px; }
+            .control-btn { font-size: 8px; padding: 2px 3px; }
         }
     </style>
 </head>
