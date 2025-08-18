@@ -52,28 +52,31 @@
         .accessibility-panel {
             background: #333333;
             border: 3px solid var(--border-color);
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 15px;
+            margin-bottom: 20px;
             border-radius: 8px;
+            max-width: 100%;
         }
 
         .accessibility-controls {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
         .control-btn {
             background: var(--button-bg);
             color: var(--button-text);
             border: 3px solid var(--border-color);
-            padding: 15px 25px;
-            font-size: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             border-radius: 6px;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            text-align: center;
         }
 
         .control-btn:hover,
@@ -285,8 +288,14 @@
             .logo { font-size: 40px; }
             .section-title { font-size: 32px; }
             .nav-link { font-size: 24px; min-width: auto; }
-            .accessibility-controls { flex-direction: column; }
-            .control-btn { width: 100%; }
+            .accessibility-panel { padding: 12px; margin-bottom: 15px; }
+            .accessibility-controls { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .control-btn { padding: 8px 12px; font-size: 14px; }
+        }
+        
+        @media (max-width: 480px) {
+            .accessibility-controls { grid-template-columns: 1fr; }
+            .control-btn { font-size: 16px; padding: 12px; }
         }
     </style>
 </head>
@@ -324,7 +333,7 @@
         </div>
 
         <section class="section">
-            <h1 class="section-title">Добро пожаловать на онлайн-хакатон ITM LAB!</h1>
+            <h1 class="section-title">Добро пожаловать на проект ITM LAB 2.0!</h1>
             
             <div class="highlight-box">
                 <p><strong>Выиграйте грант</strong></p>
