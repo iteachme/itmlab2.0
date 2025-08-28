@@ -924,7 +924,7 @@
                                 <p>Онлайн-хакатон — это подготовительный этап ITMLab 2.0, где участники изучают материалы, смотрят обучающие видео, знакомятся с инструкциями и подают заявки с идеями проектов. Этот этап позволяет командам подготовиться к основной программе и сформулировать свои инновационные решения для людей с инвалидностью.</p>
                             </div>
             
-                            <div class="stage-steps-grid">
+                            <div class="stage-steps-grid" id="project-steps">
                                 <div class="step-card glass-effect" style="padding: 20px; border-radius: 16px; display:flex; flex-direction:column; align-items:center; min-height: 280px;">
                                     <div class="step-number">1</div>
                                     <div style="font-size: 2rem;">🎬</div>
@@ -1446,6 +1446,20 @@
                 totalCountEl.textContent = stageTeamCount[stageKey];
             }
         }
+        
+        // Проверяем якорь при загрузке страницы
+        window.addEventListener('load', function() {
+            if (window.location.hash === '#project-steps') {
+                showStage(1); // Открываем первый этап (Онлайн‑хакатон)
+                setTimeout(() => {
+                    const element = document.getElementById('project-steps');
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 300);
+            }
+        });
+        
         // IntroDay specific CSS moved to <style> block above
     </script>
 </body>
