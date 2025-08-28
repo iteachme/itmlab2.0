@@ -308,6 +308,120 @@
             .accessibility-controls { grid-template-columns: 1fr; }
             .control-btn { font-size: 14px; padding: 8px; }
         }
+
+        /* Доступная CTA кнопка с анимациями */
+        .accessible-cta-container {
+            text-align: center;
+            margin: 40px 0 30px 0;
+            position: relative;
+        }
+
+        .accessible-action-button {
+            display: inline-block;
+            position: relative;
+            padding: 25px 60px;
+            font-size: 32px;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--bg-color);
+            background: linear-gradient(135deg, var(--link-color) 0%, #ff4081 50%, var(--link-color) 100%);
+            background-size: 200% 200%;
+            border-radius: 12px;
+            border: 4px solid var(--link-color);
+            box-shadow: 
+                0 8px 25px rgba(255, 107, 53, 0.4),
+                0 4px 12px rgba(255, 107, 53, 0.3);
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            overflow: hidden;
+            animation: accessibleGradient 4s ease-in-out infinite;
+            min-width: 250px;
+        }
+
+        .accessible-action-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transition: all 0.6s;
+        }
+
+        .accessible-action-button:hover {
+            background: var(--bg-color);
+            color: var(--link-color);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(255, 107, 53, 0.5),
+                0 6px 18px rgba(255, 107, 53, 0.4);
+            animation-duration: 2s;
+        }
+
+        .accessible-action-button:hover::before {
+            left: 100%;
+        }
+
+        .accessible-action-button:focus {
+            outline: 4px solid var(--link-color);
+            outline-offset: 4px;
+            background: var(--bg-color);
+            color: var(--link-color);
+        }
+
+        .accessible-action-button:active {
+            transform: translateY(-2px) scale(1.02);
+            transition: all 0.1s ease;
+        }
+
+        @keyframes accessibleGradient {
+            0%, 100% { 
+                background-position: 0% 50%; 
+            }
+            50% { 
+                background-position: 100% 50%; 
+            }
+        }
+
+        /* Мобильная адаптация для доступности */
+        @media (max-width: 768px) {
+            .accessible-action-button {
+                padding: 22px 50px;
+                font-size: 28px;
+                letter-spacing: 1.5px;
+                min-width: 220px;
+            }
+            
+            .accessible-cta-container {
+                margin: 35px 0 25px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .accessible-cta-container {
+                margin: 30px 20px 20px 20px;
+            }
+            
+            .accessible-action-button {
+                padding: 20px 40px;
+                font-size: 24px;
+                letter-spacing: 1px;
+                width: calc(100% - 40px);
+                max-width: 320px;
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .accessible-action-button {
+                padding: 18px 35px;
+                font-size: 22px;
+                letter-spacing: 0.8px;
+            }
+        }
     </style>
 </head>
 <body class="font-size-normal">
@@ -351,8 +465,8 @@
                 <div class="grant-amount">600 000 тенге</div>
                 <p>на реализацию своей идеи</p>
             </div>
-            <div style="margin-top: 30px; text-align: center;">
-                <a href="winners.html#project-steps" class="action-button" style="padding: 20px 40px; font-size: 28px; font-weight: bold; text-decoration: none; display: inline-block; background: var(--link-color); color: var(--bg-color); border-radius: 8px; border: 3px solid var(--link-color); transition: all 0.3s ease;" onmouseover="this.style.background='var(--bg-color)'; this.style.color='var(--link-color)'" onmouseout="this.style.background='var(--link-color)'; this.style.color='var(--bg-color)'">К делу</a>
+            <div class="accessible-cta-container">
+                <a href="winners.html#project-steps" class="accessible-action-button">К делу</a>
             </div>
         </section>
 
