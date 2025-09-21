@@ -896,7 +896,7 @@
                 </div>
                 
                 <div class="stages-container">
-                    <!-- Этап 1: Жоба -->
+                    <!-- Кезең 1: Жоба -->
                     <div class="stage-block active" id="stage1">
                         <div class="stage-header">
                             <div class="stage-icon">🌐</div>
@@ -950,7 +950,7 @@
                         </div>
                     </div>
                     
-                    <!-- Этап 3: Трекинг -->
+                    <!-- Кезең 3: Трекинг -->
                     <div class="stage-block" id="stage3">
                         <div class="stage-header">
                             <div class="stage-icon">📊</div>
@@ -991,7 +991,7 @@
                         </div>
                     </div>
                     
-                    <!-- Этап 4: Intro Day -->
+                    <!-- Кезең 4: Intro Day -->
                     <div class="stage-block" id="stage4">
                         <div class="stage-header">
                             <div class="stage-icon">🎯</div>
@@ -1043,7 +1043,7 @@
          </div>
                     </div>
                     
-                    <!-- Этап 5: Pitch Day -->
+                    <!-- Кезең 5: Pitch Day -->
                     <div class="stage-block" id="stage5">
                         <div class="stage-header">
                             <div class="stage-icon">🏆</div>
@@ -1085,7 +1085,7 @@
         </div>
                 </div>
                 
-                <!-- Этап 2: Demo Day -->
+                <!-- Кезең 2: Demo Day -->
                 <div class="stage-block" id="stage2">
                     <div class="stage-header">
                         <div class="stage-icon">🧪</div>
@@ -1146,11 +1146,11 @@
                 </div>
                     
                     <div class="winners-grid" id="winnersGrid">
-                        <!-- Карточки будут добавлены через JavaScript -->
+                        <!-- Карточкалар JavaScript арқылы қосылады -->
             </div>
                     
                     <div class="pagination" id="pagination">
-                        <!-- Пагинация будет добавлена через JavaScript -->
+                        <!-- Пагинация JavaScript арқылы қосылады -->
         </div>
     </div>
             </div>
@@ -1222,7 +1222,7 @@
             pitchday: []
         };
 
-        // Уникальные описания для каждого этапа на казахском языке
+        // Әр кезең үшін бірегей сипаттамалар қазақ тілінде
         const stageDescriptions = {
             online: "Жобаның келесі Intro Day кезеңіне өткен қатысушылары.",
             demoday: "ITM Lab 2.0 жобасының қорытынды жеңімпаздары! Барлық кезеңдерді өткен және енгізуге дайын жобаларды ұсынған 10 үздік команда. Бұл командалар одан әрі даму және масштабтау үшін қолдау алады.",
@@ -1283,7 +1283,7 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 
-                // Обновляем таймер только если элементы существуют
+                // Таймер элементтері бар болса ғана жаңартамыз
                 const daysEl = document.getElementById('days');
                 const hoursEl = document.getElementById('hours');
                 const minutesEl = document.getElementById('minutes');
@@ -1310,7 +1310,7 @@
             initCountdown();
         });
 
-        // Рендер команд
+        // Командаларды рендеринг
         function renderTeams() {
             const grid = document.getElementById('winnersGrid');
             const startIndex = (currentPage - 1) * itemsPerPage;
@@ -1335,10 +1335,10 @@
             
             let paginationHTML = '';
             
-            // Кнопка "Предыдущая"
+            // "Алдыңғы" батырмасы
             paginationHTML += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>←</button>`;
             
-            // Номера страниц
+            // Бет нөмірлері
             for (let i = 1; i <= totalPages; i++) {
                 if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
                     paginationHTML += `<button onclick="changePage(${i})" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
@@ -1347,7 +1347,7 @@
                 }
             }
             
-            // Кнопка "Следующая"
+            // "Келесі" батырмасы
             paginationHTML += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>→</button>`;
             
             pagination.innerHTML = paginationHTML;
@@ -1362,7 +1362,7 @@
             }
         }
 
-        // Поиск
+        // Іздеу
         function setupSearch() {
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', function() {
@@ -1382,20 +1382,20 @@
             document.getElementById('totalCount').textContent = filteredTeams.length;
         }
 
-        // Функция для переключения между этапами
+        // Кезеңдер арасында ауысу функциясы
         function showStage(stageNumber) {
-            // Скрываем все этапы
+            // Барлық кезеңдерді жасыру
             const stages = document.querySelectorAll('.stage-block');
             stages.forEach(stage => stage.classList.remove('active'));
             
-            // Убираем активный класс со всех кнопок
+            // Барлық батырмалардан active классын алып тастау
             const buttons = document.querySelectorAll('.stage-nav-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             
-            // Показываем выбранный этап
+            // Таңдалған кезеңді көрсету
             document.getElementById(`stage${stageNumber}`).classList.add('active');
             
-            // Делаем активной соответствующую кнопку
+            // Сәйкес батырманы белсенді ету
             const activeButton = document.querySelector(`[onclick="showStage(${stageNumber})"]`);
             if (activeButton) {
                 activeButton.classList.add('active');
@@ -1411,22 +1411,22 @@
             updateStageCaption(key);
             updateStageDescription(key);
             
-            // Обновляем описание победителей
+            // Жеңімпаздар сипаттамасын жаңарту
             updateWinnersDescription(key);
             
-            // Если переключились на IntroDay, запустим таймер
+            // IntroDay-ға ауысса, таймерді іске қосу
             if (stageNumber === 4) {
                 setTimeout(initCountdown, 100);
             }
         }
 
-        // Обновление заголовка этапа
+        // Кезең тақырыбын жаңарту
         function updateStageCaption(stageKey) {
-            // Эта функция больше не нужна, так как заголовок обновляется в updateStageDescription
-            // Оставляем пустой для совместимости
+            // Бұл функция қажет емес, өйткені тақырып updateStageDescription-те жаңартылады
+            // Үйлесімділік үшін бос қалдырамыз
         }
 
-        // Обновление описания этапа
+        // Кезең сипаттамасын жаңарту
         function updateStageDescription(stageKey) {
             const descriptionEl = document.getElementById('stageDescription');
             if (descriptionEl && stageDescription[stageKey]) {
@@ -1434,14 +1434,14 @@
             }
         }
 
-        // Обновление описания победителей
+        // Жеңімпаздар сипаттамасын жаңарту
         function updateWinnersDescription(stageKey) {
             const descriptionEl = document.getElementById('winnersDescription');
             if (descriptionEl && stageDescription[stageKey]) {
                 descriptionEl.textContent = stageDescription[stageKey];
             }
             
-            // Обновляем заголовок секции победителей
+            // Жеңімпаздар секциясының тақырыбын жаңарту
             const titleEl = document.getElementById('winnersTitle');
             if (titleEl) {
                 const stageNames = {
@@ -1454,14 +1454,14 @@
                 titleEl.textContent = stageNames[stageKey] || 'ITM Lab 2.0 қатысушылары';
             }
             
-            // Обновляем статистику команд
+            // Командалар статистикасын жаңарту
             const totalCountEl = document.getElementById('totalCount');
             if (totalCountEl && stageTeamCount[stageKey]) {
                 totalCountEl.textContent = stageTeamCount[stageKey];
             }
         }
         
-        // Проверяем якорь при загрузке страницы
+        // Бет жүктелгенде якорьді тексеру
         window.addEventListener('load', function() {
             if (window.location.hash === '#project-steps') {
                 showStage(1); // Открываем первый этап (Жоба)
