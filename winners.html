@@ -969,37 +969,37 @@
                         <div class="stage-header">
                             <div class="stage-icon">📊</div>
                             <h2>Трекинг</h2>
-                            <div class="stage-status locked">БЛОКИРОВАНО</div>
+                            <div class="stage-status" style="background:#ff6b35;color:#fff;">НАЧАЛСЯ</div>
                         </div>
                         <div class="stage-content">
                             <div class="stage-description">
                                 <p><strong>Описание этапа:</strong></p>
-                                <p>Трекинг — это этап интенсивной доработки проектов в рамках ITMLab 2.0, который проходит в течение 4 недель после Intro Day. На этом этапе 20 отобранных команд работают с персональными трекерами: каждой команде предоставляется 2 трекера — 1 технический трекер для решения технических задач и 1 бизнес-трекер для решения бизнес-задач. Цель этапа — доработать проекты до уровня готовности к внедрению и подготовить команды к финальной презентации.</p>
+                                <p>Трекинг — это этап интенсивной доработки проектов в рамках ITMLab 2.0, который проходит с 30 сентября по 27 октября. На этом этапе 21 команда работает с персональными трекерами: каждой команде предоставляется 2 трекера — 1 технический трекер для решения технических задач и 1 бизнес-трекер для решения бизнес-задач. Цель этапа — доработать проекты до уровня готовности к внедрению и подготовить команды к финальной презентации.</p>
                             </div>
                             
-                            <div class="locked-timer">
-                                <div class="locked-timer-unit">
-                                    <div class="locked-timer-icon">📅</div>
-                                    <div class="locked-timer-value">--</div>
-                                    <div class="locked-timer-label">Дней</div>
-                                    </div>
-                                <div class="locked-timer-unit">
-                                    <div class="locked-timer-icon">⏰</div>
-                                    <div class="locked-timer-value">--</div>
-                                    <div class="locked-timer-label">Часов</div>
+                            <div class="countdown-timer" id="trackingCountdown">
+                                <div class="timer-unit">
+                                    <div class="timer-icon">📅</div>
+                                    <div class="timer-value" id="trackingDays">00</div>
+                                    <div class="timer-label">Дней</div>
                                 </div>
-                                <div class="locked-timer-unit">
-                                    <div class="locked-timer-icon">⏱️</div>
-                                    <div class="locked-timer-value">--</div>
-                                    <div class="locked-timer-label">Минут</div>
-                            </div>
-                                <div class="locked-timer-unit">
-                                    <div class="locked-timer-icon">⏳</div>
-                                    <div class="locked-timer-value">--</div>
-                                    <div class="locked-timer-label">Секунд</div>
+                                <div class="timer-unit">
+                                    <div class="timer-icon">⏰</div>
+                                    <div class="timer-value" id="trackingHours">00</div>
+                                    <div class="timer-label">Часов</div>
                                 </div>
-                                <div class="locked-message">
-                                    🔒 Отсчет еще не начался
+                                <div class="timer-unit">
+                                    <div class="timer-icon">⏱️</div>
+                                    <div class="timer-value" id="trackingMinutes">00</div>
+                                    <div class="timer-label">Минут</div>
+                                </div>
+                                <div class="timer-unit">
+                                    <div class="timer-icon">⏳</div>
+                                    <div class="timer-value" id="trackingSeconds">00</div>
+                                    <div class="timer-label">Секунд</div>
+                                </div>
+                                <div class="timer-message">
+                                    ⏰ До окончания трекинга
                                 </div>
                             </div>
                         </div>
@@ -1248,7 +1248,7 @@
         const stageDescription = {
             online: 'Участники онлайн-хакатона, которые прошли на следующий этап Intro Day.',
             demoday: 'Поздравляем финалистов ITM Lab 2.0! Эти 10 команд успешно прошли все этапы и готовы представить свои проекты инвесторам и партнерам.',
-            tracking: 'Поздравляем команды, прошедшие трекинг ITM Lab 2.0! Эти 20 команд интенсивно доработали свои проекты и готовы к финальной презентации.',
+            tracking: 'Поздравляем команды, прошедшие трекинг ITM Lab 2.0! Эти 21 команда интенсивно доработала свои проекты и готова к финальной презентации.',
             introday: 'Поздравляем команды, прошедшие Intro Day ITM Lab 2.0! Эти 21 команда успешно представили свои проекты и прошли на следующий этап - Трекинг.',
             pitchday: 'Pitch Day - это этап, на котором команды презентуют доработанные проекты и бизнес-модели. В этот день будет известно, какие команды получат гранты в размере 600.000 тенге на разработку своих прототипов!'
         };
@@ -1256,7 +1256,7 @@
         const stageTeamCount = {
             online: 31,
             demoday: 10,
-            tracking: 20,
+            tracking: 21,
             introday: 21,
             pitchday: 10
         };
@@ -1308,12 +1308,53 @@
             setInterval(updateCountdown, 1000);
         }
 
+        // Tracking Countdown Timer Function
+        function initTrackingCountdown() {
+            // Устанавливаем дату на 27 октября 2025 года (23:59)
+            const targetDate = new Date('2025-10-27T23:59:59').getTime();
+            
+            function updateTrackingCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    const timerEl = document.getElementById('trackingCountdown');
+                    if (timerEl) {
+                        timerEl.innerHTML = '<div style="color: var(--primary); font-size: 1.2rem;">Трекинг завершен!</div>';
+                    }
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Обновляем таймер трекинга
+                const daysEl = document.getElementById('trackingDays');
+                const hoursEl = document.getElementById('trackingHours');
+                const minutesEl = document.getElementById('trackingMinutes');
+                const secondsEl = document.getElementById('trackingSeconds');
+                
+                if (daysEl && hoursEl && minutesEl && secondsEl) {
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                }
+            }
+            
+            updateTrackingCountdown();
+            setInterval(updateTrackingCountdown, 1000);
+        }
+
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
             renderTeams();
             renderPagination();
             setupSearch();
             initCountdown();
+            initTrackingCountdown();
         });
 
         // Рендер команд

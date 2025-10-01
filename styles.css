@@ -239,6 +239,73 @@ https://docs.google.com/document/d/1KlwCrYa3IEZqZXPdyJggKvdKei1SKKAe/edit?tab=t.
     margin: 0 auto;
 }
 
+/* ============================================ */
+/*               COUNTDOWN TIMER                */
+/* ============================================ */
+
+.countdown-timer, .locked-timer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.timer-unit, .locked-timer-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 107, 53, 0.1);
+    transition: all 0.3s ease;
+}
+
+.timer-unit:hover, .locked-timer-unit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.2);
+    border-color: rgba(255, 107, 53, 0.3);
+}
+
+.timer-icon, .locked-timer-icon {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.timer-value, .locked-timer-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-family: 'JetBrains Mono', monospace;
+    margin: 8px 0;
+}
+
+.timer-label, .locked-timer-label {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timer-message, .locked-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    padding: 10px;
+    background: rgba(255, 107, 53, 0.05);
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
 @media (max-width: 768px) {
     .stages-grid {
         grid-template-columns: 1fr;
@@ -4563,27 +4630,27 @@ h1, h2, h3, h4, h5, h6 {
     margin: 5px !important;
   }
   
-  /* IntroDay таймер */
-  .locked-timer {
-    gap: 8px !important;
-    padding: 10px !important;
+  /* IntroDay таймер - мобильные стили */
+  .locked-timer, .countdown-timer {
+    gap: 8px;
+    padding: 10px;
   }
   
-  .locked-timer-unit {
-    padding: 8px 6px !important;
+  .locked-timer-unit, .timer-unit {
+    padding: 8px 6px;
   }
   
-  .locked-timer-value {
-    font-size: 0.9rem !important;
+  .locked-timer-value, .timer-value {
+    font-size: 0.9rem;
   }
   
-  .locked-timer-label {
-    font-size: 0.6rem !important;
+  .locked-timer-label, .timer-label {
+    font-size: 0.6rem;
   }
   
-  .locked-message {
-    font-size: 0.7rem !important;
-    padding: 8px !important;
+  .locked-message, .timer-message {
+    font-size: 0.7rem;
+    padding: 8px;
   }
   
   /* Мобильное меню */
@@ -4744,21 +4811,21 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   /* Таймер */
-  .locked-timer {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 6px !important;
+  .locked-timer, .countdown-timer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
   }
   
-  .locked-timer-unit {
-    padding: 8px 6px !important;
+  .locked-timer-unit, .timer-unit {
+    padding: 8px 6px;
   }
   
-  .locked-timer-value {
-    font-size: 0.8rem !important;
+  .locked-timer-value, .timer-value {
+    font-size: 0.8rem;
   }
   
-  .locked-timer-label {
-    font-size: 0.5rem !important;
+  .locked-timer-label, .timer-label {
+    font-size: 0.5rem;
   }
   
   /* Мобильное меню для маленьких экранов */
@@ -4896,21 +4963,21 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   /* Таймер */
-  .locked-timer {
-    gap: 5px !important;
-    padding: 6px !important;
+  .locked-timer, .countdown-timer {
+    gap: 5px;
+    padding: 6px;
   }
   
-  .locked-timer-unit {
-    padding: 6px 4px !important;
+  .locked-timer-unit, .timer-unit {
+    padding: 6px 4px;
   }
   
-  .locked-timer-value {
-    font-size: 0.7rem !important;
+  .locked-timer-value, .timer-value {
+    font-size: 0.7rem;
   }
   
-  .locked-timer-label {
-    font-size: 0.4rem !important;
+  .locked-timer-label, .timer-label {
+    font-size: 0.4rem;
   }
   
   /* Блоки шагов для очень маленьких экранов */

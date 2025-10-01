@@ -419,9 +419,66 @@
 
         .countdown-timer {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 53, 0.2);
             margin-bottom: 15px;
+        }
+
+        .timer-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 10px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 107, 53, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timer-unit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.2);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .timer-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .timer-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            margin: 8px 0;
+        }
+
+        .timer-label {
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timer-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+            padding: 10px;
+            background: rgba(255, 107, 53, 0.05);
+            border-radius: 8px;
+            margin-top: 10px;
         }
 
         /* Locked timer styles */
@@ -526,7 +583,20 @@
             
             .countdown-timer {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                gap: 12px;
+                padding: 15px;
+            }
+            
+            .timer-unit {
+                padding: 12px 8px;
+            }
+            
+            .timer-value {
+                font-size: 1.5rem;
+            }
+            
+            .timer-label {
+                font-size: 0.7rem;
             }
             
             .time-value {
@@ -955,37 +1025,37 @@
                         <div class="stage-header">
                             <div class="stage-icon">📊</div>
                             <h2>Трекинг</h2>
-                            <div class="stage-status locked">БЛОКТАЛҒАН</div>
+                            <div class="stage-status" style="background:#ff6b35;color:#fff;">БАСТАЛДЫ</div>
                         </div>
                         <div class="stage-content">
                             <div class="stage-description">
                                 <p><strong>Кезең сипаттамасы:</strong></p>
-                                <p>Трекинг — ITMLab 2.0 шеңберіндегі жобаларды интенсивті жетілдірудің кезеңі, ол Intro Day-ден кейін 4 апта бойы өтеді. Бұл кезеңде 20 таңдалған команда жеке трекерлермен жұмыс істейді: әр командаға 2 трекер тағайындалады — 1 техникалық трекер техникалық мәселелерді шешу үшін және 1 бизнес-трекер бизнес-мәселелерді шешу үшін. Кезеңнің мақсаты — жобаларды енгізуге дайындық деңгейіне дейін жетілдіру және командаларды финалдық ұсынуға дайындау.</p>
+                                <p>Трекинг — ITMLab 2.0 шеңберіндегі жобаларды интенсивті жетілдірудің кезеңі, ол 30 қыркүйектен 27 қазанда өтеді. Бұл кезеңде 21 команда жеке трекерлермен жұмыс істейді: әр командаға 2 трекер тағайындалады — 1 техникалық трекер техникалық мәселелерді шешу үшін және 1 бизнес-трекер бизнес-мәселелерді шешу үшін. Кезеңнің мақсаты — жобаларды енгізуге дайындық деңгейіне дейін жетілдіру және командаларды финалдық ұсынуға дайындау.</p>
                             </div>
                             
-                            <div class="locked-timer">
-                                <div class="locked-timer-unit">
-                                    <div class="locked-timer-icon">📅</div>
-                                    <div class="locked-timer-value">--</div>
-                                    <div class="locked-timer-label">Күндер</div>
-                                    </div>
-                                <div class="locked-timer-unit">
-                                    <div class="locked-timer-icon">⏰</div>
-                                    <div class="locked-timer-value">--</div>
-                                    <div class="locked-timer-label">Сағаттар</div>
+                            <div class="countdown-timer" id="trackingCountdownKz">
+                                <div class="timer-unit">
+                                    <div class="timer-icon">📅</div>
+                                    <div class="timer-value" id="trackingDaysKz">00</div>
+                                    <div class="timer-label">Күндер</div>
                                 </div>
-                                <div class="locked-timer-unit">
-                                    <div class="locked-timer-icon">⏱️</div>
-                                    <div class="locked-timer-value">--</div>
-                                    <div class="locked-timer-label">Минуттар</div>
-                            </div>
-                                <div class="locked-timer-unit">
-                                    <div class="locked-timer-icon">⏳</div>
-                                    <div class="locked-timer-value">--</div>
-                                    <div class="locked-timer-label">Секундтар</div>
+                                <div class="timer-unit">
+                                    <div class="timer-icon">⏰</div>
+                                    <div class="timer-value" id="trackingHoursKz">00</div>
+                                    <div class="timer-label">Сағаттар</div>
                                 </div>
-                                <div class="locked-message">
-                                    🔒 Есептеу әлі басталмады
+                                <div class="timer-unit">
+                                    <div class="timer-icon">⏱️</div>
+                                    <div class="timer-value" id="trackingMinutesKz">00</div>
+                                    <div class="timer-label">Минуттар</div>
+                                </div>
+                                <div class="timer-unit">
+                                    <div class="timer-icon">⏳</div>
+                                    <div class="timer-value" id="trackingSecondsKz">00</div>
+                                    <div class="timer-label">Секундтар</div>
+                                </div>
+                                <div class="timer-message">
+                                    ⏰ Трекинг аяқталуына дейін
                                 </div>
                             </div>
                         </div>
@@ -1226,7 +1296,7 @@
         const stageDescriptions = {
             online: "Жобаның келесі Intro Day кезеңіне өткен қатысушылары.",
             demoday: "ITM Lab 2.0 жобасының қорытынды жеңімпаздары! Барлық кезеңдерді өткен және енгізуге дайын жобаларды ұсынған 10 үздік команда. Бұл командалар одан әрі даму және масштабтау үшін қолдау алады.",
-            tracking: "Трекингті сәтті өткен командалар! Жеке трекерлермен жұмыс істеген және жобаларды енгізуге дайындық деңгейіне дейін жетілдірген 20 команда.",
+            tracking: "Трекингті сәтті өткен командалар! Жеке трекерлермен жұмыс істеген және жобаларды енгізуге дайындық деңгейіне дейін жетілдірген 21 команда.",
             introday: "Intro Day өткен командалар! Жобаларды сәтті ұсынған және келесі кезең - Трекингке өткен 21 команда.",
             pitchday: "Pitch Day - бұл командалар жетілдірілген жобалар мен бизнес-модельдерді таныстыратын кезең. Осы күні қандай командалар өз идеяларын дамыту үшін 600.000 теңге мөлшерінде гранттар алатыны белгілі болады!"
         };
@@ -1242,7 +1312,7 @@
         const stageDescription = {
             online: 'Жобаның келесі Intro Day кезеңіне өткен қатысушылары.',
             demoday: 'ITM Lab 2.0 финалистерін құттықтаймыз! Бұл 10 команда барлық кезеңдерді сәтті өтті және жобаларын инвесторлар мен серіктестер алдында ұсынуға дайын.',
-            tracking: 'ITM Lab 2.0 трекингінен өткен командаларды құттықтаймыз! Бұл 20 команда жобаларын интенсивті жетілдірді және финалдық ұсынуға дайын.',
+            tracking: 'ITM Lab 2.0 трекингінен өткен командаларды құттықтаймыз! Бұл 21 команда жобаларын интенсивті жетілдірді және финалдық ұсынуға дайын.',
             introday: 'ITM Lab 2.0 Intro Day-ден өткен командаларды құттықтаймыз! Бұл 21 команда жобаларын сәтті ұсынып, келесі кезең - Трекингке өтті.',
             pitchday: 'Pitch Day - бұл командалар жетілдірілген жобалар мен бизнес-модельдерді таныстыратын кезең. Осы күні қандай командалар өз идеяларын дамыту үшін 600.000 теңге мөлшерінде гранттар алатыны белгілі болады!'
         };
@@ -1250,7 +1320,7 @@
         const stageTeamCount = {
             online: 31,
             demoday: 10,
-            tracking: 20,
+            tracking: 21,
             introday: 21,
             pitchday: 10
         };
@@ -1299,7 +1369,47 @@
             
             updateCountdown();
             setInterval(updateCountdown, 1000);
+        }
+
+        // Tracking Countdown Timer Function (Kazakh)
+        function initTrackingCountdownKz() {
+            // 27 қазан 2025 жыл 23:59:59 күнін орнату
+            const targetDate = new Date('2025-10-27T23:59:59').getTime();
+            
+            function updateTrackingCountdownKz() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    const timerEl = document.getElementById('trackingCountdownKz');
+                    if (timerEl) {
+                        timerEl.innerHTML = '<div style="color: var(--primary); font-size: 1.2rem;">Трекинг аяқталды!</div>';
+                    }
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Трекинг таймерін жаңарту
+                const daysEl = document.getElementById('trackingDaysKz');
+                const hoursEl = document.getElementById('trackingHoursKz');
+                const minutesEl = document.getElementById('trackingMinutesKz');
+                const secondsEl = document.getElementById('trackingSecondsKz');
+                
+                if (daysEl && hoursEl && minutesEl && secondsEl) {
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                }
             }
+            
+            updateTrackingCountdownKz();
+            setInterval(updateTrackingCountdownKz, 1000);
+        }
 
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
@@ -1308,6 +1418,7 @@
             renderPagination();
             setupSearch();
             initCountdown();
+            initTrackingCountdownKz();
         });
 
         // Командаларды рендеринг
