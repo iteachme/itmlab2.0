@@ -574,11 +574,11 @@
             <div class="stage-block" id="stage5" role="tabpanel" aria-labelledby="stage5-tab">
                 <div class="stage-header">
                     <h3 class="stage-title">Pitch Day</h3>
-                    <div class="stage-status locked">БЛОКИРОВАНО</div>
+                    <div class="stage-status completed">ПРОЙДЕН</div>
                 </div>
                 <div class="stage-description">
                     <p><strong>Описание этапа:</strong></p>
-                    <p>Pitch Day - это этап, на котором команды презентуют доработанные проекты и бизнес-модели. В этот день будет известно, какие команды получат гранты в размере 600.000 тенге на разработку своих прототипов!</p>
+                    <p>Pitch Day - это этап, на котором команды презентовали доработанные проекты и бизнес-модели. 10 команд получили гранты в размере 600.000 тенге на разработку своих прототипов!</p>
                 </div>
             </div>
 
@@ -596,8 +596,8 @@
         </section>
 
         <section id="winners" class="winners-section section">
-            <h2 class="section-title">Участники Intro Day ITM Lab 2.0</h2>
-            <p style="text-align: center; font-size: 26px; margin: 30px 0;">
+            <h2 class="section-title" id="winnersTitle">Участники Intro Day ITM Lab 2.0</h2>
+            <p id="winnersDescription" style="text-align: center; font-size: 26px; margin: 30px 0;">
                 Поздравляем команды, прошедшие Intro Day ITM Lab 2.0! Эти 21 команда успешно представили свои проекты и прошли на следующий этап - Трекинг.
             </p>
 
@@ -626,30 +626,47 @@
     </footer>
 
     <script>
-        // Данные победителей
-        const winnersData = [
-            { name: "CALVADOS", description: "Участник Intro Day" },
-            { name: "Soile AI", description: "Участник Intro Day" },
-            { name: "MadZhan", description: "Участник Intro Day" },
-            { name: "SAMGA", description: "Участник Intro Day" },
-            { name: "NIS caseX", description: "Участник Intro Day" },
-            { name: "Future IT", description: "Участник Intro Day" },
-            { name: "Körem", description: "Участник Intro Day" },
-            { name: "NeuHarmony", description: "Участник Intro Day" },
-            { name: "MilaAI", description: "Участник Intro Day" },
-            { name: "MindShield", description: "Участник Intro Day" },
-            { name: "Visual Mind", description: "Участник Intro Day" },
-            { name: "Online Travel Access", description: "Участник Intro Day" },
-            { name: "NextAbility", description: "Участник Intro Day" },
-            { name: "Involve", description: "Участник Intro Day" },
-            { name: "Sana", description: "Участник Intro Day" },
-            { name: "Asar", description: "Участник Intro Day" },
-            { name: "4Suyen", description: "Участник Intro Day" },
-            { name: "Ceolina", description: "Участник Intro Day" },
-            { name: "MEZU", description: "Участник Intro Day" },
-            { name: "HandInHand", description: "Участник Intro Day" },
-            { name: "1+1", description: "Участник Intro Day" }
-        ];
+        // Данные победителей по этапам
+        const winnersByStage = {
+            introday: [
+                { name: "CALVADOS", description: "Участник Intro Day" },
+                { name: "Soile AI", description: "Участник Intro Day" },
+                { name: "MadZhan", description: "Участник Intro Day" },
+                { name: "SAMGA", description: "Участник Intro Day" },
+                { name: "NIS caseX", description: "Участник Intro Day" },
+                { name: "Future IT", description: "Участник Intro Day" },
+                { name: "Körem", description: "Участник Intro Day" },
+                { name: "NeuHarmony", description: "Участник Intro Day" },
+                { name: "MilaAI", description: "Участник Intro Day" },
+                { name: "MindShield", description: "Участник Intro Day" },
+                { name: "Visual Mind", description: "Участник Intro Day" },
+                { name: "Online Travel Access", description: "Участник Intro Day" },
+                { name: "NextAbility", description: "Участник Intro Day" },
+                { name: "Involve", description: "Участник Intro Day" },
+                { name: "Sana", description: "Участник Intro Day" },
+                { name: "Asar", description: "Участник Intro Day" },
+                { name: "4Suyen", description: "Участник Intro Day" },
+                { name: "Ceolina", description: "Участник Intro Day" },
+                { name: "MEZU", description: "Участник Intro Day" },
+                { name: "HandInHand", description: "Участник Intro Day" },
+                { name: "1+1", description: "Участник Intro Day" }
+            ],
+            pitchday: [
+                { name: "Ai-komekshi", description: "Победитель Pitch Day - обладатель гранта. Адаптированная платформа на основе искусственного интеллекта для трудоустройства лиц с инвалидностью" },
+                { name: "Ceolina", description: "Победитель Pitch Day - обладатель гранта. Интерактивная арт-терапевтическая платформа, развивающая социальные и эмоциональные навыки детей с расстройствами аутистического спектра" },
+                { name: "MindShield", description: "Победитель Pitch Day - обладатель гранта. AI-платформа, которая анализирует движения пальцев для раннего скрининга болезни Паркинсона" },
+                { name: "Mila4AI", description: "Победитель Pitch Day - обладатель гранта. Инновационное решение для расширения доступа к логопедической помощи детям с тяжёлыми нарушениями речи" },
+                { name: "Samga", description: "Победитель Pitch Day - обладатель гранта. Веб-платформа с интерактивными терапевтическими играми для детей с инвалидностью" },
+                { name: "Future IT", description: "Победитель Pitch Day - обладатель гранта. Смарт-очки для людей с нарушением зрения, распознающие текст и озвучивающие его в реальном времени" },
+                { name: "NIS CaseX", description: "Победитель Pitch Day - обладатель гранта. Трость с искусственным интеллектом и 3D-звуком для безопасного передвижения лиц с нарушением зрения" },
+                { name: "MadZhan", description: "Победитель Pitch Day - обладатель гранта. Умные очки для лиц с нарушением слуха, обеспечивающие безопасную навигацию и коммуникацию" },
+                { name: "Calvados", description: "Победитель Pitch Day - обладатель гранта. Компьютерная мышь, управляемая ртом, для пользователей с ограниченной подвижностью" },
+                { name: "NextAbility", description: "Победитель Pitch Day - обладатель гранта. Интерактивная внутриротовая капа с элементами AI для управления инвалидной коляской и цифровыми устройствами" }
+            ]
+        };
+        
+        let currentStage = 'introday';
+        let winnersData = winnersByStage[currentStage];
 
         let currentPage = 1;
         const itemsPerPage = 12;
@@ -721,6 +738,24 @@
             if (stageNumber === 4) {
                 setTimeout(initCountdown, 100);
             }
+            
+            // Обновляем список победителей в зависимости от выбранного этапа
+            if (stageNumber === 4) {
+                currentStage = 'introday';
+                winnersData = winnersByStage.introday;
+                document.getElementById('winnersTitle').textContent = 'Участники Intro Day ITM Lab 2.0';
+                document.getElementById('winnersDescription').textContent = 'Поздравляем команды, прошедшие Intro Day ITM Lab 2.0! Эти 21 команда успешно представили свои проекты и прошли на следующий этап - Трекинг.';
+            } else if (stageNumber === 5) {
+                currentStage = 'pitchday';
+                winnersData = winnersByStage.pitchday;
+                document.getElementById('winnersTitle').textContent = 'Победители Pitch Day - обладатели грантов ITM Lab 2.0';
+                document.getElementById('winnersDescription').textContent = 'Поздравляем победителей Pitch Day ITM Lab 2.0! Эти 10 команд успешно презентовали свои проекты и получили гранты в размере 600.000 тенге на разработку своих прототипов!';
+            }
+            
+            filteredTeams = [...winnersData];
+            currentPage = 1;
+            renderTeams();
+            renderPagination();
 
             announceChange(`Выбран этап: ${selectedStage.querySelector('.stage-title').textContent}`);
         }
@@ -816,7 +851,8 @@
             searchInput.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase();
                 filteredTeams = winnersData.filter(team => 
-                    team.name.toLowerCase().includes(searchTerm)
+                    team.name.toLowerCase().includes(searchTerm) ||
+                    (team.description && team.description.toLowerCase().includes(searchTerm))
                 );
                 currentPage = 1;
                 renderTeams();
